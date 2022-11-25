@@ -33,8 +33,7 @@
     "**/*.cjs",
     "**/*.mjs",
     ".next/types/**/*.ts",
-    "src/utils/scrollHelpers.js",
-    "src/utils/authProvider.js"
+    "**/*.js"
   ],
   "exclude": ["node_modules"]
 }

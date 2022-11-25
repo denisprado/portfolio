@@ -1,8 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
+  req,
+  res
 ) {
   // get the incoming request URL, e.g. 'posts?limit=10&offset=0&order=id.asc'
   const requestUrl = req?.url?.substring("/api/admin/".length);
