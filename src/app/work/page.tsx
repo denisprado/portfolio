@@ -1,14 +1,22 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Loading from "./loading";
 import Modal from "./modal";
+import supabase from "@utils/supabase";
 
-const Works: React.FC = () => {
+export default async function Works() {
+  const { data: work, error } = await supabase?.from("work").select("*");
   return (
     <Suspense fallback={<Loading />}>
-      <div className="font-serif">Work</div>
+      <div className="mt-36 bg-base-300 font-serif">Work</div>
+      <ul>
+        {work?.map((w) => (
+          <li key={w.id} className={"flex flex-row gap-4"}>
+            <h2>{w.title}</h2>
+            <p>{w.description}</p>
+          </li>
+        ))}
+      </ul>
       <Modal />
     </Suspense>
   );
-};
-
-export default Works;
+}

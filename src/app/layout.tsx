@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import "./globals.css";
 import { Inter, Abril_Fatface } from "@next/font/google";
+import { createContext, useState } from "react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -11,11 +13,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <html lang="en" className={inter.className} data-theme="cupcake">
       <body>
-        <div className="relative flex h-full min-h-screen flex-col">
-          <div className="navbar z-50 flex flex-row justify-around bg-base-100 bg-transparent pl-8 md:fixed">
+        <div className="relative z-50 flex flex-col">
+          <div className="navbar flex flex-row justify-around bg-base-100 bg-transparent pl-8 md:fixed">
             <div className="flex-1">
               <Link
                 href="/"
@@ -36,9 +40,10 @@ export default function RootLayout({
             </div>
           </div>
 
-          <main>{children}</main>
-          <div className="fixed bottom-[10%] flex w-full flex-row justify-center">
-            <div className="z-50 h-20 w-20 rounded-full bg-primary shadow-xl"></div>
+          <div
+            className={`-z-30 ${isOpen && "-h-[50vh] border border-red-500"}`}
+          >
+            {children}
           </div>
         </div>
       </body>

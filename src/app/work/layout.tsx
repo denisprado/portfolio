@@ -5,11 +5,11 @@ export default function WorkLayout({
 }) {
   return (
     <section>
-      <div className="flex w-full flex-row gap-4">
+      <div className="mt-36 flex w-full flex-row gap-4">
         <nav>
           <ul className="menu w-56 bg-base-100">
             <li className="p-4">
-              <a>Item 1</a>
+              <a>Item</a>
             </li>
             <li className="p-4">
               <a>Item 2</a>

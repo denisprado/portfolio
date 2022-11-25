@@ -14,21 +14,21 @@ module.exports = {
         serif: ['var(--font-abril)', ...fontFamily.serif]
       },
       animation: {
-        openmenu: 'openmenu 1s ease-in',
-        closemenu: 'closemenu 1s ease-in',
+        openmenu: 'openmenu 0.5s ease-in',
+        closemenu: 'closemenu 0.5s ease-in',
       },
       keyframes: {
         openmenu: {
           // initial position
-          '0%': { left: '-224px' },
+          '0%': { bottom: '-50vh' },
           // final position
-          '100%': { left: '0px' }
+          '100%': { bottom: '0px' }
         },
         closemenu: {
           // initial position
-          '0%': { left: '0px' },
+          '0%': { bottom: '0px' },
           // final position
-          '100%': { left: '-224px' }
+          '100%': { bottom: '-50vh' }
         },
       }
     },
