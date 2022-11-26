@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import Modal from "./modal";
 import supabase from "@utils/supabase";
-
+export const revalidate = 10;
 export default async function Works() {
   const { data: work, error } = await supabase?.from("work").select("*");
   return (
