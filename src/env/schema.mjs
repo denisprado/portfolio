@@ -16,8 +16,8 @@ export const serverSchema = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 export const clientSchema = z.object({
-  NEXT_PUBLIC_SUPABASE_SERVICE_ROLE: z.string(),
-  NEXT_PUBLIC_API_URL: z.string(),
+  NEXT_PUBLIC_SUPABASE_SERVICE_ROLE: z.string().min(1),
+  NEXT_PUBLIC_API_URL: z.string().min(1),
 });
 
 /**
@@ -27,6 +27,6 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
-  NEXT_PUBLIC_SUPABASE_SERVICE_ROLE: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE,
-  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+  NEXT_PUBLIC_SUPABASE_SERVICE_ROLE: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE || "",
+  NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || "",
 };
