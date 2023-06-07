@@ -1,13 +1,18 @@
 "use client"
 
 import React from "react"
-import { RefineThemes } from "@refinedev/antd"
+import { notificationProvider, RefineThemes } from "@refinedev/antd"
 import "@refinedev/antd/dist/reset.css"
 import { ConfigProvider } from "antd"
 import '@styles/globals.css'
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
 import { Source_Sans_Pro, Source_Code_Pro } from 'next/font/google';
+import { Refine } from "@refinedev/core"
+import { authProvider } from "@/authProvider"
+import { API_URL } from "@/constants"
+import dataProvider from "@refinedev/simple-rest"
+import routerProvider from "@refinedev/nextjs-router/app";
 
 const source = Source_Sans_Pro({
 	subsets: ['latin'],
@@ -34,9 +39,31 @@ export default function RootLayout({
 			<html lang="en" className={`${source.variable} ${fira.variable}`}>
 				<head />
 				<body >
-					<Header />
-					{children}
-					<Footer />
+					<Refine
+						authProvider={authProvider}
+						routerProvider={routerProvider}
+						dataProvider={dataProvider(API_URL)}
+						resources={[
+							{
+								name: "posts",
+								list: "/posts",
+								create: "/posts/create",
+								edit: "/posts/edit/:id",
+								show: "/posts/show/:id",
+								meta: {
+									canDelete: true,
+								},
+							},
+						]}
+						options={{
+							syncWithLocation: true,
+						}}
+						notificationProvider={notificationProvider}
+					>
+						<Header />
+						{children}
+						<Footer />
+					</Refine>
 				</body>
 			</html>
 		</ConfigProvider>

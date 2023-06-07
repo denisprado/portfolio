@@ -4,13 +4,13 @@ import { Authenticated } from "@refinedev/core";
 import { NavigateToResource } from "@refinedev/nextjs-router/app";
 
 export default function ProtectedLayout({
-    children,
+	children,
 }: {
-    children: React.ReactNode;
+	children: React.ReactNode;
 }) {
-    return (
-        <Authenticated fallback={children}>
-            <NavigateToResource />
-        </Authenticated>
-    );
+	return (
+		<Authenticated fallback={children}>
+			<NavigateToResource />
+		</Authenticated>
+	);
 }
