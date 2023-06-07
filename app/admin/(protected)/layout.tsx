@@ -9,8 +9,6 @@ export default function ProtectedLayout({
 }) {
 	return (
 		<Authenticated redirectOnFail="/login">
-
-
 			<ThemedLayoutV2>{children}</ThemedLayoutV2>
 		</Authenticated>
 	);

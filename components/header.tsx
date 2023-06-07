@@ -8,8 +8,8 @@ import { useState } from "react";
 import classNames from "classnames";
 
 const links = [
-	{ href: "/quem somos", label: "quem somos" },
-	{ href: "/o que fazemos", label: "Our Story" },
+	{ href: "/products", label: "quem somos" },
+	{ href: "/our-story", label: "Our Story" },
 	{ href: "/workshop", label: "Workshop" },
 
 ];
@@ -17,11 +17,7 @@ const links = [
 export const Header = () => {
 	const path = usePathname();
 	const duration = 0.3;
-	const [hover, setHover] = useState<number | null>(null);
 
-	const handleMouseEnter = (i: number | null) => {
-		setHover(i);
-	};
 
 	return (
 		<header className="relative z-10 w-full">
@@ -38,28 +34,26 @@ export const Header = () => {
 							return (
 								<motion.li key={link.href}
 									layoutId="selected"
-									onMouseEnter={() => handleMouseEnter(i)}
-									onMouseLeave={() => setHover(null)}
 									className="rounded-full py-2 px-3 bg-neutral-light-2 text-xs relative uppercase"
 									initial={{
-										color: selected || hover ? "rgb(199 201 204 / var(--tw-bg-opacity))" : "rgb(60 60 66 / var(--tw-bg-opacity))"
+										color: selected ? "rgb(199 201 204)" : "rgb(60 60 66 )"
 									}}
 									animate={{
-										color: selected ? "rgb(60 60 66 / var(--tw-bg-opacity))" : "rgb(60 60 66 / var(--tw-bg-opacity))"
+										color: selected ? "rgb(60 60 66 )" : "rgb(199 201 204 )"
 									}}
 									transition={{ duration }}
 								>
 
-									<Link href={link.href} className={classNames("relative z-10", { "text-neutral-light-1": hover === i })}>
+									<Link href={link.href} className={classNames("relative z-10", { 'text-neutral-light-1': selected })}>
 										{link.label}
 									</Link>
 									{
-										hover === i && (
+										selected && (
 											<motion.div
 												className="bg-neutral-dark-2 rounded-full text-xs text-neutral-light-1 absolute w-full h-full top-0 left-0"
 												layoutId="selected"
-												initial={{ backgroundColor: "rgb(199 201 204 / var(--tw-bg-opacity))", color: hover ? "rgb(199 201 204 / var(--tw-bg-opacity))" : "rgb(60 60 66 / var(--tw-bg-opacity))" }}
-												animate={{ backgroundColor: "rgb(60 60 66 / var(--tw-bg-opacity))", color: "rgb(199 201 204 / var(--tw-bg-opacity))" }}
+												initial={{ backgroundColor: "rgb(199 201 204 )", color: "rgb(60 60 66 )" }}
+												animate={{ backgroundColor: "rgb(60 60 66 )", color: "rgb(199 201 204 )" }}
 												transition={{ duration }}
 											/>
 										)

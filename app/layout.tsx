@@ -13,6 +13,7 @@ import { authProvider } from "@/authProvider"
 import { API_URL } from "@/constants"
 import dataProvider from "@refinedev/simple-rest"
 import routerProvider from "@refinedev/nextjs-router/app";
+import { usePathname } from "next/navigation"
 
 const source = Source_Sans_Pro({
 	subsets: ['latin'],
@@ -21,49 +22,60 @@ const source = Source_Sans_Pro({
 	weight: "400"
 });
 
-const fira = Source_Code_Pro({
+const source_code = Source_Code_Pro({
 	subsets: ['latin'],
 	display: 'swap',
 	variable: '--font-source-code',
 });
 
 export default function RootLayout({
-	children,
+	children
 }: {
 	children: React.ReactNode
 }) {
 
+	const path = usePathname();
+
+	const isAdmin = path.includes('admin')
 
 	return (
 		<ConfigProvider theme={RefineThemes.Blue}>
-			<html lang="en" className={`${source.variable} ${fira.variable}`}>
+			<html lang="en" className={`${source.variable} ${source_code.variable}`}>
 				<head />
 				<body >
-					<Refine
-						authProvider={authProvider}
-						routerProvider={routerProvider}
-						dataProvider={dataProvider(API_URL)}
-						resources={[
-							{
-								name: "posts",
-								list: "/posts",
-								create: "/posts/create",
-								edit: "/posts/edit/:id",
-								show: "/posts/show/:id",
-								meta: {
-									canDelete: true,
+					{isAdmin ?
+						<Refine
+							authProvider={authProvider}
+							routerProvider={routerProvider}
+							dataProvider={dataProvider(API_URL)}
+							resources={[
+								{
+									name: "posts",
+									list: "/posts",
+									create: "/posts/create",
+									edit: "/posts/edit/:id",
+									show: "/posts/show/:id",
+									meta: {
+										canDelete: true,
+									},
 								},
-							},
-						]}
-						options={{
-							syncWithLocation: true,
-						}}
-						notificationProvider={notificationProvider}
-					>
-						<Header />
-						{children}
-						<Footer />
-					</Refine>
+							]}
+							options={{
+								syncWithLocation: true,
+							}}
+							notificationProvider={notificationProvider}
+						>
+							<Header />
+							{children}
+							<Footer />
+						</Refine>
+						:
+						<>
+							<Header />
+							{children}
+							<Footer />
+						</>
+					}
 				</body>
 			</html>
 		</ConfigProvider>

@@ -1,6 +1,6 @@
 "use client";
 
-import HorizontalScroller from "@/components/horizontalScroller";
+import HorizontalScroller from "../../components/horizontalScroller";
 import { Container } from "../../components/container";
 import { PageWrapper } from "../../components/page-wrapper";
 
