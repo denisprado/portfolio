@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
+ 
 body::before {
   content: "";
   position: absolute;
@@ -17,5 +17,5 @@ body::before {
   mix-blend-mode: difference;
   mix-blend-mode: multiply;
   background-image: linear-gradient( transparent 0%, transparent 93.749%, cyan 93.75%, cyan 100%), linear-gradient( 90deg, transparent 0%, transparent 93.749%, cyan 93.75%, cyan 100%);
-} */
+} 
 

@@ -4,20 +4,14 @@ import { PageWrapper } from "@components/page-wrapper";
 
 export default function Home() {
 	return (
-		<PageWrapper className="h-screenHeightWithoutHeader bg-[url(/chair.jpg)] bg-cover bg-center">
+		<PageWrapper className="h-screenHeightWithoutHeader bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
 			<Container className=" flex h-full flex-col pt-24 text-center text-2xl">
-				<h1 className="mb-8 text-8xl font-bold">Bem vindo à Platô</h1>
-				<p className="mx-auto max-w-xl">
-					We craft furniture by utilising what mother earth gave us. And we
-					build websites on the side ;).
+
+				<p className="mx-auto max-w-xl text-5xl text-neutral-light-1 font-italic">
+					Sua presença digital<br />elevada ao mais alto nível.
 				</p>
 
-				<Link
-					href="/products"
-					className="text-beige mx-auto mt-12 rounded-full bg-black p-4 transition-colors hover:bg-[#333] focus:bg-[#333]"
-				>
-					More about Foldly
-				</Link>
+
 			</Container>
 		</PageWrapper>
 	);

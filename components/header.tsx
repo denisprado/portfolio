@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Container } from "./container";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import classNames from "classnames";
 
 const links = [
@@ -22,19 +21,19 @@ export const Header = () => {
 	return (
 		<header className="relative z-10 w-full">
 			<Container className="grid grid-cols-12 grid-rows-[12] items-center">
-				<div className="col-span-2 row-span-4 bg-slate-300 h-16 place-content-center px-4 py-8">
+				<div className="col-span-2 row-span-full h-18 place-content-center px-2 py-2">
 					<Link href="/">
-						<motion.img src={"./images/logo.svg"} width={200} height={40} />
+						<motion.img src={"./images/logo.svg"} width={220} height={44} />
 					</Link>
 				</div>
-				<nav className="bg-neutral-light-1 grid row-span-4 col-span-10 h-16">
+				<nav className="bg-neutral-light-1 grid row-span-full col-span-10 h-18">
 					<ul className="[&_li]:ml-4 mr-12 flex justify-end items-center">
 						{links.map((link, i) => {
 							const selected = link.href === path;
 							return (
 								<motion.li key={link.href}
 									layoutId="selected"
-									className="rounded-full py-2 px-3 bg-neutral-light-2 text-xs relative uppercase"
+									className="rounded-full py-2 px-3 bg-neutral-light-2 text-neutral-dark-1 text-xs relative uppercase"
 									initial={{
 										color: selected ? "rgb(199 201 204)" : "rgb(60 60 66 )"
 									}}
@@ -44,7 +43,7 @@ export const Header = () => {
 									transition={{ duration }}
 								>
 
-									<Link href={link.href} className={classNames("relative z-10", { 'text-neutral-light-1': selected })}>
+									<Link href={link.href} className={classNames("relative z-10 text-neutral-dark-1", { 'text-neutral-light-1': selected })}>
 										{link.label}
 									</Link>
 									{

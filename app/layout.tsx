@@ -7,25 +7,30 @@ import { ConfigProvider } from "antd"
 import '@styles/globals.css'
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
-import { Source_Sans_Pro, Source_Code_Pro } from 'next/font/google';
+import { Instrument_Serif } from 'next/font/google';
 import { Refine } from "@refinedev/core"
 import { authProvider } from "@/authProvider"
 import { API_URL } from "@/constants"
 import dataProvider from "@refinedev/simple-rest"
 import routerProvider from "@refinedev/nextjs-router/app";
 import { usePathname } from "next/navigation"
+import localFont from 'next/font/local'
 
-const source = Source_Sans_Pro({
+const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
+
+
+const instrumentSerif = Instrument_Serif({
 	subsets: ['latin'],
 	display: 'swap',
-	variable: '--font-source',
+	variable: '--font-instrument-serif',
 	weight: "400"
 });
 
-const source_code = Source_Code_Pro({
+const instrumentSerifItalic = Instrument_Serif({
 	subsets: ['latin'],
 	display: 'swap',
-	variable: '--font-source-code',
+	variable: '--font-instrument-italic',
+	weight: "400", style: 'italic'
 });
 
 export default function RootLayout({
@@ -40,7 +45,7 @@ export default function RootLayout({
 
 	return (
 		<ConfigProvider theme={RefineThemes.Blue}>
-			<html lang="en" className={`${source.variable} ${source_code.variable}`}>
+			<html lang="en" className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
 				<head />
 				<body >
 					{isAdmin ?
