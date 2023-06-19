@@ -4,7 +4,7 @@ import React from "react"
 import { notificationProvider, RefineThemes } from "@refinedev/antd"
 import "@refinedev/antd/dist/reset.css"
 import { ConfigProvider } from "antd"
-import '@styles/globals.css'
+import './globals.css'
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
 import { Instrument_Serif } from 'next/font/google';

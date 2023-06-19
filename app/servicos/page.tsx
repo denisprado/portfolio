@@ -1,5 +1,6 @@
 "use client";
 
+import { Breadcumb } from "@/components/breadcumb";
 import { motion } from "framer-motion";
 import { Container } from "../../components/container";
 import { PageWrapper } from "../../components/page-wrapper";
@@ -9,6 +10,7 @@ export default function Home() {
 		// Hiding the overflow for now, we're not building building the scrolling
 		// functionality of the images ;)
 		<PageWrapper className="overflow-hidden">
+			<Breadcumb><p>HOME/SERVIÇOS</p></Breadcumb>
 			<Container className="flex">
 				<div className="flex w-[320px] min-w-[320px] flex-col border-r border-black py-12 pr-4 bg-neutral-dark-1">
 					<h1 className="mb-4 text-6xl uppercase">Foldy</h1>

@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
 const links = [
-	{ href: "/products", label: "quem somos" },
-	{ href: "/our-story", label: "Our Story" },
-	{ href: "/workshop", label: "Workshop" },
+	{ href: "/quem-somos", label: "quem somos" },
+	{ href: "/servicos", label: "serviços" },
+	{ href: "/trabalho", label: "trabalho" },
 
 ];
 
@@ -20,13 +20,13 @@ export const Header = () => {
 
 	return (
 		<header className="relative z-10 w-full">
-			<Container className="grid grid-cols-12 grid-rows-[12] items-center">
-				<div className="col-span-2 row-span-full h-18 place-content-center px-2 py-2">
-					<Link href="/">
-						<motion.img src={"./images/logo.svg"} width={220} height={44} />
-					</Link>
-				</div>
-				<nav className="bg-neutral-light-1 grid row-span-full col-span-10 h-18">
+			<Container className="flex flex-row items-center">
+
+				<Link href="/" className="h-20 px-4 py-5">
+					<motion.img src={"./images/logo.svg"} width={200} height={40} />
+				</Link>
+
+				<nav className="bg-neutral-light-1 border w-full h-20 px-4 py-5">
 					<ul className="[&_li]:ml-4 mr-12 flex justify-end items-center">
 						{links.map((link, i) => {
 							const selected = link.href === path;
