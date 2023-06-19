@@ -2,7 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 const breadcumbVariants = cva(
-	"inline-flex text-xs px-8 py-6",
+	"inline-flex text-xs px-8 py-6 w-full",
 	{
 		variants: {
 			variant: {

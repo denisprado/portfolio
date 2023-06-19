@@ -95,6 +95,15 @@ export default function Home() {
 					<HorizontalScroller />
 				</div> */}
 			</Container>
+			<Container>
+				<Breadcumb variant={"secondary"} className="mt-12"><p>HOME/QUEM SOMOS/EQUIPE</p>s</Breadcumb>
+				<div className="w-full bg-neutral-dark-2 p-12">
+					<div className="w-full bg-neutral-dark-1 border-y border-y-neutral-light-3 p-8 flex flex-col md:flex-row gap-4 justify-between">
+						<p className="text-8xl text-primary">Denis <span className="font-serif">Forigo</span></p>
+						<p className="text-neutral-light-2 w-full md:w-2/6 text-md">Graphic designer with over 10 years of experience, recently working with Product Design (UI/UX) and mobile development in squads with Scrum and Design Thinking methodology.</p>
+					</div>
+				</div>
+			</Container>
 		</PageWrapper >
 	);
 }
