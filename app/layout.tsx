@@ -15,6 +15,7 @@ import dataProvider from "@refinedev/simple-rest"
 import routerProvider from "@refinedev/nextjs-router/app";
 import { usePathname } from "next/navigation"
 import localFont from 'next/font/local'
+import { ThemeContextProvider } from "./context/theme"
 
 const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
 
@@ -75,11 +76,11 @@ export default function RootLayout({
 							<Footer />
 						</Refine>
 						:
-						<>
+						<ThemeContextProvider>
 							<Header />
 							{children}
 							<Footer />
-						</>
+						</ThemeContextProvider>
 					}
 				</body>
 			</html>

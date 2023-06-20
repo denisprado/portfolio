@@ -3,8 +3,10 @@
 import { Breadcumb } from "@/components/breadcumb";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useEffect } from "react";
 import { Container } from "../../components/container";
 import { PageWrapper } from "../../components/page-wrapper";
+import { useThemeContext } from "../context/theme";
 
 export default function Home() {
 
@@ -14,6 +16,13 @@ export default function Home() {
 		keys: string[],
 		color: string
 	}
+
+	const { color, setColor } = useThemeContext();
+
+	useEffect(() => {
+		setColor && setColor('dark')
+		return () => setColor && setColor('light')
+	}, [color])
 
 	const services: serviceProps[] = [
 		{
