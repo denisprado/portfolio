@@ -27,7 +27,7 @@ export function MenuItems() {
 
 				return i > 0 && (
 					<motion.div
-						className={classNames("relative px-3 py-1 m-0 font-sans cursor-pointer rounded-full mr-2", { "bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark', "bg-white text-neutral-dark-2": themeColor === 'light' })}
+						className={classNames("relative px-4 py-1 m-0 font-sans cursor-pointer rounded-full mr-3", { "bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark', "bg-white text-neutral-dark-2": themeColor === 'light' })}
 						key={i}
 						initial={{
 							color:

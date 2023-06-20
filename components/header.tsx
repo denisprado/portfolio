@@ -19,7 +19,7 @@ export const Header = () => {
 		<header className="relative z-10 w-full">
 			<Container className="flex flex-row items-center">
 
-				<Link href="/" className={classNames("h-16 px-4 py-3", { "bg-neutral-dark-3": color === 'dark' })}>
+				<Link href="/" className={classNames("h-16 pl-3 pr-5 pt-4 pb-3", { "bg-neutral-dark-3": color === 'dark' })}>
 					<motion.img src={color === 'light' ? "./images/logo.svg" : "./images/logo-servicos.svg"} width={200} height={40} />
 				</Link>
 

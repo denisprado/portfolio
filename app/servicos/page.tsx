@@ -1,7 +1,6 @@
 "use client";
 
-import { Breadcumb } from "@/components/breadcumb";
-import { motion } from "framer-motion";
+import RowCard, { RowCardProps } from "@/components/rowCard";
 import Image from "next/image";
 import { useEffect } from "react";
 import { Container } from "../../components/container";
@@ -10,13 +9,6 @@ import { useThemeContext } from "../context/theme";
 
 export default function Home() {
 
-	type serviceProps = {
-		title: string,
-		descriptions: string,
-		keys: string[],
-		color: string
-	}
-
 	const { color, setColor } = useThemeContext();
 
 	useEffect(() => {
@@ -24,7 +16,7 @@ export default function Home() {
 		return () => setColor && setColor('light')
 	}, [color])
 
-	const services: serviceProps[] = [
+	const services: RowCardProps[] = [
 		{
 			title: "Sua Marca",
 			descriptions: "A marca é a interface da empresa com seu público. Definimos todos os seus aspectos: do projeto estratégico para a linguagem visual ao tom de voz, criamos marcas distintas, relevantes e voltadas para o futuro.",
@@ -64,33 +56,16 @@ export default function Home() {
 		// functionality of the images ;)
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full bg-neutral-dark-2">
-				<div className="w-full flex pt-36 justify-center relative min-h-[640px]">
+				<div className="w-full flex pt-44 justify-center relative min-h-[640px]">
 					<p className="font-serif italic text-8xl font-light text-neutral-light-1 w-3/6 text-center z-10">
 						Da base ao topo,<br />
 						tudo o que você precisa.
 					</p>
 					<Image alt="backgroound" src="./images/bg-servicos.svg" fill className="relative" style={{ 'objectFit': 'cover', objectPosition: 'top' }} />
 				</div>
-				<div className="bg-neutral-dark-2 p-8">
-					{services.map(service => {
-						return (
-							<div key={service.title} className="flex flex-col md:flex-row justify-between bg-neutral-dark-1 text-neutral-light-2 border-t border-neutral-light-3 last:border-b p-12">
-								<h3 className={`${service.color} text-8xl`}>
-									<span className="font-sans">{service.title.substring(0, service.title.indexOf(" "))}</span>
-									<span className="font-serif">{service.title.substring(service.title.indexOf(" "))}</span>
-								</h3>
-								<div className="w-2/6 flex flex-col">
-									<p className="text-neutral-light-2 mb-4">
-										{service.descriptions}
-									</p>
-									<div className="columns-2">
-										{service?.keys?.map(key => <p className="text-neutral-light-1" key={service.title}>{key}</p>)}
-									</div>
-								</div>
-							</div>
-						)
-					})}
-				</div>
+
+				{services ? <RowCard cards={services} /> : <></>}
+
 			</Container>
 		</PageWrapper>
 	);
