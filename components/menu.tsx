@@ -4,26 +4,29 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { useState } from "react"
 
-const tabs = [
 
-	{ href: "/", label: "home", color: "hsl(var(--primary))" },
-	{ href: "/quem-somos", label: "quem somos", color: "hsl(var(--primary))" },
-	{ href: "/servicos", label: "serviços", color: "hsl(var(--primary))" },
-	{ href: "/trabalho", label: "trabalho", color: "hsl(var(--primary))" },
-]
+interface ItemsProps {
+	href: string
+	label: string
+}
+
+interface MenuItemsProps {
+	items: ItemsProps[]
+}
 
 
-
-export function MenuItems() {
+export function MenuItems({ items }: MenuItemsProps) {
+	const color = "hsl(var(--primary))"
 	const { color: themeColor, setColor } = useThemeContext();
-	const [store, setStore] = useState({ before: 0, selected: 0, formerColor: tabs[0].color })
+	const [store, setStore] = useState({ before: 0, selected: 0, activeColor: color })
+
 
 	return (
 
 
 
 		<div className="relative flex content-start justify-start items-start">
-			{tabs.map(({ label, color, href }, i) => {
+			{items.map(({ label, href }, i) => {
 
 				return i > 0 && (
 					<motion.div
@@ -39,21 +42,21 @@ export function MenuItems() {
 						}}
 						onTap={() => {
 							setStore({
-								formerColor: tabs[store.selected].color,
+								activeColor: color,
 								selected: i,
 								before: i,
 							})
 						}}
 						onPointerEnter={() => {
 							setStore({
-								formerColor: tabs[store.selected].color,
+								activeColor: color,
 								selected: i,
 								before: store.before
 							})
 						}}
 						onPointerOut={() => {
 							setStore({
-								formerColor: tabs[store.selected].color,
+								activeColor: color,
 								selected: store.before,
 								before: store.before
 							})
@@ -64,14 +67,14 @@ export function MenuItems() {
 							style={{ position: "relative", zIndex: 1 }}
 							onPointerEnter={() => {
 								setStore({
-									formerColor: tabs[store.selected].color,
+									activeColor: color,
 									selected: i,
 									before: store.before
 								})
 							}}
 							onPointerOut={() => {
 								setStore({
-									formerColor: tabs[store.selected].color,
+									activeColor: color,
 									selected: store.before,
 									before: store.before
 								})
@@ -84,19 +87,19 @@ export function MenuItems() {
 								className={"w-full h-full absolute rounded-full top-0 left-0"}
 								layoutId="selected"
 								initial={{
-									backgroundColor: store.formerColor,
+									backgroundColor: store.activeColor,
 								}}
 								animate={{ backgroundColor: color }}
 								onPointerEnter={() => {
 									setStore({
-										formerColor: tabs[store.selected].color,
+										activeColor: color,
 										selected: i,
 										before: store.before
 									})
 								}}
 								onPointerOut={() => {
 									setStore({
-										formerColor: tabs[store.selected].color,
+										activeColor: color,
 										selected: store.before,
 										before: store.before
 									})

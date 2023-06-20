@@ -10,8 +10,13 @@ import { useThemeContext } from "@/app/context/theme";
 
 
 export const Header = () => {
-	const path = usePathname();
-	const duration = 0.3;
+
+	const items = [
+		{ href: "/", label: "home" },
+		{ href: "/quem-somos", label: "quem somos" },
+		{ href: "/servicos", label: "serviços" },
+		{ href: "/trabalho", label: "trabalho" },
+	]
 
 	const { color, setColor } = useThemeContext();
 
@@ -25,7 +30,7 @@ export const Header = () => {
 
 				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center", { "bg-neutral-dark-1": color === 'dark' }, { "bg-neutral-light-1": color === 'light' })}>
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
-						<MenuItems />
+						<MenuItems items={items} />
 					</ul>
 				</nav>
 			</Container>

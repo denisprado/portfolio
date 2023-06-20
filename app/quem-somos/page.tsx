@@ -21,7 +21,7 @@ const team: RowCardProps[] = [
 ]
 
 
-export default function Home() {
+export default function About() {
 	return (
 		// Hiding the overflow for now, we're not building building the scrolling
 		// functionality of the images ;)
