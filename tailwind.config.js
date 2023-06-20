@@ -27,8 +27,6 @@ module.exports = {
 				screenHeightWithoutHeader: 'calc(100vh - 64px)'
 			},
 			colors: {
-
-
 				neutral: "#EDEEF0",
 				'neutral-dark-3': "#38383D",
 				'neutral-dark-2': "#3C3C42",
@@ -53,6 +51,9 @@ module.exports = {
 				destructive: {
 					DEFAULT: "hsl(var(--destructive))",
 					foreground: "hsl(var(--destructive-foreground))",
+				},
+				info: {
+					DEFAULT: "hsl(var(--info))"
 				},
 				muted: {
 					DEFAULT: "hsl(var(--muted))",

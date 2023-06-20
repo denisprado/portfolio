@@ -80,11 +80,8 @@ export default function Home() {
 		// Hiding the overflow for now, we're not building building the scrolling
 		// functionality of the images ;)
 		<PageWrapper className="">
-			<Breadcumb><p>HOME/QUEM-SOMOS</p></Breadcumb>
-			<Container className="flex flex-col mx-auto gap-8 w-4/6 mt-12">
-
+			<Container className="flex flex-col py-16 mx-auto gap-8 w-4/6 mt-12">
 				<Image src={"./images/logo-quem-somos.svg"} alt="" width={860 * 2} height={157 * 2} className="object-contain" />
-
 				<p className="text-4xl font-serif">Na Platô, somos apaixonados por desenvolvimento web e acreditamos no poder de uma presença online eficaz. Somos especializados em criar experiências digitais excepcionais, combinando a expertise em UX/UI com uma abordagem personalizada para atender às necessidades específicas de cada cliente.</p>
 				<div className="columns-3">
 					<p>Na Platô, unimos expertise em UX/UI a uma abordagem personalizada para criar soluções web que atendem às necessidades únicas de cada cliente. Nossa paixão é desenvolver experiências digitais belas e envolventes.</p>

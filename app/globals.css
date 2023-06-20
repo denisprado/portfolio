@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body::before {
+/* body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -29,7 +29,7 @@ body::before {
       cyan 93.75%,
       cyan 100%
     );
-}
+} */
 
 @layer base {
   :root {
@@ -57,7 +57,9 @@ body::before {
     --accent: 175 80% 40%;
     --accent-foreground: 220 9% 94%;
 
-    --destructive: 0 100% 50%;
+    --info: 33 97% 70%;
+
+    --destructive: 8 86% 67%;
     --destructive-foreground: 210 40% 98%;
 
     --ring: 215 20.2% 65.1%;

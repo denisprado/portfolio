@@ -8,6 +8,7 @@ const breadcumbVariants = cva(
 			variant: {
 				default: "bg-white text-neutral-dark-2",
 				secondary: "bg-neutral-light-1",
+				terciary: "bg-neutral-dark-1 text-neutral-light-1 border-b border-neutral-light-2",
 			},
 		},
 		defaultVariants: {
