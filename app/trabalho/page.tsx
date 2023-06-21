@@ -1,16 +1,27 @@
-"use client";
 
-import { Container } from "../../components/container";
-import { PageWrapper } from "../../components/page-wrapper";
+import supabase from "@/utils/supabase";
 
+export default async function MinhaPagina() {
+	const { data, error } = await getWork()
+	if (error) {
+		console.error('Erro ao buscar os dados:', error);
+		return error;
+	}
 
-export default function Home() {
 	return (
-
-		<PageWrapper className="overflow-hidden row-span-2">
-			<Container className="grid grid-cols-12 row-span-4">
-
-			</Container>
-		</PageWrapper>
+		<div>
+			{data?.map((item) => (
+				<div key={item.id}>{item.title}</div>
+			))}
+		</div>
 	);
-}
+};
+
+async function getWork() {
+	const { data, error } = await supabase.from('work').select();
+
+	return { data, error }
+};
+
+
+

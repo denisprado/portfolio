@@ -45,9 +45,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 								before: store.before
 							})
 						}}
+						key={i}
 					><motion.div
 						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3", { "bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark', "bg-white text-neutral-dark-2": themeColor === 'light' })}
-						key={i}
 						style={{ zIndex: 999 }}
 						initial={{
 							color:
@@ -79,13 +79,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 							})
 						}}
 					>
-							<span onTap={() => {
-								setStore({
-									activeColor: color,
-									selected: i,
-									before: i,
-								})
-							}}
+							<span
 								onPointerEnter={() => {
 									setStore({
 										activeColor: color,

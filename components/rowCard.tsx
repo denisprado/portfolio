@@ -1,5 +1,6 @@
 import Image from 'next/image'
 export type RowCardProps = {
+	id: number
 	title: string,
 	descriptions: string,
 	keys: string[],
@@ -10,21 +11,27 @@ export type RowCardProps = {
 type CardsProps = { cards: RowCardProps[] }
 
 const RowCard = ({ cards }: CardsProps) => {
+	console.log(cards)
 	return <div className='p-24 bg-neutral-dark-2'>
 		{
 			cards && cards?.map(card => (
-				<div key={card.title} className="flex flex-col md:flex-row justify-between bg-neutral-dark-1 text-neutral-light-2 border-t border-neutral-light-3 last:border-b p-12">
-					{card.image && <Image src={card.image} width={88} height={88} alt={card.title}></Image>}
-					<h3 className={`${card.color} text-8xl`}>
-						<span className="font-sans">{card.title.substring(0, card.title.indexOf(" "))}</span>
-						<span className="font-serif">{card.title.substring(card.title.indexOf(" "))}</span>
-					</h3>
+				<div key={card.id} className="flex flex-col md:items-center md:flex-row justify-between bg-neutral-dark-1 text-neutral-light-2 border-t border-neutral-light-3 last:border-b p-12">
+					<div className='flex flex-row items-center justify-center gap-4'>
+						{card.image && <div className='aspect-square w-24 h-24'>
+							<Image src={card.image} width={96} height={96} alt={card.title} className={'grayscale'} style={{ objectFit: 'cover' }}></Image>
+						</div>
+						}
+						<h3 className={`${card.color} text-8xl`}>
+							<span className="font-sans">{card.title.substring(0, card.title.indexOf(" "))}</span>
+							<span className="font-serif">{card.title.substring(card.title.indexOf(" "))}</span>
+						</h3>
+					</div>
 					<div className="w-2/6 flex flex-col">
 						<p className="text-neutral-light-2 mb-4 text-sm">
 							{card.descriptions}
 						</p>
 						<div className="columns-2">
-							{card?.keys?.map(key => <p className="text-mono text-neutral-light-1" key={card.title}>{key}</p>)}
+							{card?.keys?.map((key, i) => <p className="text-mono text-neutral-light-1" key={i}>{key}</p>)}
 						</div>
 					</div>
 				</div>
