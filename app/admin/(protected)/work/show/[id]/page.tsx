@@ -14,10 +14,10 @@ const PostShow: React.FC = () => {
 	const record = data?.data;
 
 	const { data: categoryData } = useOne<ICategory>({
-		resource: "categories",
-		id: record?.category.id || "",
+		resource: "category",
+		id: record?.category?.id || "",
 		queryOptions: {
-			enabled: !!record?.category.id,
+			enabled: !!record?.category?.id,
 		},
 	});
 
@@ -26,13 +26,8 @@ const PostShow: React.FC = () => {
 			<Title level={5}>Title</Title>
 			<Text>{record?.title}</Text>
 
-			<Title level={5}>Status</Title>
-			<Text>
-				<Tag>{record?.status}</Tag>
-			</Text>
-
 			<Title level={5}>Category</Title>
-			<Text>{categoryData?.data.title}</Text>
+			<Text>{categoryData?.data.name}</Text>
 		</Show>
 	);
 };

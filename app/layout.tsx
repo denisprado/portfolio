@@ -10,12 +10,12 @@ import { Header } from "@components/header"
 import { Instrument_Serif } from 'next/font/google';
 import { Refine } from "@refinedev/core"
 import { authProvider } from "@/authProvider"
-import { API_URL } from "@/constants"
-import dataProvider from "@refinedev/simple-rest"
+import { dataProvider } from "@refinedev/supabase"
 import routerProvider from "@refinedev/nextjs-router/app";
 import { usePathname } from "next/navigation"
 import localFont from 'next/font/local'
 import { ThemeContextProvider } from "./context/theme"
+import { supabaseClient } from "@/utils/supabase"
 
 const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
 
@@ -53,14 +53,24 @@ export default function RootLayout({
 						<Refine
 							authProvider={authProvider}
 							routerProvider={routerProvider}
-							dataProvider={dataProvider(API_URL)}
+							dataProvider={dataProvider(supabaseClient)}
 							resources={[
 								{
-									name: "posts",
-									list: "/posts",
-									create: "/posts/create",
-									edit: "/posts/edit/:id",
-									show: "/posts/show/:id",
+									name: "work",
+									list: "/admin/work",
+									create: "/admin/work/create",
+									edit: "/admin/work/edit/:id",
+									show: "/admin/work/show/:id",
+									meta: {
+										canDelete: true,
+									},
+								},
+								{
+									name: "category",
+									list: "/admin/category",
+									create: "/admin/category/create",
+									edit: "/admin/category/edit/:id",
+									show: "/admin/category/show/:id",
 									meta: {
 										canDelete: true,
 									},
@@ -71,9 +81,11 @@ export default function RootLayout({
 							}}
 							notificationProvider={notificationProvider}
 						>
-							<Header />
-							{children}
-							<Footer />
+							<ThemeContextProvider>
+								
+								{children}
+								<Footer />
+							</ThemeContextProvider>
 						</Refine>
 						:
 						<ThemeContextProvider>

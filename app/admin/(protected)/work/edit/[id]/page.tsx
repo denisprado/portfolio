@@ -1,19 +1,20 @@
 "use client";
 
-import { useForm, useSelect, Create } from "@refinedev/antd";
-import { Form, Select, Input } from "antd";
+import { useForm, useSelect, Edit } from "@refinedev/antd";
+import { Form, Input, Select } from "antd";
 
 import { IPost } from "interfaces";
 
-const PostCreate: React.FC = () => {
-	const { formProps, saveButtonProps } = useForm<IPost>();
+const PostEdit: React.FC = () => {
+	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
 	const { selectProps: categorySelectProps } = useSelect<IPost>({
-		resource: "categories",
+		resource: "category",
+		defaultValue: queryResult?.data?.data?.category?.id,
 	});
 
 	return (
-		<Create saveButtonProps={saveButtonProps}>
+		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
 				<Form.Item label="Title" name="title">
 					<Input />
@@ -40,8 +41,8 @@ const PostCreate: React.FC = () => {
 					<Select {...categorySelectProps} />
 				</Form.Item>
 			</Form>
-		</Create>
+		</Edit>
 	);
 };
 
-export default PostCreate;
+export default PostEdit;

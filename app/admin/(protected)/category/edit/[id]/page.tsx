@@ -9,7 +9,7 @@ const PostEdit: React.FC = () => {
 	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
 	const { selectProps: categorySelectProps } = useSelect<IPost>({
-		resource: "categories",
+		resource: "work",
 		defaultValue: queryResult?.data?.data?.category.id,
 	});
 

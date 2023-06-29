@@ -12,17 +12,17 @@ export interface Database {
       category: {
         Row: {
           created_at: string | null
-          id: number
+          id: string 
           name: string | null
         }
         Insert: {
           created_at?: string | null
-          id?: number
+          id?: string 
           name?: string | null
         }
         Update: {
           created_at?: string | null
-          id?: number
+          id?: string 
           name?: string | null
         }
         Relationships: []
@@ -84,29 +84,29 @@ export interface Database {
       }
       work: {
         Row: {
-          category_id: number | null
-          client_id: string | null
+          category_id: string 
+          client_id: string 
           created_at: string | null
           description: string | null
-          id: number
+          id: string
           thumbnail: string | null
           title: string | null
         }
         Insert: {
-          category_id?: number | null
+          category_id?: string 
           client_id?: string | null
           created_at?: string | null
           description?: string | null
-          id?: number
+          id?: string
           thumbnail?: string | null
           title?: string | null
         }
         Update: {
-          category_id?: number | null
+          category_id?: string
           client_id?: string | null
           created_at?: string | null
           description?: string | null
-          id?: number
+          id?: string
           thumbnail?: string | null
           title?: string | null
         }
