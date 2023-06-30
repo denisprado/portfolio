@@ -3,10 +3,17 @@
 import { supabaseClient } from "@/utils/supabase";
 import { useForm, useSelect, Create } from "@refinedev/antd";
 import { Form, Select, Input, Upload } from "antd";
-
 import { ICategory, IPost } from "interfaces";
 import { normalizeFile } from "@/utils/normalizeFile";
 import { RcFile } from "antd/es/upload";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import dynamic from "next/dynamic";
+
+const MDEditor = dynamic(
+	() => import("@uiw/react-md-editor"),
+	{ ssr: false }
+  );
 
 const PostCreate: React.FC = () => {
 	const { formProps, saveButtonProps } = useForm<IPost>();
@@ -20,10 +27,7 @@ const PostCreate: React.FC = () => {
 		resource: "client",
 		optionLabel:"name"
 	});
-	
-
-	
-	
+		
 	return (
 		<Create saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
@@ -31,7 +35,7 @@ const PostCreate: React.FC = () => {
 					<Input />
 				</Form.Item>
 				<Form.Item label="Description" name="description">
-					<Input />
+					<MDEditor data-color-mode="light" />
 				</Form.Item>
 
 				<Form.Item label="Category" 

@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const removeImports = require('next-remove-imports')();
+module.exports = removeImports({});
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
@@ -17,6 +19,10 @@ const nextConfig = {
         "rc-pagination",
         "rc-picker",
     ],
+    images: {
+        loader: 'custom',
+        loaderFile: './supabase-image-loader.js',
+      },
 };
 
 module.exports = nextConfig;
