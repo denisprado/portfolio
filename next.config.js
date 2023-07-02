@@ -18,11 +18,7 @@ const nextConfig = {
         "@ant-design/pro-provider",
         "rc-pagination",
         "rc-picker",
-    ],
-    images: {
-        loader: 'custom',
-        loaderFile: './supabase-image-loader.js',
-      },
+    ]
 };
 
 module.exports = nextConfig;
