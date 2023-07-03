@@ -40,61 +40,60 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode
 }) {
-
 	const path = usePathname();
-
 	const isAdmin = path.includes('admin')
-
 	return (
 		<ConfigProvider theme={RefineThemes.Blue}>
 			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
 				<head />
 				<body >
-					{isAdmin ?
-						<Refine
-							authProvider={authProvider}
-							routerProvider={routerProvider}
-							dataProvider={dataProvider(supabaseClient)}
-							resources={[
-								{
-									name: "work",
-									list: "/admin/work",
-									create: "/admin/work/create",
-									edit: "/admin/work/edit/:id",
-									show: "/admin/work/show/:id",
-									meta: {
-										canDelete: true,
+					<ThemeContextProvider>
+						{isAdmin ?
+							<Refine
+								authProvider={authProvider}
+								routerProvider={routerProvider}
+								dataProvider={dataProvider(supabaseClient)}
+								resources={[
+									{
+										name: "work",
+										list: "/admin/work",
+										create: "/admin/work/create",
+										edit: "/admin/work/edit/:id",
+										show: "/admin/work/show/:id",
+										meta: {
+											canDelete: true,
+										},
 									},
-								},
-								{
-									name: "category",
-									list: "/admin/category",
-									create: "/admin/category/create",
-									edit: "/admin/category/edit/:id",
-									show: "/admin/category/show/:id",
-									meta: {
-										canDelete: true,
+									{
+										name: "category",
+										list: "/admin/category",
+										create: "/admin/category/create",
+										edit: "/admin/category/edit/:id",
+										show: "/admin/category/show/:id",
+										meta: {
+											canDelete: true,
+										},
 									},
-								},
-							]}
-							options={{
-								syncWithLocation: true,
-							}}
-							notificationProvider={notificationProvider}
-						>
-							<ThemeContextProvider>
+								]}
+								options={{
+									syncWithLocation: true,
+								}}
+								notificationProvider={notificationProvider}
+							>
+
 
 								{children}
 								<Footer />
-							</ThemeContextProvider>
-						</Refine>
-						:
-						<ThemeContextProvider>
-							<Header />
-							{children}
-							<Footer />
-						</ThemeContextProvider>
-					}
+
+							</Refine>
+							:
+							<>
+								<Header />
+								{children}
+								<Footer />
+							</>
+						}
+					</ThemeContextProvider>
 				</body>
 			</html>
 		</ConfigProvider>

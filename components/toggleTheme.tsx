@@ -18,7 +18,7 @@ export function ModeToggle() {
 
   return setColor ? (
 
-    <div className="flex gap-1 justify-center items-center">
+    <div className="flex gap-2 justify-center items-center">
       {color === 'light' ? <Sun color={"#45464E"} className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" /> :
         <Moon color={'#A1A4A8'} className="h-[1.2rem] w-[1.2rem] transition-all dark:rotate-0 dark:scale-100" />}
       <Switch
