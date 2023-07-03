@@ -1,20 +1,12 @@
 "use client";
 
+import { useThemeContext } from "@/app/context/theme";
+import { Container } from "@/components/container";
+import { PageWrapper } from "@/components/page-wrapper";
 import RowCard, { RowCardProps } from "@/components/rowCard";
 import Image from "next/image";
-import { useEffect } from "react";
-import { Container } from "../../components/container";
-import { PageWrapper } from "../../components/page-wrapper";
-import { useThemeContext } from "../context/theme";
 
 export default function Home() {
-
-	const { color, setColor } = useThemeContext();
-
-	useEffect(() => {
-		setColor && setColor('dark')
-		return () => setColor && setColor('light')
-	}, [color])
 
 	const services: RowCardProps[] = [
 		{
@@ -34,7 +26,7 @@ export default function Home() {
 			keys: ["Sistema de Cores",
 				"UI Kits",
 				"Tipografia", "UX Research",
-				],
+			],
 			color: "text-info"
 		},
 		{
@@ -54,17 +46,19 @@ export default function Home() {
 		}
 	]
 
+	const { color } = useThemeContext()
+
 	return (
 		// Hiding the overflow for now, we're not building building the scrolling
 		// functionality of the images ;)
 		<PageWrapper className="overflow-hidden">
-			<Container className="flex flex-col w-full bg-neutral-dark-2">
+			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
 				<div className="w-full flex pt-44 justify-center relative min-h-[640px]">
-					<p className="font-serif text-9xl font-light text-neutral-light-1 w-4/6 text-center z-10">
+					<p className="text-primary font-serif text-9xl font-light w-4/6 text-center z-10">
 						Da base ao topo,<br />
 						tudo o que você precisa.
 					</p>
-					<Image alt="backgroound" src="./images/bg-servicos.svg" fill className="relative" style={{ 'objectFit': 'cover', objectPosition: 'top' }} />
+					<Image alt="backgroound" src={`./images/bg-servicos${color === 'dark' ? '-dark' : ''}.svg`} fill className="relative" style={{ 'objectFit': 'cover', objectPosition: 'top' }} />
 				</div>
 
 				{services ? <RowCard cards={services} /> : <></>}

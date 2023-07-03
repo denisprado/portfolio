@@ -36,7 +36,7 @@ const PostList: React.FC = () => {
 				<Table.Column dataIndex="description" title="Description" />
 				<Table.Column dataIndex="title" title="Title" />
 				<Table.Column
-					dataIndex={"id_post_category"}
+					dataIndex={"category_id"}
 					title="Categoria"
 					sorter
 					render={(value) => {

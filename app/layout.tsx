@@ -17,6 +17,7 @@ import localFont from 'next/font/local'
 import { ThemeContextProvider } from "./context/theme"
 import { supabaseClient } from "@/utils/supabase"
 
+
 const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
 
 
@@ -46,7 +47,7 @@ export default function RootLayout({
 
 	return (
 		<ConfigProvider theme={RefineThemes.Blue}>
-			<html lang="en" className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
+			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
 				<head />
 				<body >
 					{isAdmin ?
@@ -82,7 +83,7 @@ export default function RootLayout({
 							notificationProvider={notificationProvider}
 						>
 							<ThemeContextProvider>
-								
+
 								{children}
 								<Footer />
 							</ThemeContextProvider>

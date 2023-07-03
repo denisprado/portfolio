@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { MenuItems } from "./menu";
 import { useThemeContext } from "@/app/context/theme";
+import { ModeToggle } from "./toggleTheme";
 
 
 export const Header = () => {
@@ -31,6 +32,7 @@ export const Header = () => {
 				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center", { "bg-neutral-dark-1": color === 'dark' }, { "bg-neutral-light-1": color === 'light' })}>
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />
+						<li><ModeToggle /></li>
 					</ul>
 				</nav>
 			</Container>

@@ -19,11 +19,11 @@ export default async function Work() {
 
 	return (
 
-		<div className="grid grid-cols-4 w-full gap-4 p-4 container">
+		<div className="grid grid-cols-12 w-full gap-4 p-4 container">
 			{data?.map(async (item) => {
 				const url = parseJSON(item?.thumbnail)
 				return (
-					<div className="col-span-1 w-full grid"><Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} /></div>
+					<div className="col-span-6 w-full grid"><Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} /></div>
 				)
 			})}
 		</div>

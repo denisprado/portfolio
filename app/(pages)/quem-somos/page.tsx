@@ -1,11 +1,10 @@
 "use client";
 
-// import HorizontalScroller from "../../components/horizontalScroller";
-import { Container } from "../../components/container";
-import { PageWrapper } from "../../components/page-wrapper";
-import { Breadcumb } from "@/components/breadcumb";
-import Image from 'next/image'
+import { Container } from "@/components/container";
+import { PageWrapper } from "@/components/page-wrapper";
 import RowCard, { RowCardProps } from "@/components/rowCard";
+import Image from 'next/image';
+import { useThemeContext } from '../../context/theme'
 
 const team: RowCardProps[] = [
 	{
@@ -22,14 +21,14 @@ const team: RowCardProps[] = [
 
 ]
 
-
 export default function About() {
+	const { color } = useThemeContext()
 	return (
 		// Hiding the overflow for now, we're not building building the scrolling
 		// functionality of the images ;)
-		<PageWrapper>
-			<Container className="flex flex-col py-16 mx-auto gap-8 w-4/6 my-12">
-				<Image src={"./images/logo-quem-somos.svg"} alt="" width={860 * 2} height={157 * 2} className="object-contain" />
+		<PageWrapper className="dark:bg-neutral-dark-3">
+			<Container className="flex flex-col pt-12 py-16 mx-auto gap-8 w-4/6 dark:text-neutral-light-3">
+				<Image src={`./images/logo-quem-somos${color === 'dark' ? '-dark':''}.svg`} alt="" width={860 * 2} height={157 * 2} className="object-contain" />
 				<p className="text-4xl font-serif">Na Platô, somos apaixonados por desenvolvimento web e acreditamos no poder de uma presença online eficaz. Somos especializados em criar experiências digitais excepcionais, combinando a expertise em UX/UI com uma abordagem personalizada para atender às necessidades específicas de cada cliente.</p>
 				<div className="columns-3">
 					<p>Na Platô, unimos expertise em UX/UI a uma abordagem personalizada para criar soluções web que atendem às necessidades únicas de cada cliente. Nossa paixão é desenvolver experiências digitais belas e envolventes.</p>

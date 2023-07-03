@@ -8,14 +8,14 @@ export default function Home() {
 	return (
 		<>
 			<PageWrapper className="h-screenHeightWithoutHeader bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
-				<Container className="flex h-full flex-col pt-64 text-center text-2xl">
+				<Container className="flex h-full flex-col pt-32 text-center text-2xl">
 
-					<p className="mx-auto max-w-xl text-5xl text-neutral-light-1 font-italic">
-						Sua presença digital<br />elevada ao mais alto nível.
+					<p className="mx-auto max-w-xl text-6xl text-primary font-italic">
+						Sua presença digital<br />elevada ao nível mais alto.
 					</p>
 				</Container>
 			</PageWrapper>
-			<Container className="bg-neutral-dark-2 h-screenHeightWithoutHeader flex gap-24 p-24 w-full justify-center items-center border border-white">
+			<Container className="bg-neutral-dark-2 h-screenHeightWithoutHeader flex gap-24 p-24 w-full justify-center items-center">
 				<div className="flex flex-col justify-center gap-4 w-6/12">
 					<p className="text-neutral-light-1 text-2xl">Dê vida à sua visão com a Platô. Desenvolvimento de sites totalmente customizáveis e design personalizado para impulsionar sua presença online. Entre em contato conosco hoje mesmo para começar. </p>
 					<Link href="servicos">
