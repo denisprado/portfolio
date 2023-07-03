@@ -1,4 +1,5 @@
 import { useThemeContext } from "@/app/context/theme";
+import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -19,12 +20,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 	const color = "hsl(var(--primary))"
 	const { color: themeColor, setColor } = useThemeContext();
 	const [store, setStore] = useState({ before: 0, selected: 0, activeColor: color })
-
+	const path = usePathname()
 
 	return (
-
-
-
 		<div className="relative flex content-start justify-start items-start">
 			{items.map(({ label, href }, i) => {
 
@@ -47,7 +45,12 @@ export function MenuItems({ items }: MenuItemsProps) {
 						}}
 						key={i}
 					><motion.div
-						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3", { "bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark', "bg-white text-neutral-dark-2": themeColor === 'light' })}
+						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3",
+							{
+								"bg-transparent text-white": path === '/',
+								"bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
+								"bg-white text-neutral-dark-2": themeColor === 'light' &&  path !== '/'
+							})}
 						style={{ zIndex: 999 }}
 						initial={{
 							color:

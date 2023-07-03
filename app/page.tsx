@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
 	return (
 		<>
-			<PageWrapper className="h-screenHeightWithoutHeader bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
+			<PageWrapper className="h-screen bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
 				<Container className="flex h-full flex-col pt-32 text-center text-2xl">
 
 					<p className="mx-auto max-w-xl text-6xl text-primary font-italic">
