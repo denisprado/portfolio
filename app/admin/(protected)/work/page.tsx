@@ -8,9 +8,10 @@ import {
 	DeleteButton,
 	TagField,
 	TextField,
+	ImageField,
 } from "@refinedev/antd";
 import { useMany, BaseKey } from "@refinedev/core";
-import { Table, Space } from "antd";
+import { Table, Space, Image } from "antd";
 
 import { ICategory, IPost } from "interfaces";
 
@@ -32,9 +33,21 @@ const PostList: React.FC = () => {
 	return (
 		<List>
 			<Table {...tableProps} rowKey="id">
-				<Table.Column dataIndex="id" title="ID" />
-				<Table.Column dataIndex="description" title="Description" />
+
 				<Table.Column dataIndex="title" title="Title" />
+				<Table.Column dataIndex="description" title="Description" />
+				<Table.Column dataIndex="content" title="Description" />
+				<Table.Column<IPost>
+					title="Image"
+					dataIndex="thumbnail"
+					render={(_, image) => {
+						const img = image && typeof image === "string" ? JSON.parse(image) : "";
+						console.log(image)
+						const url = img ? img[0]?.url : "/images/card-logo.svg";
+						return <Image alt={image?.title} src={url} width={100} /> 
+					}}
+					width="50%"
+				/>
 				<Table.Column
 					dataIndex={"category_id"}
 					title="Categoria"
@@ -43,7 +56,7 @@ const PostList: React.FC = () => {
 						if (isLoading) {
 							return <TextField value="Loading..." />;
 						}
-
+						console.log(value)
 						return (
 							<TagField
 								value={

@@ -88,6 +88,7 @@ export interface Database {
           client_id: string 
           created_at: string | null
           description: string | null
+          content: string | null
           id: string
           thumbnail: string | null
           title: string | null
@@ -97,6 +98,7 @@ export interface Database {
           client_id?: string | null
           created_at?: string | null
           description?: string | null
+          content: string | null
           id?: string
           thumbnail?: string | null
           title?: string | null
@@ -106,6 +108,7 @@ export interface Database {
           client_id?: string | null
           created_at?: string | null
           description?: string | null
+          content: string | null
           id?: string
           thumbnail?: string | null
           title?: string | null
