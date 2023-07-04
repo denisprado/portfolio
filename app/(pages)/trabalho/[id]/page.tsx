@@ -23,7 +23,7 @@ export default async function Work({ params }: { params: { id: string } }) {
                 <div className="px-96 dark:bg-neutral-light-3 justify-center items-center container">
                     <h1 className="font-serif text-primary mt-8 mb-4 text-6xl">{work[0]?.title!}</h1>
                     <p className="font-italic py-9 text-3xl">{work[0]?.description!}</p>
-                    <ReactMarkdown>{markdown}</ReactMarkdown>
+                    <p className="text-2xl"><ReactMarkdown>{markdown}</ReactMarkdown></p>
                 </div>
             </Container>
         </PageWrapper>

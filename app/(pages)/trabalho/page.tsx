@@ -28,7 +28,10 @@ export default async function Work() {
 					{data?.map(async (item) => {
 						const url = parseJSON(item?.thumbnail)
 						return (
-							<div className="col-span-6 w-full grid"><Link as={`trabalho/${encodeURIComponent(item?.title!).toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")}`} href={`trabalho/${item?.id!}`}><Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} /></Link></div>
+							<div className="col-span-6 w-full grid"><Link href={{
+								// pathname: `/trabalho/${encodeURIComponent(item?.title!).toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")}`,
+								pathname: `/trabalho/${item?.id!}`,
+							}}  ><Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} /></Link></div>
 						)
 					})}
 				</div>
