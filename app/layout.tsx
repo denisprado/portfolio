@@ -3,7 +3,6 @@
 import React from "react"
 import { notificationProvider, RefineThemes } from "@refinedev/antd"
 import "@refinedev/antd/dist/reset.css"
-import { ConfigProvider } from "antd"
 import './globals.css'
 import { Footer } from "@components/footer"
 import { Header } from "@components/header"
@@ -16,6 +15,8 @@ import { usePathname } from "next/navigation"
 import localFont from 'next/font/local'
 import { ThemeContextProvider } from "./context/theme"
 import { supabaseClient } from "@/utils/supabase"
+import ConfigProvider from "antd/es/config-provider"
+
 
 
 const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
@@ -43,7 +44,7 @@ export default function RootLayout({
 	const path = usePathname();
 	const isAdmin = path.includes('admin')
 	return (
-		<ConfigProvider theme={RefineThemes.Blue}>
+		<ConfigProvider theme={RefineThemes.Purple}>
 			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
 				<head />
 				<body >

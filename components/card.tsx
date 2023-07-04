@@ -8,7 +8,6 @@ export default function Card({ imgSrc, title, description, categories, client }:
         <FlowbiteCard
             imgAlt={title}
             imgSrc={imgSrc}
-            horizontal
         >
             <h5 className="text-2xl font-sans tracking-tight text-neutral-dark-3 dark:text-neutral-light-1">
                 <p>
