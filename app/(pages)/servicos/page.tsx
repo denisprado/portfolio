@@ -12,7 +12,7 @@ export default function Home() {
 		{
 			id: 1,
 			title: "Sua Marca",
-			descriptions: "A marca é a interface da empresa com seu público. Definimos todos os seus aspectos: do projeto estratégico para a linguagem visual ao tom de voz, criamos marcas distintas, relevantes e voltadas para o futuro.",
+			description: "A marca é a interface da empresa com seu público. Definimos todos os seus aspectos: do projeto estratégico para a linguagem visual ao tom de voz, criamos marcas distintas, relevantes e voltadas para o futuro.",
 			keys: ["Identidade Visual",
 				"Naming",
 				"Visual Systems",
@@ -22,7 +22,7 @@ export default function Home() {
 		{
 			id: 2,
 			title: `Design System`,
-			descriptions: "Dispositivos e telas são a principal oportunidade para uma marca interagir com seus usuários e aumentar sua relevância. Projetamos e desenvolvemos sites e aplicativos que aumentam as oportunidades de engajamento de forma propositiva e imersiva.",
+			description: "Dispositivos e telas são a principal oportunidade para uma marca interagir com seus usuários e aumentar sua relevância. Projetamos e desenvolvemos sites e aplicativos que aumentam as oportunidades de engajamento de forma propositiva e imersiva.",
 			keys: ["Sistema de Cores",
 				"UI Kits",
 				"Tipografia", "UX Research",
@@ -32,7 +32,7 @@ export default function Home() {
 		{
 			id: 3,
 			title: "Presença digital",
-			descriptions: "Os sistemas de design permitem que uma marca cresça infinitamente sem comprometer sua identidade. Ajudamos as empresas a criar sistemas escaláveis, digitais, interativos e atraentes, para uma experiência de marca consistente em todos os pontos de contato.",
+			description: "Os sistemas de design permitem que uma marca cresça infinitamente sem comprometer sua identidade. Ajudamos as empresas a criar sistemas escaláveis, digitais, interativos e atraentes, para uma experiência de marca consistente em todos os pontos de contato.",
 			keys: ["UX Design",
 				"Website & Mobile Design",
 				"Prototyping",

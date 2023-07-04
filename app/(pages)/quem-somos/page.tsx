@@ -10,7 +10,7 @@ const team: RowCardProps[] = [
 	{
 		id: 1,
 		title: "Denis Forigo",
-		descriptions: "Designer gráfico com mais de 10 anos de experiência, recentemente trabalhando com Design de Produto (UI/UX) e desenvolvimento mobile em squads com metodologia Scrum e Design Thinking.",
+		description: "Designer gráfico com mais de 10 anos de experiência, recentemente trabalhando com Design de Produto (UI/UX) e desenvolvimento mobile em squads com metodologia Scrum e Design Thinking.",
 		keys: ["Desenvolvedor Full Stack",
 			"Designer Gráfico",
 			"UX/UI Designer", "Frontend developer",
