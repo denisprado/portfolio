@@ -9,7 +9,6 @@ export default function Home() {
 		<>
 			<PageWrapper className="h-screen bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
 				<Container className="flex h-full flex-col pt-32 text-center text-2xl">
-
 					<p className="mx-auto max-w-xl text-6xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.
 					</p>

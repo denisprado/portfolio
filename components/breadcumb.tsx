@@ -1,39 +1,26 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+'use client'
 
-const breadcumbVariants = cva(
-	"inline-flex text-xs px-8 py-6 w-full",
-	{
-		variants: {
-			variant: {
-				default: "bg-white text-neutral-dark-2",
-				secondary: "bg-neutral-light-1",
-				terciary: "bg-neutral-dark-1 text-neutral-light-1 border-b border-neutral-light-2",
-			},
-		},
-		defaultVariants: {
-			variant: "default",
-		},
-	}
-)
+import { Breadcrumb as FlowbiteBreadcumb } from 'flowbite-react'
+import { HomeIcon } from 'lucide-react';
 
-export interface BreadcumbProps
-	extends
-	VariantProps<typeof breadcumbVariants> {
-	className?: String;
-	children: React.ReactNode
+export default function Breadcrumb({ title }: { title: string }) {
+    return (
+        <FlowbiteBreadcumb>
+            <FlowbiteBreadcumb.Item
+                href="/"
+                icon={HomeIcon}
+            >
+                <p>Home</p>
+            </FlowbiteBreadcumb.Item>
+            <FlowbiteBreadcumb.Item
+                href="/trabalho"
+            >
+                <p>Trabalhos</p>
+            </FlowbiteBreadcumb.Item>
+            <FlowbiteBreadcumb.Item
+            >
+                <p>{title}</p>
+            </FlowbiteBreadcumb.Item>
+        </FlowbiteBreadcumb>
+    )
 }
-
-const Breadcumb = React.forwardRef<React.ReactNode, BreadcumbProps>(
-	({ className, variant, ...props }) => {
-		return (
-			<div
-				className={breadcumbVariants({ variant, className })}
-				{...props}
-			/>
-		)
-	}
-)
-Breadcumb.displayName = "Breadcumb"
-
-export { Breadcumb, breadcumbVariants }

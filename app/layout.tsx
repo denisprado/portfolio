@@ -1,27 +1,22 @@
 "use client"
 
-import React from "react"
+import { authProvider } from "@/authProvider"
+import { supabaseClient } from "@/utils/supabase"
+import Footer from "@components/footer"
+import { Header } from "@components/header"
 import { notificationProvider, RefineThemes } from "@refinedev/antd"
 import "@refinedev/antd/dist/reset.css"
-import './globals.css'
-import { Footer } from "@components/footer"
-import { Header } from "@components/header"
-import { Instrument_Serif } from 'next/font/google';
 import { Refine } from "@refinedev/core"
-import { authProvider } from "@/authProvider"
+import routerProvider from "@refinedev/nextjs-router/app"
 import { dataProvider } from "@refinedev/supabase"
-import routerProvider from "@refinedev/nextjs-router/app";
-import { usePathname } from "next/navigation"
-import localFont from 'next/font/local'
-import { ThemeContextProvider } from "./context/theme"
-import { supabaseClient } from "@/utils/supabase"
 import ConfigProvider from "antd/es/config-provider"
+import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
+import { usePathname } from "next/navigation"
+import React from "react"
+import { ThemeContextProvider } from "./context/theme"
+import './globals.css'
 
-
-
-const instrumentSans = localFont({ src: './InstrumentSans-VariableFont_wdth,wght.ttf', variable: '--font-instrument-sans' })
-
-
+const instrumentSans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-instrument-sans' })
 const instrumentSerif = Instrument_Serif({
 	subsets: ['latin'],
 	display: 'swap',

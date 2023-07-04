@@ -22,22 +22,29 @@ export const Header = () => {
 
 	const [hideNav, setHideNav] = useState<boolean>(true)
 
-	const changeNavbarColor = () => {
-		if (window.scrollY >= 80) {
-			setHideNav(false);
+
+	useEffect(function mount() {
+		function onScroll() {
+			if (window.scrollY >= 80) {
+				setHideNav(false)
+			}
+			else {
+				setHideNav(true)
+			}
 		}
-		else {
-			setHideNav(true);;
-		}
-	};
+
+		window.addEventListener("scroll", onScroll);
+
+		return function unMount() {
+			window.removeEventListener("scroll", onScroll);
+		};
+	});
 
 
 	useEffect(() => {
 		() => setHideNav(true)
 		return () => setHideNav(false)
 	})
-
-	window.addEventListener('scroll', changeNavbarColor);
 
 	const page = usePathname()
 
@@ -47,7 +54,7 @@ export const Header = () => {
 		<header className="relative z-10 w-full">
 			<Container className={classNames("flex flex-row items-center w-full", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
 
-				<Link href="/" className={classNames("h-16 pl-3 pr-5 pt-4 pb-3 ",
+				<Link href="/" className={classNames("h-16 pl-6 pr-5 pt-4 pb-3 ",
 					{ "bg-neutral-dark-3": color === 'dark' },
 					{ "bg-white": color === 'light' && !hideNav },
 					{ "bg-transparent": page === '/' && hideNav },
@@ -55,7 +62,7 @@ export const Header = () => {
 					<motion.img src={color === 'light' ? "./images/logo.svg" : "./images/logo-servicos.svg"} width={200} height={40} />
 				</Link>
 
-				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
+				<nav className={classNames("rounded-bl-sm w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
 					{ 'bg-transparent': page === '/' && hideNav },
 					{ 'bg-neutral-light-1': color === 'light' },
 					{ 'bg-neutral-dark-1': color === 'dark' },
