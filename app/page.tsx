@@ -1,15 +1,26 @@
+'use client'
+
 import DefaultCarousel from "@/components/caroussel";
 import { Button } from "@/components/ui/button";
 import { Container } from "@components/container";
 import { PageWrapper } from "@components/page-wrapper";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useMenuContext } from "./context/menu";
 
 export default function Home() {
+
+	
+	const { active, setActive } = useMenuContext();
+	useEffect(function mount() {
+		setActive && setActive(0)
+	});
+	
 	return (
 		<>
 			<PageWrapper className="h-screen bg-[url(/bg-home-plato.jpg)] bg-cover bg-center ">
-				<Container className="flex h-full flex-col pt-32 text-center text-2xl">
-					<p className="mx-auto max-w-xl text-6xl text-primary font-italic">
+				<Container className="flex h-full flex-col pt-36 text-center text-2xl">
+					<p className=" mx-auto text-7xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.
 					</p>
 				</Container>

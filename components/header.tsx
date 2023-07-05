@@ -1,5 +1,6 @@
 "use client";
 
+import { useMenuContext } from "@/app/context/menu";
 import { useThemeContext } from "@/app/context/theme";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -19,11 +20,17 @@ export const Header = () => {
 		{ href: "/servicos", label: "serviços" },
 		{ href: "/trabalho", label: "trabalho" },
 	]
+	const page = usePathname()
 
 	const [hideNav, setHideNav] = useState<boolean>(true)
-
+	const { color, setColor } = useThemeContext();
+	const { active, setActive } = useMenuContext();
 
 	useEffect(function mount() {
+		page === '/' && setActive && setActive(0)
+		setHideNav(true)
+		setActive && setActive(0)
+
 		function onScroll() {
 			if (window.scrollY >= 80) {
 				setHideNav(false)
@@ -46,20 +53,15 @@ export const Header = () => {
 		return () => setHideNav(false)
 	})
 
-	const page = usePathname()
-
-	const { color, setColor } = useThemeContext();
-
 	return (
 		<header className="relative z-10 w-full">
-			<Container className={classNames("flex flex-row items-center w-full", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
-
+			<Container className={classNames("flex flex-row items-center w-full transition-transform delay-1000", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
 				<Link href="/" className={classNames("h-16 pl-6 pr-5 pt-4 pb-3 ",
 					{ "bg-neutral-dark-3": color === 'dark' },
 					{ "bg-white": color === 'light' && !hideNav },
 					{ "bg-transparent": page === '/' && hideNav },
 				)}>
-					<motion.img src={color === 'light' ? "./images/logo.svg" : "./images/logo-servicos.svg"} width={200} height={40} />
+					<motion.img src={hideNav && page === '/' ? "./images/logo-home.svg" : color === 'light' ? "./images/logo.svg" : "./images/logo-servicos.svg"} width={200} height={40} />
 				</Link>
 
 				<nav className={classNames("rounded-bl-sm w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
@@ -69,7 +71,7 @@ export const Header = () => {
 				)}>
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />
-						{!hideNav && <li><ModeToggle /></li>}
+						{!(hideNav && page === '/') && <li><ModeToggle /></li>}
 					</ul>
 				</nav>
 			</Container>

@@ -3,7 +3,8 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useMenuContext } from "@/app/context/menu";
 
 
 interface ItemsProps {
@@ -17,10 +18,12 @@ interface MenuItemsProps {
 
 
 export function MenuItems({ items }: MenuItemsProps) {
+	const path = usePathname()
 	const color = "hsl(var(--primary))"
 	const { color: themeColor, setColor } = useThemeContext();
-	const [store, setStore] = useState({ before: 0, selected: 0, activeColor: color })
-	const path = usePathname()
+	const { active, setActive } = useMenuContext()
+	
+	const [store, setStore] = useState({ before: 0, selected: active, activeColor: color })
 
 	return (
 		<div className="relative flex content-start justify-start items-start">
@@ -103,7 +106,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 								{label}
 							</span>
 
-							{i === store.selected && (
+							{i === store.selected && path !== '/' && (
 								<motion.div
 									className={"w-full h-full absolute rounded-full top-0 left-0"}
 									layoutId="selected"
