@@ -12,7 +12,7 @@ export default function Footer() {
 						<FooterBite.Brand
 							alt="Platô Logo"
 							href="/"
-							src="./images/logo-servicos.svg"
+							src="/images/logo-servicos.svg"
 						/>
 					</div>
 					<div></div>

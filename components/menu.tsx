@@ -20,10 +20,18 @@ interface MenuItemsProps {
 export function MenuItems({ items }: MenuItemsProps) {
 	const path = usePathname()
 	const color = "hsl(var(--primary))"
-	const { color: themeColor, setColor } = useThemeContext();
-	const { active, setActive } = useMenuContext()
-	
-	const [store, setStore] = useState({ before: 0, selected: active, activeColor: color })
+	const { color: themeColor } = useThemeContext();
+	const { active, before, setBefore } = useMenuContext()
+
+	const [store, setStore] = useState({ before: before, selected: active, activeColor: color })
+
+	useEffect(() => {
+		path === '/' && setBefore && setBefore(0)
+		return () => {
+			setStore({ before: 0, selected: active, activeColor: color })
+		}
+	}, [])
+
 
 	return (
 		<div className="relative flex content-start justify-start items-start">
@@ -106,14 +114,14 @@ export function MenuItems({ items }: MenuItemsProps) {
 								{label}
 							</span>
 
-							{i === store.selected && path !== '/' && (
+							{i === store.selected && (
 								<motion.div
 									className={"w-full h-full absolute rounded-full top-0 left-0"}
 									layoutId="selected"
 									initial={{
-										backgroundColor: store.activeColor,
+										backgroundColor: path !== '/' ? store.activeColor : 'transparent',
 									}}
-									animate={{ backgroundColor: color }}
+									animate={{ backgroundColor:  color }}
 									onPointerEnter={() => {
 										setStore({
 											activeColor: color,

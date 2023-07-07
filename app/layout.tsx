@@ -40,7 +40,7 @@ export default function RootLayout({
 	const isAdmin = path.includes('admin')
 	return (
 		<ConfigProvider theme={RefineThemes.Purple}>
-			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable}`}>
+			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>
 				<head />
 				<body >
 					<ThemeContextProvider>

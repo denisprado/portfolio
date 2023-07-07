@@ -54,17 +54,17 @@ export const Header = () => {
 	})
 
 	return (
-		<header className="relative z-10 w-full">
-			<Container className={classNames("flex flex-row items-center w-full transition-transform delay-1000", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
+		<header className="relative z-10 w-full dark:bg-neutral-dark-1">
+			<Container className={classNames("flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
 				<Link href="/" className={classNames("h-16 pl-6 pr-5 pt-4 pb-3 ",
 					{ "bg-neutral-dark-3": color === 'dark' },
 					{ "bg-white": color === 'light' && !hideNav },
 					{ "bg-transparent": page === '/' && hideNav },
 				)}>
-					<motion.img src={hideNav && page === '/' ? "./images/logo-home.svg" : color === 'light' ? "./images/logo.svg" : "./images/logo-servicos.svg"} width={200} height={40} />
+					<motion.img src={hideNav && page === '/' ? "/images/logo-home.svg" : color === 'light' ? "/images/logo.svg" : "/images/logo-servicos.svg"} width={200} height={40} />
 				</Link>
 
-				<nav className={classNames("rounded-bl-sm w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
+				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
 					{ 'bg-transparent': page === '/' && hideNav },
 					{ 'bg-neutral-light-1': color === 'light' },
 					{ 'bg-neutral-dark-1': color === 'dark' },

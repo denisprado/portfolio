@@ -5,16 +5,36 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@components/container";
 import { PageWrapper } from "@components/page-wrapper";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useMenuContext } from "./context/menu";
 
 export default function Home() {
 
 	
-	const { active, setActive } = useMenuContext();
+	const { active, setActive, setBefore } = useMenuContext();
 	useEffect(function mount() {
 		setActive && setActive(0)
-	});
+		setBefore && setBefore(0)
+	},[setBefore]);
+
+	const router = useRouter();
+
+	// This function will be called when the user enters the page
+	const handleEnterPage = () => {
+	  // Force a rerender by reloading the current page
+	  router.refresh();
+	};
+  
+	// Register the enter event
+	useEffect(() => {
+	  handleEnterPage();
+  
+	  // Clean up the event listener on component unmount
+	  return () => {
+		handleEnterPage();
+	  };
+	}, []); // Empty dependency array to run the effect only once
 	
 	return (
 		<>
