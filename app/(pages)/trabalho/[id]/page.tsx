@@ -1,10 +1,11 @@
+'use client'
+
 import Breadcrumb from "@/components/breadcumb";
 import { Container } from "@/components/container";
 import { PageWrapper } from "@/components/page-wrapper";
 import supabase from "@/utils/supabase";
+import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import Image from 'next/image'
-import { Suspense } from "react";
 
 
 async function getWork(id: string) {
@@ -16,18 +17,17 @@ async function getWork(id: string) {
         .eq('work_id', id)
         .single()
 
-        
-        return { data, error }
-        
+    return { data, error }
+
 }
 
 async function getGallery(id: string) {
     const { data, error } = await supabase.storage
-    .from("project-images")
-    .list("images/"+ id + "/", {
-        limit: 100,
-        offset: 0,
-    })
+        .from("project-images")
+        .list("images/" + id + "/", {
+            limit: 100,
+            offset: 0,
+        })
     console.log(data)
 
     return { data, error }
@@ -35,12 +35,17 @@ async function getGallery(id: string) {
 }
 
 export default async function Work({ params }: { params: { id: string } }) {
-    const { data, error } = await getWork(params.id)
-    const { data: dataGallery, error: errorGalery } = await getGallery(params.id)
+    const { data, error } = await getWork(params?.id)
+    const { data: dataGallery, error: errorGalery } = await getGallery(params?.id)
 
     const CDNURL = process.env.NEXT_PUBLIC_SUPABASE_URL + "/storage/v1/object/public/images/" + params.id + '/';
     // const galleryData = await getGallery(work[0]?.id!)  
     // console.log(galleryData)
+
+    const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
+        return `https://${process.env.NEXT_PUBLIC_SUPABASE_URL}.supabase.co/storage/v1/object/public/project-images/images/${src}?width=${width}&quality=${quality || 75}`
+    }
+
 
     return (
         <PageWrapper className="overflow-hidden">
@@ -52,10 +57,10 @@ export default async function Work({ params }: { params: { id: string } }) {
                     <h1 className="font-serif text-primary mt-10  text-6xl">{data?.title}</h1>
                     <p className="font-italic py-6 text-3xl dark:text-neutral-light-2">{data?.description}</p>
                     <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{data?.content!}</ReactMarkdown>
-                    {dataGallery?.map((file: any) => 
-                    <Image src={CDNURL + file.name} alt={file.name} width={250} height={250} style={{ objectFit: 'cover' }}>
+                    {dataGallery?.map((file: any) =>
+                        <Image srcSet={file.name} alt={file.name} width={250} height={250} style={{ objectFit: 'cover' }} quality={100} loader={imageLoader}>
 
-                    </Image>)}
+                        </Image>)}
                     {/* <Suspense fallback={<div>Loading...</div>}>
                         <Gallery id={data?.work_id!} />
                     </Suspense>  */}
