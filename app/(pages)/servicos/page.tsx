@@ -10,7 +10,7 @@ export default function Home() {
 
 	const services: RowCardProps[] = [
 		{
-			id: 1,
+			id: "1",
 			title: "Sua Marca",
 			description: "A marca é a interface da empresa com seu público. Definimos todos os seus aspectos: do projeto estratégico para a linguagem visual ao tom de voz, criamos marcas distintas, relevantes e voltadas para o futuro.",
 			keys: ["Identidade Visual",
@@ -20,7 +20,7 @@ export default function Home() {
 			color: "text-destructive"
 		},
 		{
-			id: 2,
+			id: "2",
 			title: `Design System`,
 			description: "Dispositivos e telas são a principal oportunidade para uma marca interagir com seus usuários e aumentar sua relevância. Projetamos e desenvolvemos sites e aplicativos que aumentam as oportunidades de engajamento de forma propositiva e imersiva.",
 			keys: ["Sistema de Cores",
@@ -30,7 +30,7 @@ export default function Home() {
 			color: "text-info"
 		},
 		{
-			id: 3,
+			id: "3",
 			title: "Presença digital",
 			description: "Os sistemas de design permitem que uma marca cresça infinitamente sem comprometer sua identidade. Ajudamos as empresas a criar sistemas escaláveis, digitais, interativos e atraentes, para uma experiência de marca consistente em todos os pontos de contato.",
 			keys: ["UX Design",
