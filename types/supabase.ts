@@ -89,7 +89,7 @@ export interface Database {
           created_at: string | null
           description: string | null
           content: string | null
-          id: string
+          work_id: string
           thumbnail: string | null
           title: string | null
         }
@@ -99,7 +99,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           content: string | null
-          id?: string
+          work_id?: string
           thumbnail?: string | null
           title?: string | null
         }
@@ -109,7 +109,7 @@ export interface Database {
           created_at?: string | null
           description?: string | null
           content: string | null
-          id?: string
+          work_id?: string
           thumbnail?: string | null
           title?: string | null
         }

@@ -10,6 +10,7 @@ import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import dynamic from "next/dynamic";
 import { v4 as uuid } from "uuid";
+import { useState } from "react";
 
 const MDEditor = dynamic(
 	() => import("@uiw/react-md-editor"),
@@ -19,11 +20,9 @@ const MDEditor = dynamic(
 const PostCreate: React.FC = () => {
 	const { formProps, saveButtonProps } = useForm<IPost>();
 
-	const id = uuid()
+	const idUuid = uuid()
 
-	if (!id) {
-		return <></>
-	}
+	const [id, setId] = useState(idUuid)
 
 	const { selectProps: categorySelectProps } = useSelect<ICategory>({
 		resource: "category",
@@ -36,9 +35,9 @@ const PostCreate: React.FC = () => {
 	});
 
 	return (
-		<Create saveButtonProps={saveButtonProps}>
-			<Form {...formProps} layout="vertical">
-				<Form.Item label="Id" name="id" hidden initialValue={id!}>
+		<Create saveButtonProps={saveButtonProps} >
+			<Form {...formProps} layout="vertical" onLoad={() => setId(idUuid)}>
+				<Form.Item label="Id" name="work_id" initialValue={id!} >
 					{id && <Input value={id!} disabled />}
 				</Form.Item>
 				<Form.Item label="Title" name="title">

@@ -1,5 +1,6 @@
 "use client";
 
+import getUrlFromTable from "@/utils/getUrlFromTable";
 import {
 	useTable,
 	List,
@@ -34,17 +35,15 @@ const PostList: React.FC = () => {
 		<List>
 			<Table {...tableProps} rowKey="id">
 
-				<Table.Column dataIndex="title" title="Title" />
-				<Table.Column dataIndex="description" title="Description" />
-				<Table.Column dataIndex="content" title="Description" />
+				<Table.Column dataIndex="work_id" title="id" colSpan={3}/>
+				<Table.Column dataIndex="title" title="Title" colSpan={4}/>
+				<Table.Column dataIndex="description" title="Description" colSpan={6} />
+				<Table.Column dataIndex="content" title="Content" />
 				<Table.Column<IPost>
 					title="Image"
 					dataIndex="thumbnail"
 					render={(_, image) => {
-						const img = image && typeof image === "string" ? JSON.parse(image) : "";
-						console.log(image)
-						const url = img ? img[0]?.url : "/images/card-logo.svg";
-						return <Image alt={image?.title} src={url} width={100} /> 
+						return <Image alt={image?.title} src={getUrlFromTable(image.thumbnail)} width={100} /> 
 					}}
 					width="50%"
 				/>
@@ -74,15 +73,15 @@ const PostList: React.FC = () => {
 							<Space>
 								<EditButton
 									size="small"
-									recordItemId={record.id}
+									recordItemId={record.work_id}
 								/>
 								<ShowButton
 									size="small"
-									recordItemId={record.id}
+									recordItemId={record.work_id}
 								/>
 								<DeleteButton
 									size="small"
-									recordItemId={record.id}
+									recordItemId={record.work_id}
 								/>
 							</Space>
 						);

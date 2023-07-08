@@ -25,6 +25,9 @@ const PostEdit: React.FC = () => {
 	return (
 		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
+				<Form.Item label="Id" name="work_id">
+					<Input disabled/>
+				</Form.Item>
 				<Form.Item label="Title" name="title">
 					<Input />
 				</Form.Item>

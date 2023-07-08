@@ -2,6 +2,7 @@
 import Card from "@/components/card"
 import { Container } from "@/components/container"
 import { PageWrapper } from "@/components/page-wrapper"
+import RowCard, { RowCardProps } from "@/components/rowCard"
 import supabase from "@/utils/supabase"
 
 import Link from 'next/link'
@@ -17,26 +18,36 @@ const parseJSON = (json: string | null) => {
 export default async function Work() {
 	const { data, error } = await getWork()
 
-	if (error) {
+	if (error || !data) {
 		return error
 	}
 
+	const rowCards: RowCardProps[] = data?.map((data) => {
+		return {
+			id: data.work_id,
+			title: data.title,
+			description: data.description,
+			color: 'var(hsl(--primary))',
+			thumbnail: data.thumbnail,
+			category: data.category,
+			clients: data.client,
+			url: true
+		}
+	})
+
 	return (
 		<PageWrapper className="overflow-hidden">
-			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-white">
-				<div className="grid grid-cols-12 w-full gap-4 p-4 container">
-					{data?.map(async (item) => {
+			{/* {data?.map(async (item) => {
 						const url = parseJSON(item?.thumbnail)
 						return (
-							<div className="col-span-6 w-full grid"><Link href={{
-								// pathname: `/trabalho/${encodeURIComponent(item?.title!).toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "")}`,
-								pathname: `/trabalho/${item?.id!}`,
-							}}  ><Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} /></Link></div>
+							<div className="col-span-3 w-full grid">
+								<Link href={{ pathname: `/trabalho/${item?.id!}` }}>
+									<Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} />
+								</Link>
+							</div>
 						)
-					})}
-				</div>
-			</Container>
-
+					})} */}
+			<RowCard cards={rowCards} />
 		</PageWrapper>
 	)
 }
@@ -44,7 +55,7 @@ export default async function Work() {
 async function getWork() {
 	const { data, error } = await supabase
 		.from('work')
-		.select(`id, title, thumbnail, description, category (
+		.select(`work_id, title, thumbnail, description, category (
 		id, name
 	), client ( id, name )`)
 
