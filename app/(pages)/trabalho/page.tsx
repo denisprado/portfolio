@@ -1,22 +1,14 @@
 
+import { Container } from "@/components/container"
 import { PageWrapper } from "@/components/page-wrapper"
 import RowCard, { RowCardProps } from "@/components/rowCard"
 import supabase from "@/utils/supabase"
-import { IPost } from 'interfaces'
-
-const parseJSON = (json: string | null) => {
-	try {
-		return json ? JSON.parse(json) : ''
-	} catch (error) {
-		return null
-	}
-}
 
 export default async function Work() {
 	const { data, error } = await getWork()
 
 	if (error || !data) {
-		return error
+		return <>{error}</>
 	}
 
 	const rowCards = data.map((data) => {
@@ -36,17 +28,15 @@ export default async function Work() {
 
 	return (
 		<PageWrapper className="overflow-hidden">
-			{/* {data?.map(async (item) => {
-						const url = parseJSON(item?.thumbnail)
-						return (
-							<div className="col-span-3 w-full grid">
-								<Link href={{ pathname: `/trabalho/${item?.id!}` }}>
-									<Card imgSrc={url ? url[0]?.url : '/images/card-logo.svg'} title={item.title!} description={item.description!} categories={item.category} client={item.client} />
-								</Link>
-							</div>
-						)
-					})} */}
-			<RowCard cards={rowCards} />
+			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
+				<div className="w-full flex pt-44 justify-center relative min-h-[640px]">
+					<p className="text-primary font-serif text-9xl font-light w-4/6 text-center z-10">
+						Trabalhando com dedicação,<br />
+						subindo o mesmo caminho.
+					</p>
+				</div>
+				<RowCard cards={rowCards} />
+			</Container>
 		</PageWrapper>
 	)
 }
