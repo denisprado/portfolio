@@ -34,12 +34,9 @@ async function getGallery(id: string) {
 }
 
 export default async function Work({ params: { work_id } }: { params: { work_id: string } }) {
-
-
+    
     const { data } = await supabase.from('work').select().match({ 'work_id': work_id }).single()
-    if (!data) {
-        return <></>
-    }
+
     const { data: dataGallery, error: errorGalery } = await getGallery(work_id!)
 
     const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
