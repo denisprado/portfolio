@@ -14,9 +14,12 @@ export async function generateStaticParams() {
     const { data, error } = await supabase
         .from('work')
         .select('work_id')
-    console.log(data)
-    return data.map(({ id }: { id?: string }) => ({
-        id,
+    if (!data){
+        return <></>
+    }
+
+    return data?.map(({ work_id }: { work_id: string }) => ({
+        work_id,
     }))
 
 }
@@ -42,7 +45,7 @@ type WorkParams = {
 export default async function Work() {
     const params = useParams()
     console.log(params)
-    
+
 
     const { data } = await supabase.from('work').select().match({ 'work_id': params?.id }).single()
     if (!data) {
