@@ -14,13 +14,10 @@ export async function generateStaticParams() {
     const { data, error } = await supabase
         .from('work')
         .select('work_id')
-    if (!data){
-        return <></>
-    }
 
-    return data?.map(({ work_id }: { work_id: string }) => ({
-        work_id,
-    }))
+    return data?.map(({ work_id }) => ({
+        work_id: work_id,
+    })) as any[] | Promise<any[]>
 
 }
 
@@ -31,27 +28,19 @@ async function getGallery(id: string) {
             limit: 100,
             offset: 0,
         })
-    console.log(data)
 
     return { data, error }
 
 }
 
-type ParamsWork = { work_id?: string | undefined }
-type WorkParams = {
-    param?: ParamsWork | undefined
-}
-
-export default async function Work() {
-    const params = useParams()
-    console.log(params)
+export default async function Work({ params: { work_id } }: { params: { work_id: string } }) {
 
 
-    const { data } = await supabase.from('work').select().match({ 'work_id': params?.id }).single()
+    const { data } = await supabase.from('work').select().match({ 'work_id': work_id }).single()
     if (!data) {
         return <></>
     }
-    const { data: dataGallery, error: errorGalery } = await getGallery(params?.id!)
+    const { data: dataGallery, error: errorGalery } = await getGallery(work_id!)
 
     const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
         return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/project-images/images/${data?.work_id!}/${src}?width=${width}&quality=${quality || 75}`
@@ -69,7 +58,7 @@ export default async function Work() {
                     <p className="font-italic py-6 text-3xl dark:text-neutral-light-2">{data?.description!}</p>
                     <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{data?.content!}</ReactMarkdown>
                     {dataGallery?.map((file: any) =>
-                        <Image key={file.id} src={`${file?.name!}`} alt={data?.title!} width={250} height={250} quality={100} loader={imageLoader} />)}
+                        <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={250} height={250} quality={100} loader={imageLoader} />)}
                     {/* <Suspense fallback={<div>Loading...</div>}>
                         <Gallery id={data?.work_id!} />
                     </Suspense>  */}

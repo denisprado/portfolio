@@ -43,7 +43,7 @@ const PostList: React.FC = () => {
 					title="Image"
 					dataIndex="thumbnail"
 					render={(_, image) => {
-						return <Image alt={image?.title} src={getUrlFromTable(image.thumbnail)} width={100} /> 
+						return <Image alt={image.title!} src={getUrlFromTable(image?.thumbnail!)} width={100} /> 
 					}}
 					width="50%"
 				/>

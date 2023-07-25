@@ -43,7 +43,7 @@ const RowCard = ({ cards }: CardsProps) => {
 							</div>
 							}
 							{card.thumbnail && <div className='aspect-square w-48 h-48'>
-								<Image src={getUrlFromTable(card.thumbnail)} width={96} height={96} alt={card.title!} className={'grayscale'} style={{ objectFit: 'cover' }} />
+								<Image src={getUrlFromTable(card.thumbnail)} width={96} height={96} alt={card.title ? card.title : ''} className={'grayscale'} style={{ objectFit: 'cover' }} />
 							</div>
 							}
 							{card.title && <h3 className={`${card.color} text-8xl`}>

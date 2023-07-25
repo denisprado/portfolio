@@ -2,7 +2,7 @@
 import { PageWrapper } from "@/components/page-wrapper"
 import RowCard, { RowCardProps } from "@/components/rowCard"
 import supabase from "@/utils/supabase"
-import{ IPost} from 'interfaces'
+import { IPost } from 'interfaces'
 
 const parseJSON = (json: string | null) => {
 	try {
@@ -19,17 +19,19 @@ export default async function Work() {
 		return error
 	}
 
-	const rowCards: RowCardProps[] = data?.map((data:IPost) => {
+	const rowCards = data.map((data) => {
 		return {
 			id: data.work_id,
 			title: data.title,
 			description: data.description,
+			content: data.content,
+			created_at: data.created_at,
 			color: 'var(hsl(--primary))',
 			thumbnail: data.thumbnail,
 			category: data.category,
 			clients: data.client,
 			url: true
-		}
+		} as unknown as RowCardProps
 	})
 
 	return (
@@ -52,7 +54,7 @@ export default async function Work() {
 async function getWork() {
 	const { data, error } = await supabase
 		.from('work')
-		.select(`work_id, title, thumbnail, description, category (
+		.select(`*, category (
 		id, name
 	), client ( id, name )`)
 
