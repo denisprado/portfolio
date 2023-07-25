@@ -1,11 +1,8 @@
 
-import Card from "@/components/card"
-import { Container } from "@/components/container"
 import { PageWrapper } from "@/components/page-wrapper"
 import RowCard, { RowCardProps } from "@/components/rowCard"
 import supabase from "@/utils/supabase"
-
-import Link from 'next/link'
+import{ IPost} from 'interfaces'
 
 const parseJSON = (json: string | null) => {
 	try {
@@ -22,7 +19,7 @@ export default async function Work() {
 		return error
 	}
 
-	const rowCards: RowCardProps[] = data?.map((data) => {
+	const rowCards: RowCardProps[] = data?.map((data:IPost) => {
 		return {
 			id: data.work_id,
 			title: data.title,

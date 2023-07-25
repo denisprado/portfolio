@@ -35,7 +35,7 @@ const RowCard = ({ cards }: CardsProps) => {
 	return <div className='p-24 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{
 			cards && cards?.map(card => (
-				<FinalRow url={card?.url!} id={card?.id!}>
+				<FinalRow url={card?.url!} id={card?.id!} key={card?.id!}>
 					<div key={card.id} className="flex flex-col md:items-center md:flex-row justify-between dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-t bg-white border-neutral-dark-1 last:border-b p-12">
 						<div className='flex flex-row items-center justify-center gap-4'>
 							{card.image && <div className='aspect-square w-24 h-24'>
