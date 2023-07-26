@@ -2,7 +2,7 @@
 
 import { normalizeFile } from "@/utils/normalizeFile";
 import { supabaseClient } from "@/utils/supabase";
-import { useForm, useSelect, Edit } from "@refinedev/antd";
+import { useForm, useSelect, Edit, useModalForm } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import dynamic from "next/dynamic";
@@ -11,7 +11,9 @@ import { BaseKey } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
 	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-
+	const {id } = useModalForm({
+        action: "edit",
+    });
 	const { selectProps: categorySelectProps } = useSelect<ICategory>({
 		resource: "category",
 		optionLabel: "name",
@@ -50,28 +52,33 @@ const PostEdit: React.FC = () => {
 					noStyle
 				>
 					<Upload.Dragger
-						name="image"
-						multiple
+						name="thumbnail"
 						listType="picture"
+						multiple
 						customRequest={async ({ file, onError, onSuccess }) => {
-							const rcFile = file as RcFile;
-							const fileUrl = `images/${rcFile.name}`;
+							try {
+								const rcFile = file as RcFile;
+								console.log(file)
+								const { data, error } = await supabaseClient.storage
+									.from("project-images")
+									.upload(`images/${id}/${rcFile.name}`, file, {
+										cacheControl: "3600",
+										upsert: true,
+									});
+								if (error) {
+									console.log(error)
+								} else {
+									// Handle success
+								}
+								const { data: resData } = supabaseClient.storage
+									.from("project-images")
+									.getPublicUrl(`images/${id}/${rcFile.name}`);
 
-							const { error } = await supabaseClient.storage
-								.from("project-images")
-								.upload(fileUrl, file, {
-									cacheControl: "3600",
-									upsert: true,
-								});
-
-							if (error) {
-								return onError?.(error);
+								const xhr = new XMLHttpRequest();
+								onSuccess && onSuccess({ url: resData?.publicUrl }, xhr);
+							} catch (error) {
+								onError && onError(new Error("Upload Error"));
 							}
-							const { data } = supabaseClient.storage
-								.from("project-images")
-								.getPublicUrl(fileUrl);
-
-							onSuccess?.({ url: data?.publicUrl }, new XMLHttpRequest());
 						}}
 					>
 						<p className="ant-upload-text">Drag & drop a file in this area</p>
