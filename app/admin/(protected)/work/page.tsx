@@ -18,11 +18,13 @@ import { ICategory, IPost } from "interfaces";
 
 const PostList: React.FC = () => {
 	const { tableProps } = useTable<IPost>();
+	console.log(tableProps.dataSource)
 
 	const categoryIds = tableProps?.dataSource?.map(
-		(item) => item.category
+		(item) => item.category_id!
 	) ?? [""];
 
+	
 	const { data, isLoading } = useMany<ICategory>({
 		resource: "category",
 		ids: categoryIds as BaseKey[],
@@ -35,9 +37,9 @@ const PostList: React.FC = () => {
 		<List>
 			<Table {...tableProps} rowKey="id">
 
-				<Table.Column dataIndex="work_id" title="id" colSpan={3}/>
-				<Table.Column dataIndex="title" title="Title" colSpan={4}/>
-				<Table.Column dataIndex="description" title="Description" colSpan={6} />
+				<Table.Column dataIndex="id" title="id" />
+				<Table.Column dataIndex="title" title="Title" />
+				<Table.Column dataIndex="description" title="Description" />
 				<Table.Column dataIndex="content" title="Content" />
 				<Table.Column<IPost>
 					title="Image"
@@ -55,7 +57,7 @@ const PostList: React.FC = () => {
 						if (isLoading) {
 							return <TextField value="Loading..." />;
 						}
-						console.log(value)
+						console.log(data)
 						return (
 							<TagField
 								value={
@@ -69,19 +71,21 @@ const PostList: React.FC = () => {
 					title="Actions"
 					dataIndex="actions"
 					render={(_text, record): React.ReactNode => {
+						console.log(_text)
 						return (
 							<Space>
 								<EditButton
 									size="small"
-									recordItemId={record.work_id}
+									recordItemId={record?.id!}
 								/>
 								<ShowButton
 									size="small"
-									recordItemId={record.work_id}
+									recordItemId={record?.id!}
 								/>
 								<DeleteButton
 									size="small"
-									recordItemId={record.work_id}
+									recordItemId={record?.id!}
+									
 								/>
 							</Space>
 						);

@@ -13,10 +13,10 @@ export const revalidate = 60
 export async function generateStaticParams() {
     const { data, error } = await supabase
         .from('work')
-        .select('work_id')
+        .select('id')
 
-    return data?.map(({ work_id }) => ({
-        work_id: work_id,
+    return data?.map(({ id }) => ({
+        id: id,
     })) as any[] | Promise<any[]>
 
 }
@@ -33,14 +33,14 @@ async function getGallery(id: string) {
 
 }
 
-export default async function Work({ params: { work_id } }: { params: { work_id: string } }) {
+export default async function Work({ params: { id } }: { params: { id: string } }) {
     
-    const { data } = await supabase.from('work').select().match({ 'work_id': work_id }).single()
+    const { data } = await supabase.from('work').select().match({ 'id': id }).single()
 
-    const { data: dataGallery, error: errorGalery } = await getGallery(work_id!)
+    const { data: dataGallery, error: errorGalery } = await getGallery(id!)
 
     const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
-        return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/project-images/images/${data?.work_id!}/${src}?width=${width}&quality=${quality || 75}`
+        return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/project-images/images/${data?.id!}/${src}?width=${width}&quality=${quality || 75}`
     }
 
 
@@ -57,7 +57,7 @@ export default async function Work({ params: { work_id } }: { params: { work_id:
                     {dataGallery?.map((file: any) =>
                         <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={250} height={250} quality={100} loader={imageLoader} />)}
                     {/* <Suspense fallback={<div>Loading...</div>}>
-                        <Gallery id={data?.work_id!} />
+                        <Gallery id={data?.id!} />
                     </Suspense>  */}
                 </div>
             </Container>

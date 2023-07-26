@@ -1,12 +1,12 @@
 export interface IPost {
-    work_id: string;
+    id: string;
     title: string | null;
     description: string | null;
     thumbnail: string | null;
     content: string | null;
     createdAt?: string | null;
-    category: ICategory;
-    client: IClient;
+    category_id: ICategory;
+    client_id: IClient;
 }
 
 export interface ICategory {

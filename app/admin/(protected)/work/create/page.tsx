@@ -37,7 +37,7 @@ const PostCreate: React.FC = () => {
 	return (
 		<Create saveButtonProps={saveButtonProps} >
 			<Form {...formProps} layout="vertical" onLoad={() => setId(idUuid)}>
-				<Form.Item label="Id" name="work_id" initialValue={id!} >
+				<Form.Item label="Id" name="id" initialValue={id!} >
 					{id && <Input value={id!} disabled />}
 				</Form.Item>
 				<Form.Item label="Title" name="title">

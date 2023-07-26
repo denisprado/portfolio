@@ -71,6 +71,17 @@ export default function RootLayout({
 											canDelete: true,
 										},
 									},
+									
+									{
+										name: "client",
+										list: "/admin/client",
+										create: "/admin/client/create",
+										edit: "/admin/client/edit/:id",
+										show: "/admin/client/show/:id",
+										meta: {
+											canDelete: true,
+										},
+									},
 								]}
 								options={{
 									syncWithLocation: true,

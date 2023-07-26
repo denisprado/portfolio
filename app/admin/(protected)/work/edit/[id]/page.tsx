@@ -7,6 +7,7 @@ import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import dynamic from "next/dynamic";
 import { ICategory, IPost } from "interfaces";
+import { BaseKey } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
 	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
@@ -14,7 +15,7 @@ const PostEdit: React.FC = () => {
 	const { selectProps: categorySelectProps } = useSelect<ICategory>({
 		resource: "category",
 		optionLabel: "name",
-		defaultValue: queryResult?.data?.data?.category?.id,
+		defaultValue: queryResult?.data?.data?.category_id as BaseKey | BaseKey[] | undefined,
 	});
 
 	const MDEditor = dynamic(
@@ -25,7 +26,7 @@ const PostEdit: React.FC = () => {
 	return (
 		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
-				<Form.Item label="Id" name="work_id">
+				<Form.Item label="Id" name="id">
 					<Input disabled/>
 				</Form.Item>
 				<Form.Item label="Title" name="title">
@@ -50,6 +51,7 @@ const PostEdit: React.FC = () => {
 				>
 					<Upload.Dragger
 						name="image"
+						multiple
 						listType="picture"
 						customRequest={async ({ file, onError, onSuccess }) => {
 							const rcFile = file as RcFile;

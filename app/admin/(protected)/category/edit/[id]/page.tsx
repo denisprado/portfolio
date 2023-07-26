@@ -1,44 +1,18 @@
 "use client";
 
-import { useForm, useSelect, Edit } from "@refinedev/antd";
-import { Form, Input, Select } from "antd";
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input } from "antd";
 
 import { IPost } from "interfaces";
 
 const PostEdit: React.FC = () => {
-	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-
-	const { selectProps: categorySelectProps } = useSelect<IPost>({
-		resource: "work",
-		defaultValue: queryResult?.data?.data?.category.id,
-	});
+	const { formProps, saveButtonProps } = useForm<IPost>();
 
 	return (
 		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
-				<Form.Item label="Title" name="title">
+				<Form.Item label="Name" name="name">
 					<Input />
-				</Form.Item>
-				<Form.Item label="Status" name="status">
-					<Select
-						options={[
-							{
-								label: "Published",
-								value: "published",
-							},
-							{
-								label: "Draft",
-								value: "draft",
-							},
-							{
-								label: "Rejected",
-								value: "rejected",
-							},
-						]}
-					/>
-				</Form.Item>
-				<Form.Item label="Category" name={["category", "id"]}>
-					<Select {...categorySelectProps} />
 				</Form.Item>
 			</Form>
 		</Edit>

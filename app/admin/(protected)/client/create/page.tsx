@@ -3,10 +3,10 @@
 import { Create, useForm } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
-import { ICategory } from "interfaces";
+import { IClient } from "interfaces";
 
 const PostCreate: React.FC = () => {
-	const { formProps, saveButtonProps } = useForm<ICategory>();
+	const { formProps, saveButtonProps } = useForm<IClient>();
 	
 	return (
 		<Create saveButtonProps={saveButtonProps}>
