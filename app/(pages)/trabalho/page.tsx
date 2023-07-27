@@ -29,8 +29,8 @@ export default async function Work() {
 	return (
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
-				<div className="w-full flex pt-44 justify-center relative min-h-[320px]">
-					<p className="text-neutral-dark-3 dark:bg-neutral-light-2 font-serif text-2xl font-light w-4/6 text-center z-10">
+				<div className="w-full flex pt-22 justify-center relative ">
+					<p className="text-neutral-dark-3 dark:bg-neutral-light-2 font-serif text-4xl font-light w-4/6 text-center z-10 p-10">
 					Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que eleva e unifica as experiências em todas as superfícies da marca.
 					</p>
 				</div>
@@ -50,8 +50,7 @@ async function getWork() {
 	return { data, error }
 }
 
-
-
+export const revalidate = 60
 
 
 
