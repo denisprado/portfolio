@@ -49,10 +49,8 @@ export default function Home() {
 	const { color } = useThemeContext()
 
 	return (
-		// Hiding the overflow for now, we're not building building the scrolling
-		// functionality of the images ;)
 		<PageWrapper className="overflow-hidden">
-			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
+			<Container className="flex flex-col w-full bg-neutral-light-1 dark:bg-neutral-dark-2">
 				<div className="w-full flex pt-44 justify-center relative min-h-[640px]">
 					<p className="text-primary font-serif text-9xl font-light w-4/6 text-center z-10">
 						Da base ao topo,<br />

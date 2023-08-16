@@ -1,7 +1,41 @@
 'use client';
 
+import supabase from '@/utils/supabase';
 import { Footer as FooterBite } from 'flowbite-react';
-import { BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
+import { LinkedinIcon } from 'lucide-react';
+import { BsInstagram } from 'react-icons/bs';
+import { RowCardProps } from './rowCard';
+
+
+const services: RowCardProps[] = [
+	{
+		id: "1",
+		title: "Sua Marca",
+	},
+	{
+		id: "2",
+		title: `Design System`,
+	},
+	{
+		id: "3",
+		title: "Presença digital",
+	}
+]
+
+const works: RowCardProps[] = [
+	{
+		id: "1",
+		title: "Sua Marca",
+	},
+	{
+		id: "2",
+		title: `Design System`,
+	},
+	{
+		id: "3",
+		title: "Presença digital",
+	}
+]
 
 export default function Footer() {
 	return (
@@ -30,49 +64,21 @@ export default function Footer() {
 					<div>
 						<FooterBite.Title title="Serviços" />
 						<FooterBite.LinkGroup col>
-							<FooterBite.Link href="#">
-								Discord Server
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Twitter
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Facebook
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Contact Us
-							</FooterBite.Link>
+							{services.map(service =>
+								<FooterBite.Link href="/servicos">
+									{service.title}
+								</FooterBite.Link>)
+							}
 						</FooterBite.LinkGroup>
 					</div>
 					<div>
 						<FooterBite.Title title="Trabalho" />
 						<FooterBite.LinkGroup col>
-							<FooterBite.Link href="#">
-								Privacy Policy
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Licensing
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Terms & Conditions
-							</FooterBite.Link>
-						</FooterBite.LinkGroup>
-					</div>
-					<div>
-						<FooterBite.Title title="download" />
-						<FooterBite.LinkGroup col>
-							<FooterBite.Link href="#">
-								iOS
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Android
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								Windows
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
-								MacOS
-							</FooterBite.Link>
+							{/* {services.map(service =>
+								<FooterBite.Link href="/servicos">
+									{service.title}
+								</FooterBite.Link>)
+							} */}
 						</FooterBite.LinkGroup>
 					</div>
 				</div>
@@ -83,21 +89,14 @@ export default function Footer() {
 						year={2022}
 					/>
 					<div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
-						<FooterBite.Icon
-							href="#"
-							icon={BsFacebook}
-						/>
+
 						<FooterBite.Icon
 							href="#"
 							icon={BsInstagram}
 						/>
 						<FooterBite.Icon
 							href="#"
-							icon={BsTwitter}
-						/>
-						<FooterBite.Icon
-							href="#"
-							icon={BsGithub}
+							icon={LinkedinIcon}
 						/>
 					</div>
 				</div>

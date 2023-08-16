@@ -20,12 +20,12 @@ export const authProvider: AuthBindings = {
     if (data?.session) {
       nookies.set(null, "token", data.session.access_token, {
         maxAge: 30 * 24 * 60 * 60,
-        path: "/",
+        path: "/admin",
       });
 
       return {
         success: true,
-        redirectTo: "/",
+        redirectTo: "/admin",
       };
     }
 
@@ -51,7 +51,7 @@ export const authProvider: AuthBindings = {
 
     return {
       success: true,
-      redirectTo: "/login",
+      redirectTo: "/admin/login",
     };
   },
   register: async ({ email, password }) => {
@@ -123,7 +123,7 @@ export const authProvider: AuthBindings = {
 
     return {
       authenticated: false,
-      redirectTo: "/login",
+      redirectTo: "/admin/login",
     };
   },
   getPermissions: async () => {

@@ -17,3 +17,17 @@ export interface IClient {
     id: string;
     name: string | null;
 }
+export interface IImage {
+    id: string;
+    title: string | null;
+    description: string | null;
+    file_path: string | null;
+    created_at: string | null;
+    album_id: string | null;
+}
+export interface IAlbums {
+    id: string;
+    title: string | null;
+    description: string | null;
+    created_at: string | null;
+}

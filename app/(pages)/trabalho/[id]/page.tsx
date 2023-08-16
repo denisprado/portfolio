@@ -56,9 +56,6 @@ export default async function Work({ params: { id } }: { params: { id: string } 
                     <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{data?.content!}</ReactMarkdown>
                     {dataGallery?.map((file: any) =>
                         <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={648} height={648} quality={100} loader={imageLoader} />)}
-                    {/* <Suspense fallback={<div>Loading...</div>}>
-                        <Gallery id={data?.id!} />
-                    </Suspense>  */}
                 </div>
             </Container>
         </PageWrapper>

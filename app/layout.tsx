@@ -82,6 +82,27 @@ export default function RootLayout({
 											canDelete: true,
 										},
 									},
+									{
+										name: "images",
+										list: "/admin/image",
+										create: "/admin/image/create",
+										edit: "/admin/image/edit/:id",
+										show: "/admin/image/show/:id",
+										meta: {
+											canDelete: true,
+										},
+									},
+									{
+										name: "albums",
+										list: "/admin/album",
+										create: "/admin/album/create",
+										edit: "/admin/album/edit/:id",
+										show: "/admin/album/show/:id",
+										meta: {
+											canDelete: true,
+										},
+									},
+									
 								]}
 								options={{
 									syncWithLocation: true,

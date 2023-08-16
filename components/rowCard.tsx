@@ -15,9 +15,9 @@ type ClientsProps = {
 export type RowCardProps = {
 	id: string,
 	title: string | null,
-	description: string | null,
+	description?: string | null,
 	keys?: string[],
-	color: string,
+	color?: string,
 	image?: string,
 	thumbnail?: string | null,
 	category?: CategoryProps | null,
