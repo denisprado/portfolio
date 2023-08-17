@@ -21,6 +21,16 @@ export async function generateStaticParams() {
 
 }
 
+async function getAlbum(id: string) {
+    const { data, error } = await supabase
+        .from('albums')
+        .select('id')
+
+    return data?.map(({ id }) => ({
+        id: id,
+    })) as any[] | Promise<any[]>
+}
+
 async function getGallery(id: string) {
     const { data, error } = await supabase.storage
         .from("project-images")
@@ -34,15 +44,14 @@ async function getGallery(id: string) {
 }
 
 export default async function Work({ params: { id } }: { params: { id: string } }) {
-    
+
     const { data } = await supabase.from('work').select().match({ 'id': id }).single()
 
     const { data: dataGallery, error: errorGalery } = await getGallery(id!)
 
     const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
-        return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/project-images/images/${data?.id!}/${src}?width=${width}&quality=${quality || 75}`
+        return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/albums/${data?.id!}/${src}?width=${width}&quality=${quality || 75}`
     }
-
 
     return (
         <PageWrapper className="overflow-hidden">
@@ -54,8 +63,18 @@ export default async function Work({ params: { id } }: { params: { id: string } 
                     <h1 className="font-serif text-primary mt-10  text-6xl">{data?.title!}</h1>
                     <p className="font-italic py-6 text-3xl dark:text-neutral-light-2">{data?.description!}</p>
                     <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{data?.content!}</ReactMarkdown>
-                    {dataGallery?.map((file: any) =>
-                        <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={648} height={648} quality={100} loader={imageLoader} />)}
+
+                    {data?.albums.map(async (albumId: string) => {
+                        const { data: dataAlbum, error: errorAlbum } = await getAlbum(albumId!)
+
+                        return (
+                            <>
+                            {dataAlbum?.map((file: any) => <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={648} height={648} quality={100} loader={imageLoader} />)}
+                            </>
+                        )
+                    })}
+
+
                 </div>
             </Container>
         </PageWrapper>

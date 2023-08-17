@@ -2,10 +2,12 @@
 
 import getUrlFromTable from "@/utils/getUrlFromTable";
 import {
-	List, TagField, TextField, useTable
+	DeleteButton,
+	EditButton,
+	List, ShowButton, TagField, TextField, useTable
 } from "@refinedev/antd";
 import { useMany, BaseKey } from "@refinedev/core";
-import { Image, Table } from "antd";
+import { Image, Space, Table } from "antd";
 
 import { IAlbums, IImage } from "interfaces";
 
@@ -54,6 +56,30 @@ const ImageList: React.FC = () => {
 									data?.data.find((item) => item.id === value)?.title
 								}
 							/>
+						);
+					}}
+				/>
+				<Table.Column<IAlbums>
+					title="Actions"
+					dataIndex="actions"
+					render={(_text, record): React.ReactNode => {
+						console.log(_text)
+						return (
+							<Space>
+								<EditButton
+									size="small"
+									recordItemId={record?.id!}
+								/>
+								<ShowButton
+									size="small"
+									recordItemId={record?.id!}
+								/>
+								<DeleteButton
+									size="small"
+									recordItemId={record?.id!}
+									
+								/>
+							</Space>
 						);
 					}}
 				/>

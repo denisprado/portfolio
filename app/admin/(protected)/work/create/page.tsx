@@ -3,7 +3,7 @@
 import { supabaseClient } from "@/utils/supabase";
 import { useForm, useSelect, Create } from "@refinedev/antd";
 import { Form, Select, Input, Upload } from "antd";
-import { ICategory, IPost } from "interfaces";
+import { IAlbums, ICategory, IPost } from "interfaces";
 import { normalizeFile } from "@/utils/normalizeFile";
 import { RcFile } from "antd/es/upload";
 import "@uiw/react-md-editor/markdown-editor.css";
@@ -32,6 +32,11 @@ const PostCreate: React.FC = () => {
 	const { selectProps: clientelectProps } = useSelect<ICategory>({
 		resource: "client",
 		optionLabel: "name"
+	});
+
+	const { selectProps:AlbumsSelectProps } = useSelect<IAlbums>({
+		resource: "albums",
+		optionLabel: "title"
 	});
 
 	return (
@@ -65,6 +70,18 @@ const PostCreate: React.FC = () => {
 					]}>
 					<Select {...clientelectProps} />
 				</Form.Item>
+
+				<Form.Item label="Albums"
+					name="albums_id"
+					
+					rules={[
+						{
+							required: true,
+						},
+					]}>
+					<Select mode="multiple" {...AlbumsSelectProps} />
+				</Form.Item>
+				
 
 				<Form.Item label="Image">
 					<Form.Item
