@@ -25,10 +25,18 @@ async function getAlbum(id: string) {
     const { data, error } = await supabase
         .from('albums')
         .select('id')
+        .eq('id', id)
 
-    return data?.map(({ id }) => ({
-        id: id,
-    })) as any[] | Promise<any[]>
+    return { data, error }
+}
+
+async function getImagesFromAlbum(albumId: string) {
+    const { data, error } = await supabase
+        .from('images')
+        .select()
+        .eq('album_id', albumId)
+        console.log(data)
+        return {data, error}
 }
 
 async function getGallery(id: string) {
@@ -47,11 +55,13 @@ export default async function Work({ params: { id } }: { params: { id: string } 
 
     const { data } = await supabase.from('work').select().match({ 'id': id }).single()
 
-    const { data: dataGallery, error: errorGalery } = await getGallery(id!)
+    const { data: dataGallery, error: errorGalery } = await getImagesFromAlbum(id!)
 
     const imageLoader = ({ src = '', width = 250, quality = 75 }) => {
         return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/albums/${data?.id!}/${src}?width=${width}&quality=${quality || 75}`
     }
+
+    console.log(data?.albums_id)    
 
     return (
         <PageWrapper className="overflow-hidden">
@@ -63,18 +73,29 @@ export default async function Work({ params: { id } }: { params: { id: string } 
                     <h1 className="font-serif text-primary mt-10  text-6xl">{data?.title!}</h1>
                     <p className="font-italic py-6 text-3xl dark:text-neutral-light-2">{data?.description!}</p>
                     <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{data?.content!}</ReactMarkdown>
+                    {
+                        data?.albums_id!.map(async (albumId: string) => {
+                            const { data: dataAlbum, error: errorAlbum } = await getAlbum(albumId!)
 
-                    {data?.albums.map(async (albumId: string) => {
-                        const { data: dataAlbum, error: errorAlbum } = await getAlbum(albumId!)
+                            console.log(dataAlbum)
 
-                        return (
-                            <>
-                            {dataAlbum?.map((file: any) => <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={648} height={648} quality={100} loader={imageLoader} />)}
-                            </>
-                        )
-                    })}
+                            return (
+                                <>
+                                    {
+                                        dataAlbum?.map((album) => {
+                                            const images = getImagesFromAlbum(album.id)!
+                                            console.log(images)
+                                            return (
+                                                dataAlbum?.map((file: any) =>
+                                                    <Image key={file.id} src={`${file?.name!}`} alt={data?.title ? data?.title : ''} width={648} height={648} quality={100} loader={imageLoader} />
+                                                )
 
-
+                                            )
+                                        })
+                                    }
+                                </>
+                            )
+                        })}
                 </div>
             </Container>
         </PageWrapper>

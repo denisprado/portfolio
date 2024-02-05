@@ -8,7 +8,7 @@
     "start:prod": "refine start",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "dev": "next dev",
-    "update-types": "npx openapi-typescript https://mlfoassvjfdizqvcrgjx.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sZm9hc3N2amZkaXpxdmNyZ2p4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njg4NTA1NTYsImV4cCI6MTk4NDQyNjU1Nn0.Q-C77zaJxJn8dRzLqCJw7LJjKAk44sg8CChr1oWgq7s  --version=5 --output types/database/index.ts"
+    "update-types": "supabase gen types typescript --project-id mlfoassvjfdizqvcrgjx > types/supabase.ts"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.5",
