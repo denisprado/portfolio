@@ -16,7 +16,7 @@ import React from "react"
 import { ThemeContextProvider } from "./context/theme"
 import './globals.css'
 
-const instrumentSans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-instrument-sans',   adjustFontFallback: false} )
+const instrumentSans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-instrument-sans', adjustFontFallback: false })
 const instrumentSerif = Instrument_Serif({
 	subsets: ['latin'],
 	display: 'swap',
@@ -29,7 +29,7 @@ const instrumentSerifItalic = Instrument_Serif({
 	subsets: ['latin'],
 	display: 'swap',
 	variable: '--font-instrument-italic',
-	weight: "400", style: 'italic',adjustFontFallback: false
+	weight: "400", style: 'italic', adjustFontFallback: false
 });
 
 export default function RootLayout({
@@ -71,7 +71,7 @@ export default function RootLayout({
 											canDelete: true,
 										},
 									},
-									
+
 									{
 										name: "client",
 										list: "/admin/client",
@@ -102,7 +102,7 @@ export default function RootLayout({
 											canDelete: true,
 										},
 									},
-									
+
 								]}
 								options={{
 									syncWithLocation: true,
@@ -119,7 +119,7 @@ export default function RootLayout({
 							<>
 								<Header />
 								{children}
-								<Footer />
+
 							</>
 						}
 					</ThemeContextProvider>

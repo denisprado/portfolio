@@ -61,7 +61,7 @@ export const Header = () => {
 					{ "bg-white": color === 'light' && !hideNav },
 					{ "bg-transparent": page === '/' && hideNav },
 				)}>
-					<motion.img src={hideNav && page === '/' ? "/images/logo-home.svg" : color === 'light' ? "/images/logo.svg" : "/images/logo-servicos.svg"} width={200} height={40} />
+					<motion.img src={hideNav && page === '/' ? "/images/logo-quem-somos-dark.svg" : color === 'light' ? "/images/logo.svg" : "/images/logo-servicos.svg"} width={200} height={40} />
 				</Link>
 
 				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",

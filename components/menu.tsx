@@ -34,12 +34,12 @@ export function MenuItems({ items }: MenuItemsProps) {
 
 
 	return (
-		<div className="relative flex content-start justify-start items-start">
+		<div className="relative flex items-start content-start justify-start">
 			{items.map(({ label, href }, i) => {
 
 				return i > 0 && (
 					<Link href={href}
-						className="text-xs uppercase font-sans relative"
+						className="relative font-sans text-xs uppercase"
 						onPointerEnter={() => {
 							setStore({
 								activeColor: color,
@@ -60,17 +60,30 @@ export function MenuItems({ items }: MenuItemsProps) {
 							{
 								"bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
 								"bg-white text-neutral-dark-2": themeColor === 'light' && path !== '/',
-								"text-neutral-dark-2 bg-transparent ": path === '/'
+								"text-white border border-white ": path === '/'
 
 							})}
 						style={{ zIndex: 999 }}
 						initial={{
 							color:
-								i === store.selected ? "hsl(var(--neutral-light-1))" : themeColor === 'light' ? "hsl(var(--neutral-dark-1))" : "hsl(var(--neutral-light-2))",
+								path !== '/' ?
+									i === store.selected ?
+										"hsl(var(--neutral-light-1))" :
+										themeColor === 'light' ?
+											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+									:
+									"white"
+
 						}}
 						animate={{
 							color:
-								i === store.selected ? "hsl(var(--neutral-light-1))" : themeColor === 'light' ? "hsl(var(--neutral-dark-1))" : "hsl(var(--neutral-light-2))",
+								path !== '/' ?
+									i === store.selected ?
+										"hsl(var(--neutral-light-1))" :
+										themeColor === 'light' ?
+											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+									:
+									"white"
 						}}
 						onTap={() => {
 							setStore({
@@ -109,7 +122,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 										before: store.before
 									})
 								}}
-								className="z-10 relative">
+								className="relative z-10">
 
 								{label}
 							</span>
@@ -121,7 +134,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 									initial={{
 										backgroundColor: path !== '/' ? store.activeColor : 'transparent',
 									}}
-									animate={{ backgroundColor:  color }}
+									animate={{ backgroundColor: color }}
 									onPointerEnter={() => {
 										setStore({
 											activeColor: color,

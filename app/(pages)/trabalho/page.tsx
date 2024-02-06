@@ -29,12 +29,12 @@ export default async function Work() {
 	return (
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
-				<div className="w-full flex mt-32 mb-24 justify-center relative ">
-					<p className="text-neutral-dark-3 dark:text-neutral-light-1 font-serif text-4xl font-light w-4/6 text-center z-10 p-10">
-					Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que eleva e unifica as experiências em todas as superfícies da marca.
+				<div className="relative flex justify-center w-full mt-32 mb-24 ">
+					<p className="z-10 w-4/6 p-10 font-serif text-4xl font-light text-center text-neutral-dark-3 dark:text-neutral-light-1">
+						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que eleva e unifica as experiências em todas as superfícies da marca.
 					</p>
 				</div>
-				<RowCard cards={rowCards} />
+				{/* <RowCard cards={rowCards} /> */}
 			</Container>
 		</PageWrapper>
 	)
