@@ -7,8 +7,8 @@ export default function Login() {
 		<AuthPage
 			formProps={{
 				initialValues: {
-					email: "admin@refine.dev",
-					password: "password",
+					email: "denisforigo@gmail.com",
+					password: "clipper02",
 				},
 			}}
 		/>

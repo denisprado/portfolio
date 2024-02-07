@@ -48,12 +48,11 @@ export default function Home() {
 				<video autoPlay muted loop className={'video'} >
 					<source src="./bg-video.mp4" type="video/mp4" />
 				</video>
-				<Container className="flex flex-col pt-40 pb-20 text-2xl pl-36">
-					<p className="text-white text-7xl text-primary font-italic">
+				<Container className="flex flex-col gap-16 p-40 text-2xl">
+					<p className="text-white text-8xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.
 					</p>
-				</Container>
-				<Container className="flex flex-col w-full gap-20 pt-0 pl-36">
+
 					<div className="w-5/12 ">
 						<p className="text-2xl text-white shadow-sky-700">Dê vida à sua visão com a Platô. Desenvolvimento de sites totalmente customizados e design personalizado para impulsionar sua presença online. Entre em contato conosco hoje mesmo para começar. </p>
 					</div>

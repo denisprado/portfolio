@@ -8,7 +8,7 @@ export default async function Work() {
 	const { data, error } = await getWork()
 
 	if (error || !data) {
-		return <>{error}</>
+		return <>{error?.message}</>
 	}
 
 	const rowCards = data.map((data) => {
@@ -34,7 +34,7 @@ export default async function Work() {
 						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que eleva e unifica as experiências em todas as superfícies da marca.
 					</p>
 				</div>
-				{/* <RowCard cards={rowCards} /> */}
+				<RowCard cards={rowCards} />
 			</Container>
 		</PageWrapper>
 	)
@@ -46,7 +46,6 @@ async function getWork() {
 		.select(`*, category (
 		id, name
 	), client ( id, name )`)
-
 	return { data, error }
 }
 

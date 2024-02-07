@@ -72,7 +72,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 										themeColor === 'light' ?
 											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
 									:
-									"white"
+									"#ffffff"
 
 						}}
 						animate={{
@@ -83,7 +83,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 										themeColor === 'light' ?
 											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
 									:
-									"white"
+									"#ffffff"
 						}}
 						onTap={() => {
 							setStore({

@@ -9,7 +9,7 @@ export default function ProtectedLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<Authenticated fallback={children}>
+		<Authenticated fallback={children} key={'dashboard'}>
 			<NavigateToResource />
 		</Authenticated>
 	);

@@ -37,9 +37,6 @@ export default function Home() {
 				"Website & Mobile Design",
 				"Prototyping",
 				"Full Stack Development",
-				"Gerenciadores de COnteúdo",
-				"SEO & SEM",
-				"User Testing",
 				"Monitoring & Optimization"
 			],
 			color: "text-accent"
@@ -52,7 +49,7 @@ export default function Home() {
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full bg-neutral-light-1 dark:bg-neutral-dark-2">
 				<div className="w-full flex pt-44 justify-center relative min-h-[640px]">
-					<p className="text-primary font-serif text-9xl font-light w-4/6 text-center z-10">
+					<p className="z-10 w-4/6 font-serif font-light text-center text-primary text-9xl">
 						Da base ao topo,<br />
 						tudo o que você precisa.
 					</p>
