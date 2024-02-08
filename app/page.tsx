@@ -44,7 +44,7 @@ export default function Home() {
 	return (
 		<>
 			{/* //bg-[url(/bg-home-plato.jpg)] */}
-			<PageWrapper className="h-screen bg-center bg-cover ">
+			<PageWrapper className="h-screen bg-center bg-cover bg-[url(/bg-video-image.png)]">
 				<video autoPlay muted loop className={'video'} poster={'/bg-video-image.png'}>
 					<source src="./bg-video.mp4" type="video/mp4" />
 				</video>
