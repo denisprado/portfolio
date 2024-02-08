@@ -21,6 +21,7 @@
     "@refinedev/nextjs-router": "^5.5.7",
     "@refinedev/simple-rest": "^4.5.4",
     "@refinedev/supabase": "^5.7.6",
+    "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.3",
     "@uiw/react-md-editor": "^3.6.0",
     "antd": "^5.0.5",
