@@ -8,9 +8,11 @@ import { useEffect, useState } from 'react';
 export const revalidate = 60
 
 
-const Album = ({ album }: { album: Tables<'albums'> }) => {
+const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => {
 	const [images, setImages] = useState<Tables<'images'>[]>([]);
 
+	const isOdd = index % 2 !== 0
+	console.log(isOdd)
 	useEffect(() => {
 		const fetchImages = async () => {
 			if (album && album.id) {

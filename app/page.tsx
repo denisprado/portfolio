@@ -36,7 +36,7 @@ export default function Home() {
 		};
 	}, []); // Empty dependency array to run the effect only once
 
-	const test = document.querySelector('video');
+	const test = typeof window !== 'undefined' && document.querySelector('video');
 	if (test) {
 		test.playbackRate = .4
 	}
