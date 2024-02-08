@@ -6,18 +6,28 @@ import { useForm, useSelect, Edit, useModalForm } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import dynamic from "next/dynamic";
-import { ICategory, IPost } from "interfaces";
+import { ICategory, IPost, IAlbums } from "interfaces";
 import { BaseKey } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
 	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-	const {id } = useModalForm({
-        action: "edit",
-    });
+	const { id } = useModalForm({
+		action: "edit",
+	});
 	const { selectProps: categorySelectProps } = useSelect<ICategory>({
 		resource: "category",
 		optionLabel: "name",
 		defaultValue: queryResult?.data?.data?.category_id as BaseKey | BaseKey[] | undefined,
+	});
+
+	const { selectProps: clientelectProps } = useSelect<ICategory>({
+		resource: "client",
+		optionLabel: "name"
+	});
+
+	const { selectProps: AlbumsSelectProps } = useSelect<IAlbums>({
+		resource: "albums",
+		optionLabel: "title"
 	});
 
 	const MDEditor = dynamic(
@@ -29,7 +39,7 @@ const PostEdit: React.FC = () => {
 		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
 				<Form.Item label="Id" name="id">
-					<Input disabled/>
+					<Input disabled />
 				</Form.Item>
 				<Form.Item label="Title" name="title">
 					<Input />
@@ -40,6 +50,35 @@ const PostEdit: React.FC = () => {
 				</Form.Item>
 				<Form.Item label="Content" name="content">
 					<MDEditor data-color-mode="light" />
+				</Form.Item>
+				<Form.Item label="Category"
+					name="category_id"
+					rules={[
+						{
+							required: true,
+						},
+					]}>
+					<Select {...categorySelectProps} />
+				</Form.Item>
+				<Form.Item label="Client"
+					name="client_id"
+					rules={[
+						{
+							required: true,
+						},
+					]}>
+					<Select {...clientelectProps} />
+				</Form.Item>
+
+				<Form.Item label="Albums"
+					name="albums_id"
+
+					rules={[
+						{
+							required: true,
+						},
+					]}>
+					<Select mode="multiple" {...AlbumsSelectProps} />
 				</Form.Item>
 
 				<Form.Item label="Category" name="category_id">

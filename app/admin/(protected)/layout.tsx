@@ -8,7 +8,7 @@ export default function ProtectedLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<Authenticated redirectOnFail="/admin/login" appendCurrentPathToQuery={false}>
+		<Authenticated key="dashboard" redirectOnFail="/admin/login" appendCurrentPathToQuery={false}>
 			<ThemedLayoutV2>{children}</ThemedLayoutV2>
 		</Authenticated>
 	);

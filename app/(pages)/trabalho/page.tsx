@@ -30,8 +30,8 @@ export default async function Work() {
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
 				<div className="relative flex justify-center w-full mt-32 mb-24 ">
-					<p className="z-10 w-4/6 p-10 font-serif text-4xl font-light text-center text-neutral-dark-3 dark:text-neutral-light-1">
-						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que eleva e unifica as experiências em todas as superfícies da marca.
+					<p className="z-10 w-4/6 p-10 font-serif font-light text-center text-7xl text-neutral-dark-3 dark:text-neutral-light-1">
+						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que elevam e unificam as experiências em todas as superfícies da marca.
 					</p>
 				</div>
 				<RowCard cards={rowCards} />

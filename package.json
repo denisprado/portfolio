@@ -11,6 +11,7 @@
     "update-types": "supabase gen types typescript --project-id mlfoassvjfdizqvcrgjx > types/supabase.ts"
   },
   "dependencies": {
+    "@ant-design/nextjs-registry": "^1.0.0",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
@@ -48,6 +49,7 @@
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/parser": "5.48.0",
     "autoprefixer": "^10.4.14",
+    "daisyui": "^4.6.2",
     "eslint-config-next": "^13.4.12",
     "postcss": "^8.4.24",
     "supabase": "^1.86.1",

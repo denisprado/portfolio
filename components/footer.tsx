@@ -65,7 +65,7 @@ export default function Footer() {
 						<FooterBite.Title title="Serviços" />
 						<FooterBite.LinkGroup col>
 							{services.map(service =>
-								<FooterBite.Link href="/servicos">
+								<FooterBite.Link href="/servicos" key={service.id}>
 									{service.title}
 								</FooterBite.Link>)
 							}
@@ -82,13 +82,13 @@ export default function Footer() {
 						</FooterBite.LinkGroup>
 					</div>
 				</div>
-				<div className="w-full bg-neutral-dark-1 px-4 py-6 sm:flex sm:items-center sm:justify-between">
+				<div className="w-full px-4 py-6 bg-neutral-dark-1 sm:flex sm:items-center sm:justify-between">
 					<FooterBite.Copyright
 						by="Platô"
 						href="/"
 						year={2022}
 					/>
-					<div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
+					<div className="flex mt-4 space-x-6 sm:mt-0 sm:justify-center">
 
 						<FooterBite.Icon
 							href="#"
