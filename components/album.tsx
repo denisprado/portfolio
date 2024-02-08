@@ -34,7 +34,7 @@ const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => 
 	}, [album]);
 
 	return (
-		<div className='flex flex-col h-full gap-4 m-16'>
+		<div className='flex flex-col h-full gap-4 m-8'>
 			<div className='flex flex-row h-full gap-8'>
 				<div className='flex flex-col w-3/12 gap-2 text-neutral-dark-3 dark:text-neutral-light-1'>
 
