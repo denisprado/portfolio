@@ -8,10 +8,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useMenuContext } from "./context/menu";
+import { useState } from 'react'
 
 export default function Home() {
 
 
+	const [bgLoading, setBgLoading] = useState<string>('bg-[url(/bg-video-image.png)]');
+	const handleVideoLoaded = () => {
+		console.log('teste')
+		setBgLoading("bg-transparent")
+	};
 	const { active, setActive, setBefore } = useMenuContext();
 	useEffect(function mount() {
 		setActive && setActive(0)
@@ -41,14 +47,16 @@ export default function Home() {
 		test.playbackRate = .4
 	}
 
+
+
 	return (
 		<>
 			{/* //bg-[url(/bg-home-plato.jpg)] */}
-			<PageWrapper className="h-screen bg-center bg-cover bg-[url(/bg-video-image.png)]">
-				<video autoPlay muted loop className={'video'} poster={'/bg-video-image.png'}>
-					<source src="./bg-video.mp4" type="video/mp4" />
+			<PageWrapper className={`h-screen bg-center bg-cover relative z-10 ${bgLoading}`}>
+				<video autoPlay muted loop className={'video'} onPlay={handleVideoLoaded}>
+					<source src="/bg-video.mp4" type="video/mp4" onLoadedData={handleVideoLoaded} />
 				</video>
-				<Container className="flex flex-col gap-16 p-40 text-2xl">
+				<Container className="z-20 flex flex-col gap-16 p-40 text-2xl">
 					<p className="text-white text-8xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.
 					</p>

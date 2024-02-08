@@ -54,8 +54,8 @@ export const Header = () => {
 	})
 
 	return (
-		<header className="relative z-10 w-full dark:bg-neutral-dark-1">
-			<Container className={classNames("flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
+		<header className="relative w-full dark:bg-neutral-dark-1">
+			<Container className={classNames(" z-50 flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1", { 'absolute': page === '/' && hideNav }, { 'fixed': page === '/' && !hideNav })}>
 				<Link href="/" className={classNames("h-16 pt-4 p-3 px-6 ",
 					{ "bg-neutral-dark-3": color === 'dark' },
 					{ "bg-white": color === 'light' && !hideNav },
