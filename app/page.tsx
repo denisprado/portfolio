@@ -9,10 +9,10 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useMenuContext } from "./context/menu";
 import { useState } from 'react'
+import dynamic from 'next/dynamic'
+const HomeVideo = dynamic(() => import('@/components/homeVideo'), { ssr: false })
 
 export default function Home() {
-
-
 	const [bgLoading, setBgLoading] = useState<string>('bg-[url(/bg-video-image.png)]');
 	const handleVideoLoaded = () => {
 		console.log('teste')
@@ -53,9 +53,7 @@ export default function Home() {
 		<>
 			{/* //bg-[url(/bg-home-plato.jpg)] */}
 			<PageWrapper className={`h-screen bg-center bg-cover relative z-10 ${bgLoading}`}>
-				<video autoPlay muted loop className={'video'} onPlay={handleVideoLoaded}>
-					<source src="/bg-video.mp4" type="video/mp4" onLoadedData={handleVideoLoaded} />
-				</video>
+				<HomeVideo handleVideoLoaded={handleVideoLoaded} src={'/bg-video.mp4'}></HomeVideo>
 				<Container className="z-20 flex flex-col gap-16 p-40 text-2xl">
 					<p className="text-white text-8xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.
