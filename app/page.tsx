@@ -15,7 +15,6 @@ const HomeVideo = dynamic(() => import('@/components/homeVideo'), { ssr: false }
 export default function Home() {
 	const [bgLoading, setBgLoading] = useState<string>('bg-[url(/bg-video-image.png)]');
 	const handleVideoLoaded = () => {
-		console.log('teste')
 		setBgLoading("bg-transparent")
 	};
 	const { active, setActive, setBefore } = useMenuContext();
@@ -49,11 +48,14 @@ export default function Home() {
 
 
 
+
+
+
 	return (
 		<>
 			{/* //bg-[url(/bg-home-plato.jpg)] */}
 			<PageWrapper className={`h-screen bg-center bg-cover relative z-10 ${bgLoading}`}>
-				<HomeVideo handleVideoLoaded={handleVideoLoaded} src={'/bg-video.mp4'}></HomeVideo>
+				<HomeVideo handleVideoLoaded={handleVideoLoaded} src={'/bg-video.mp4'} poster={'/bg-video-image.png'}></HomeVideo>
 				<Container className="z-20 flex flex-col gap-16 p-40 text-2xl">
 					<p className="text-white text-8xl text-primary font-italic">
 						Sua presença digital<br />elevada ao nível mais alto.

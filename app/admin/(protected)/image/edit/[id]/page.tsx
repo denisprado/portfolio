@@ -2,7 +2,7 @@
 
 import { normalizeFile } from "@/utils/normalizeFile";
 import { supabaseClient } from "@/utils/supabase";
-import { useForm, useSelect, Edit, useModalForm } from "@refinedev/antd";
+import { useForm, useSelect, Edit, useModalForm, } from "@refinedev/antd";
 import { Form, Input, Select, Upload } from "antd";
 import { RcFile } from "antd/es/upload";
 import dynamic from "next/dynamic";
@@ -11,9 +11,9 @@ import { BaseKey } from "@refinedev/core";
 
 const PostEdit: React.FC = () => {
 	const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
-	const {id } = useModalForm({
-        action: "edit",
-    });
+	const { id } = useModalForm({
+		action: "edit",
+	});
 	const { selectProps: categorySelectProps } = useSelect<ICategory>({
 		resource: "category",
 		optionLabel: "name",
@@ -29,7 +29,7 @@ const PostEdit: React.FC = () => {
 		<Edit saveButtonProps={saveButtonProps}>
 			<Form {...formProps} layout="vertical">
 				<Form.Item label="Id" name="id">
-					<Input disabled/>
+					<Input disabled />
 				</Form.Item>
 				<Form.Item label="Title" name="title">
 					<Input />
@@ -38,6 +38,11 @@ const PostEdit: React.FC = () => {
 				<Form.Item label="Description" name="description">
 					<Input />
 				</Form.Item>
+
+				<Form.Item label="Use Mock Browser" name="use_mock_browser">
+
+				</Form.Item>
+
 				<Form.Item label="Content" name="content">
 					<MDEditor data-color-mode="light" />
 				</Form.Item>

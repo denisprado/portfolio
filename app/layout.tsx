@@ -34,6 +34,7 @@ const instrumentSerifItalic = Instrument_Serif({
 	weight: "400", style: 'italic', adjustFontFallback: false
 });
 
+
 export default function RootLayout({
 	children
 }: {
@@ -41,6 +42,7 @@ export default function RootLayout({
 }) {
 	const path = usePathname();
 	const isAdmin = path.includes('admin')
+
 	return (
 		<ConfigProvider theme={RefineThemes.Purple}>
 			<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>

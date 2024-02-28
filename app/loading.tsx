@@ -10,12 +10,10 @@ export default function Loading() {
 				<Image
 					src={'/bg-video-image.png'}
 					alt={''}
+					fill
 					sizes="100vw"
-					priority
-					// Make the image display full width
 					style={{
-						width: '100%',
-						height: 'auto',
+						objectFit: 'cover',
 					}} />
 			</PageWrapper>
 		</>

@@ -33,7 +33,7 @@ function FinalRow({ children, url, id }: { children: ReactElement, url: boolean,
 
 
 const RowCard = ({ cards }: CardsProps) => {
-	return <div className='p-24 dark:bg-neutral-dark-2 bg-neutral-light-1'>
+	return <div className='px-24 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{
 			cards && cards?.map(card => {
 
@@ -41,13 +41,13 @@ const RowCard = ({ cards }: CardsProps) => {
 
 				return (
 					<FinalRow url={card?.url!} id={card?.id!} key={card.id}>
-						<div key={card.id} className="flex flex-col md:items-center md:flex-row justify-between dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-t bg-white border-neutral-dark-1 last:border-b p-12">
+						<div key={card.id} className="flex flex-col justify-between p-12 bg-white border-t md:items-center md:flex-row dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-neutral-dark-1 last:border-b">
 							<div className='flex flex-row items-center justify-start w-full gap-4'>
-								{card.image && <div className='aspect-square w-24 h-24'>
+								{card.image && <div className='w-24 h-24 aspect-square'>
 									<Image src={card.image} width={96 * 2} height={96 * 2} alt={card.title!} className={'grayscale'} style={{ objectFit: 'cover' }}></Image>
 								</div>
 								}
-								{card.thumbnail && isThumb && <div className='aspect-square w-96 h-48 max-h-full '>
+								{card.thumbnail && isThumb && <div className='h-48 max-h-full aspect-square w-96 '>
 									<Image src={getUrlFromTable(card.thumbnail)} width={96 * 4} height={96 * 4} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
 								</div>
 								}
@@ -56,8 +56,8 @@ const RowCard = ({ cards }: CardsProps) => {
 									<span className="font-serif">{card.title.substring(card.title.indexOf(" "))}</span>
 								</h3>}
 							</div>
-							<div className="w-2/6 flex flex-col">
-								<p className="dark:text-neutral-light-2 mb-4 text-sm">
+							<div className="flex flex-col w-2/6">
+								<p className="mb-4 text-sm dark:text-neutral-light-2">
 									{card.description}
 								</p>
 								<div className="columns-2">

@@ -4,15 +4,15 @@ import supabaseLoader from '../supabase-image-loader'
 import { Tables } from '@/types/supabase';
 import supabase from "@/utils/supabase";
 import Image, { ImageLoader } from 'next/image';
-import { useEffect, useState } from 'react';
+import { JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useEffect, useState } from 'react';
+import { NodeElement } from 'rc-tree/lib/interface';
+import React from 'react';
 export const revalidate = 60
 
 
 const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => {
 	const [images, setImages] = useState<Tables<'images'>[]>([]);
 
-	const isOdd = index % 2 !== 0
-	console.log(isOdd)
 	useEffect(() => {
 		const fetchImages = async () => {
 			if (album && album.id) {
@@ -33,6 +33,21 @@ const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => 
 		fetchImages();
 	}, [album]);
 
+	const Mockup = ({ children }: { children: ReactNode }) => {
+		return (
+			<div className="min-w-full border mockup-browser bg-base-300">
+				<div className="mockup-browser-toolbar">
+					<div className="input">https://plato.com.br</div>
+				</div>
+				<div className="relative flex items-start justify-start w-full h-full bg-base-200">
+					{children}
+				</div>
+			</div>
+		)
+	}
+
+
+
 	return (
 		<div className='flex flex-col h-full gap-4 m-8'>
 			<div className='flex flex-row h-full gap-8'>
@@ -43,44 +58,38 @@ const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => 
 				</div>
 				<div className='flex flex-col flex-1 w-full h-full gap-4'>
 					{images.map((image) => {
+
 						const file = image.file_path
 						const title = image.title
 						const description = image.description
 						const src = image.id + '/' + JSON.parse(file)[0].name as string
 						const video = JSON.parse(file)[0].url as string
 						const ext = src && src!.match(/\.([^.]+)$/)![1]!;
+						const MockyOrNot = image.use_mock_browser ? Mockup : React.Fragment
 						return (
 							<div key={image.id} className={'flex flex-col gap-2 mb-4'}>
-								<div className="min-w-full border mockup-browser bg-base-300">
-									<div className="mockup-browser-toolbar">
-										<div className="input">https://bcconsulting.com.br</div>
-									</div>
-									<div className="relative flex items-start justify-start w-full h-full bg-base-200">
-										{ext !== 'mp4' ? <Image
-											loader={supabaseLoader}
-											src={src}
-											alt={image.title}
-											width={1920}
-											height={914}
-											style={{ objectFit: 'contain' }}
-											className={'w-full h-full'}
-										/> :
-											<video
-												autoPlay
-												loop
-												muted
-												className={'object-cover w-full h-full'} // Removido "fixed" daqui
-												style={{ height: '100%' }} // Definido altura para 100%
-											>
-												<source src={video} type="video/mp4" />
-											</video>
-										}
-									</div>
-								</div>
-								<div className='flex flex-row gap-4'>
-									<div>{title}</div>
-									<div>{description}</div>
-								</div>
+								<MockyOrNot>
+									{ext !== 'mp4' ? <Image
+										loader={supabaseLoader}
+										src={src}
+										alt={image.title}
+										width={1920}
+										height={914}
+										style={{ objectFit: 'contain' }}
+										className={'w-full h-full'}
+									/> :
+										<video
+											autoPlay
+											loop
+											muted
+											className={'object-cover w-full h-full'} // Removido "fixed" daqui
+											style={{ height: '100%' }} // Definido altura para 100%
+										>
+											<source src={video} type="video/mp4" />
+										</video>
+									}
+
+								</MockyOrNot>
 							</div>
 						)
 					})}

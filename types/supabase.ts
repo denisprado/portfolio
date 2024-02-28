@@ -88,6 +88,7 @@ export interface Database {
           id: string;
           title: string;
           user_id: string | null;
+          use_mock_browser: boolean | null;
         };
         Insert: {
           album_id?: string | null;
@@ -97,6 +98,7 @@ export interface Database {
           id?: string;
           title: string;
           user_id?: string | null;
+          use_mock_browser: boolean | null;
         };
         Update: {
           album_id?: string | null;
@@ -106,6 +108,7 @@ export interface Database {
           id?: string;
           title?: string;
           user_id?: string | null;
+          use_mock_browser: boolean | null;
         };
         Relationships: [
           {

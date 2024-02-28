@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { useMenuContext } from "@/app/context/menu";
+import { useSubMenuContext } from "@/app/context/submenu";
 
 
 interface ItemsProps {
@@ -18,18 +18,18 @@ interface MenuItemsProps {
 }
 
 
-export function MenuItems({ items }: MenuItemsProps) {
+export function SubMenuItems({ items }: MenuItemsProps) {
 	const path = usePathname()
 	const color = "hsl(var(--primary))"
 	const { color: themeColor } = useThemeContext();
-	const { active, before, setBefore } = useMenuContext()
+	const { activeSubMenu, beforeSubMenu, setBeforeSubMenu } = useSubMenuContext()
 
-	const [store, setStore] = useState({ before: before, selected: active, activeColor: color })
+	const [storeSubMenu, setStoreSubMenu] = useState({ beforeSubMenu: beforeSubMenu, selectedSubMenu: activeSubMenu, activeColorSubMenu: color })
 
 	useEffect(() => {
-		path === '/' && setBefore && setBefore(0)
+		path === '/' && setBeforeSubMenu && setBeforeSubMenu(0)
 		return () => {
-			setStore({ before: 0, selected: active, activeColor: color })
+			setStoreSubMenu({ beforeSubMenu: 0, selectedSubMenu: activeSubMenu, activeColorSubMenu: color })
 		}
 	}, [])
 
@@ -38,21 +38,21 @@ export function MenuItems({ items }: MenuItemsProps) {
 		<div className="relative flex items-start content-start justify-start">
 			{items.map(({ label, href, handleClick }, i) => {
 
-				return i > 0 && (
+				return (
 					<Link href={href} onClick={handleClick}
 						className="relative font-sans text-xs uppercase"
 						onPointerEnter={() => {
-							setStore({
-								activeColor: color,
-								selected: i,
-								before: store.before
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: i,
+								beforeSubMenu: storeSubMenu.beforeSubMenu
 							})
 						}}
 						onPointerOut={() => {
-							setStore({
-								activeColor: color,
-								selected: store.before,
-								before: store.before
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: storeSubMenu.beforeSubMenu,
+								beforeSubMenu: storeSubMenu.beforeSubMenu
 							})
 						}}
 						key={i}
@@ -68,7 +68,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 						initial={{
 							color:
 								path !== '/' ?
-									i === store.selected ?
+									i === storeSubMenu.selectedSubMenu ?
 										"hsl(var(--neutral-light-1))" :
 										themeColor === 'light' ?
 											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
@@ -79,7 +79,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 						animate={{
 							color:
 								path !== '/' ?
-									i === store.selected ?
+									i === storeSubMenu.selectedSubMenu ?
 										"hsl(var(--neutral-light-1))" :
 										themeColor === 'light' ?
 											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
@@ -87,40 +87,40 @@ export function MenuItems({ items }: MenuItemsProps) {
 									"#ffffff"
 						}}
 						onTap={() => {
-							setStore({
-								activeColor: color,
-								selected: i,
-								before: i,
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: i,
+								beforeSubMenu: i,
 							})
 						}}
 						onPointerEnter={() => {
-							setStore({
-								activeColor: color,
-								selected: i,
-								before: store.before
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: i,
+								beforeSubMenu: storeSubMenu.beforeSubMenu
 							})
 						}}
 						onPointerOut={() => {
-							setStore({
-								activeColor: color,
-								selected: store.before,
-								before: store.before
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: storeSubMenu.beforeSubMenu,
+								beforeSubMenu: storeSubMenu.beforeSubMenu
 							})
 						}}
 					>
 							<span
 								onPointerEnter={() => {
-									setStore({
-										activeColor: color,
-										selected: i,
-										before: store.before
+									setStoreSubMenu({
+										activeColorSubMenu: color,
+										selectedSubMenu: i,
+										beforeSubMenu: storeSubMenu.beforeSubMenu
 									})
 								}}
 								onPointerOut={() => {
-									setStore({
-										activeColor: color,
-										selected: store.before,
-										before: store.before
+									setStoreSubMenu({
+										activeColorSubMenu: color,
+										selectedSubMenu: storeSubMenu.beforeSubMenu,
+										beforeSubMenu: storeSubMenu.beforeSubMenu
 									})
 								}}
 								className="relative z-10">
@@ -128,26 +128,26 @@ export function MenuItems({ items }: MenuItemsProps) {
 								{label}
 							</span>
 
-							{i === store.selected && (
+							{i === storeSubMenu.selectedSubMenu && (
 								<motion.div
 									className={"w-full h-full absolute rounded-full top-0 left-0"}
-									layoutId="selected"
+									layoutId="selectedSubMenu"
 									initial={{
-										backgroundColor: path !== '/' ? store.activeColor : 'transparent',
+										backgroundColor: path !== '/' ? storeSubMenu.activeColorSubMenu : 'transparent',
 									}}
 									animate={{ backgroundColor: color }}
 									onPointerEnter={() => {
-										setStore({
-											activeColor: color,
-											selected: i,
-											before: store.before
+										setStoreSubMenu({
+											activeColorSubMenu: color,
+											selectedSubMenu: i,
+											beforeSubMenu: storeSubMenu.beforeSubMenu
 										})
 									}}
 									onPointerOut={() => {
-										setStore({
-											activeColor: color,
-											selected: store.before,
-											before: store.before
+										setStoreSubMenu({
+											activeColorSubMenu: color,
+											selectedSubMenu: storeSubMenu.beforeSubMenu,
+											beforeSubMenu: storeSubMenu.beforeSubMenu
 										})
 									}}
 								/>
