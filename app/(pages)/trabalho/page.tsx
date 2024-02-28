@@ -22,10 +22,10 @@ export default function Work() {
 				if (workError) throw new Error(workError.message);
 				setDataWork(workData || []);
 				const { data: categoriesData, error: categoriesError } = await getCategories();
-				console.log(categoriesData)
+
 				if (categoriesError) throw new Error(categoriesError.message);
 				setDataCategories(categoriesData || []);
-				console.log("workData", workData)
+
 			} catch (error) {
 				setError(error as Error);
 			}
@@ -35,7 +35,6 @@ export default function Work() {
 	}, []);
 
 	const handleCatActive = (catId: string) => {
-		console.log(catId)
 		setCatActive(catId);
 	};
 
@@ -47,7 +46,6 @@ export default function Work() {
 	}));
 
 	const CategoriesMenu = () => {
-		console.log(items)
 		return SubMenuItems({ items: items });
 	};
 
