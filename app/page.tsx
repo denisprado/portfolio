@@ -61,8 +61,8 @@ export default function Home() {
 						Sua presença digital<br />elevada ao nível mais alto.
 					</p>
 
-					<div className="w-5/12 ">
-						<p className="text-2xl text-white shadow-sky-700">Dê vida à sua visão com a Platô. Desenvolvimento de sites totalmente customizados e design personalizado para impulsionar sua presença online. Entre em contato conosco hoje mesmo para começar. </p>
+					<div className="w-5/12 highlight-container">
+						<p className="text-2xl text-white shadow-sky-700 highlight">Dê vida ao seu projeto com a Platô. Desenvolvimento de websites totalmente customizados e design personalizado para impulsionar sua presença online. Entre em contato conosco hoje mesmo para começar. </p>
 					</div>
 					<Link href="servicos">
 						<Button variant={"default"}>

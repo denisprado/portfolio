@@ -11,35 +11,32 @@ export default function Home() {
 	const services: RowCardProps[] = [
 		{
 			id: "1",
-			title: "Sua Marca",
-			description: "A marca é a interface da empresa com seu público. Definimos todos os seus aspectos: do projeto estratégico para a linguagem visual ao tom de voz, criamos marcas distintas, relevantes e voltadas para o futuro.",
-			keys: ["Identidade Visual",
-				"Naming",
-				"Visual Systems",
-				"Brand Strategy"],
-			color: "text-destructive"
+			title: "Pensando bem, <br/>Design Thinking",
+			description: "Em nosso processo de desenvolvimento, adotamos o design thinking como uma abordagem fundamental. Buscamos compreender profundamente os usuários de nossas produtos e seus desafios. O design thinking nos permite mergulhar nas necessidades e aspirações do público-alvo, gerando soluções inovadoras e centradas no humano. Desde a fase de pesquisa e síntese até a prototipagem e testes de usuário, cada etapa é cuidadosamente planejada para garantir que o produto final não apenas atenda, mas supere as expectativas dos nossos clientes. O resultado é uma experiência digital que não apenas funciona bem, mas também ressoa emocionalmente com seu público-alvo, criando conexões duradouras e significativas.",
+			keys: ["Pesquisa", "Sintese", 'Protótipos', "testes de usuário"],
+			color: "dark:text-neutral-light-3"
 		},
 		{
 			id: "2",
-			title: `Design System`,
-			description: "Dispositivos e telas são a principal oportunidade para uma marca interagir com seus usuários e aumentar sua relevância. Projetamos e desenvolvemos sites e aplicativos que aumentam as oportunidades de engajamento de forma propositiva e imersiva.",
-			keys: ["Sistema de Cores",
-				"UI Kits",
-				"Tipografia", "UX Research",
+			title: `Um logotipo <br/><span>para chamar de seu</span>`,
+			description: "Se sua organização busca ser reconhecida e lembrada ou se você precisa se destacar no mercado, investir no desenvolvimento de uma identidade visual forte é fundamental. Aqui, nos dedicamos a criar uma imagem única e impactante para sua marca. Desde a concepção do logotipo até a definição de paletas de cores e tipografia, trabalhamos para garantir que sua identidade visual transmita a essência e os valores da sua empresa ou organização de forma eficaz. Nosso objetivo é criar uma identidade visual memorável e coesa, que não apenas destaque sua marca, mas também estabeleça uma conexão duradoura com seu público-alvo.",
+			keys: ["Logotipo",
+				"Paleta de cores",
+				"Tipografia",
+				"Manual de Identidade",
 			],
-			color: "text-info"
+			color: "dark:text-neutral-light-3"
 		},
 		{
 			id: "3",
-			title: "Presença digital",
-			description: "Os sistemas de design permitem que uma marca cresça infinitamente sem comprometer sua identidade. Ajudamos as empresas a criar sistemas escaláveis, digitais, interativos e atraentes, para uma experiência de marca consistente em todos os pontos de contato.",
-			keys: ["UX Design",
-				"Website & Mobile Design",
-				"Prototyping",
-				"Full Stack Development",
-				"Monitoring & Optimization"
+			title: "Desenvolvimento, total.",
+			description: "Somos especialistas na criação de websites/frontends dinâmicos e backoffices robustos para atender às suas necessidades digitais. Com uma combinação de habilidades técnicas e expertise em design, construímos interfaces de usuário atraentes e responsivas que cativam os usuários desde a primeira visita. Além disso, nossos backoffices são desenvolvidos com foco na eficiência e na facilidade de uso, proporcionando a você e sua equipe as ferramentas necessárias para gerenciar com eficácia o seu negócio online. Do conceito à implementação, estamos comprometidos em entregar soluções web de alta qualidade que elevam sua presença online e impulsionam o sucesso do seu negócio.",
+			keys: ["Websites personalizados",
+				"Backoffices (admin)",
+				"Responsividade",
+				"Usabilidade"
 			],
-			color: "text-accent"
+			color: "dark:text-neutral-light-3"
 		}
 	]
 

@@ -2,7 +2,7 @@
 import { SubMenuContextProvider } from "@/app/context/submenu"
 import { Container } from "@/components/container"
 import { PageWrapper } from "@/components/page-wrapper"
-import RowCard, { RowCardProps } from "@/components/rowCard"
+import WorkCard, { RowCardProps } from "@/components/workCard"
 import { SubMenuItems } from "@/components/submenu"
 import { Tables } from "@/types/supabase"
 import supabase from "@/utils/supabase"
@@ -52,6 +52,7 @@ export default function Work() {
 	const rowCards: RowCardProps[] = dataWork.map((work) => ({
 		id: work.id,
 		title: work.title,
+		image: work.image,
 		description: work.description,
 		color: 'var(hsl(--primary))',
 		thumbnail: work.thumbnail,
@@ -75,7 +76,7 @@ export default function Work() {
 					</div>
 				</SubMenuContextProvider>
 
-				<RowCard cards={rowCards} />
+				<WorkCard cards={rowCards} />
 			</Container>
 		</PageWrapper>
 	);

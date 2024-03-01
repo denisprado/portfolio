@@ -136,3 +136,27 @@
   position: fixed;
   z-index: -1;
 }
+
+.highlight-container,
+.highlight {
+  position: relative;
+}
+
+.highlight-container {
+  display: inline-block;
+}
+.highlight-container:before {
+  content: " ";
+  display: block;
+  height: 110%;
+  width: 100%;
+  margin-left: -4px;
+  margin-right: 4px;
+  position: absolute;
+  background: hsl(var(--primary));
+  transform: rotate(-3deg);
+  top: -4px;
+  left: -4px;
+  border-radius: 10% 15% 10% 10%;
+  padding: 10px 3px 3px 10px;
+}

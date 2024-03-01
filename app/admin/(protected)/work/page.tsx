@@ -24,7 +24,7 @@ const PostList: React.FC = () => {
 		(item) => item.category_id!
 	) ?? [""];
 
-	
+
 	const { data, isLoading } = useMany<ICategory>({
 		resource: "category",
 		ids: categoryIds as BaseKey[],
@@ -43,9 +43,9 @@ const PostList: React.FC = () => {
 				<Table.Column dataIndex="content" title="Content" />
 				<Table.Column<IPost>
 					title="Image"
-					dataIndex="thumbnail"
+					dataIndex="image"
 					render={(_, image) => {
-						return <Image alt={image.title!} src={getUrlFromTable(image?.thumbnail!)} width={100} /> 
+						return <Image alt={image.title!} src={getUrlFromTable(image?.image!)} width={100} />
 					}}
 					width="50%"
 				/>
@@ -85,7 +85,7 @@ const PostList: React.FC = () => {
 								<DeleteButton
 									size="small"
 									recordItemId={record?.id!}
-									
+
 								/>
 							</Space>
 						);

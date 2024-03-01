@@ -80,23 +80,20 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 						style={{ zIndex: 999 }}
 						initial={{
 							color:
-								path !== "/"
-									? i === storeSubMenu.selectedSubMenu
-										? "hsl(var(--neutral-light-1))"
-										: themeColor === "light"
-											? "hsl(var(--primary))"
-											: "hsl(var(--neutral-light-2))"
-									: "#ffffff"
+								i === storeSubMenu.selectedSubMenu
+									? "hsl(var(--neutral-light-1))"
+									: themeColor === "light"
+										? "hsl(var(--primary))"
+										: "hsl(var(--neutral-light-2))"
 						}}
 						animate={{
 							color:
-								path !== "/"
-									? i === storeSubMenu.selectedSubMenu
-										? "hsl(var(--neutral-light-1))"
-										: themeColor === "light"
-											? "hsl(var(--primary))"
-											: "hsl(var(--neutral-light-2))"
-									: "#ffffff"
+								i === storeSubMenu.selectedSubMenu
+									? "hsl(var(--neutral-light-1))"
+									: themeColor === "light"
+										? "hsl(var(--primary))"
+										: "hsl(var(--neutral-light-2))"
+
 						}}
 						onTap={() => handleSubMenuClick(i)}
 						onClick={() => handleSubMenuClick(i)}
@@ -115,7 +112,21 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 							})
 						}
 					>
-						<span className="relative z-10">{label}</span>
+						<span onPointerEnter={() => {
+							setStoreSubMenu({
+								activeColorSubMenu: color,
+								selectedSubMenu: i,
+								beforeSubMenu: storeSubMenu.beforeSubMenu
+							})
+						}}
+							onPointerOut={() => {
+								setStoreSubMenu({
+									activeColorSubMenu: color,
+									selectedSubMenu: storeSubMenu.beforeSubMenu,
+									beforeSubMenu: storeSubMenu.beforeSubMenu
+								})
+							}}
+							className="relative z-10 ">{label}</span>
 
 						{i === storeSubMenu.selectedSubMenu && (
 							<motion.div
