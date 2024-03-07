@@ -65,16 +65,17 @@ export default function Work() {
 	return (
 		<PageWrapper className="overflow-hidden">
 			<Container className="flex flex-col w-full dark:bg-neutral-dark-2 bg-neutral-light-1">
-				<div className="relative flex justify-center w-full mt-32 mb-24 ">
-					<p className="z-10 w-4/6 p-10 font-serif font-light text-center text-7xl text-neutral-dark-3 dark:text-neutral-light-1">
-						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que elevam e unificam as experiências em todas as superfícies da marca.
-					</p>
-				</div>
 				<SubMenuContextProvider >
 					<div className={'px-24 py-0'}>
 						<CategoriesMenu />
 					</div>
 				</SubMenuContextProvider>
+
+				<div className="relative flex justify-center w-full mt-8 mb-8 ">
+					<p className="z-10 w-full p-10 font-serif font-light text-center text-7xl text-neutral-dark-3 dark:text-neutral-light-1">
+						Criamos trabalhos bonitos, funcionais e com tecnologias avançadas que elevam e unificam as experiências em todas as superfícies da marca.
+					</p>
+				</div>
 
 				<WorkCard cards={rowCards} />
 			</Container>
