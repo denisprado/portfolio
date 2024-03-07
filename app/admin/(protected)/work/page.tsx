@@ -40,14 +40,13 @@ const PostList: React.FC = () => {
 				<Table.Column dataIndex="id" title="id" />
 				<Table.Column dataIndex="title" title="Title" />
 				<Table.Column dataIndex="description" title="Description" />
-				<Table.Column dataIndex="content" title="Content" />
 				<Table.Column<IPost>
 					title="Image"
 					dataIndex="image"
 					render={(_, image) => {
 						return <Image alt={image.title!} src={getUrlFromTable(image?.image!)} width={100} />
 					}}
-					width="50%"
+
 				/>
 				<Table.Column
 					dataIndex={"category_id"}
