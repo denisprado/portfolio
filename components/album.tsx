@@ -1,12 +1,10 @@
 'use client'
 
-import supabaseLoader from '../supabase-image-loader'
 import { Tables } from '@/types/supabase';
 import supabase from "@/utils/supabase";
-import Image, { ImageLoader } from 'next/image';
-import { JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal, useEffect, useState } from 'react';
-import { NodeElement } from 'rc-tree/lib/interface';
-import React from 'react';
+import Image from 'next/image';
+import React, { ReactNode, useEffect, useState } from 'react';
+import supabaseLoader from '../supabase-image-loader';
 export const revalidate = 60
 
 

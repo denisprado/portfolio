@@ -1,10 +1,10 @@
-import { useThemeContext } from '@/app/context/theme';
+import { useThemeContext } from '@/app/(app)/context/theme';
 import getUrlFromTable from '@/utils/getUrlFromTable';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { ReactElement, SetStateAction, useState } from 'react';
+import { ReactElement, useState } from 'react';
 
 type CategoryProps = {
 	id?: string;

@@ -1,10 +1,10 @@
-import { useThemeContext } from "@/app/context/theme";
+import { useThemeContext } from "@/app/(app)/context/theme";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { useMenuContext } from "@/app/context/menu";
+import { useMenuContext } from "@/app/(app)/context/menu";
 
 
 interface ItemsProps {

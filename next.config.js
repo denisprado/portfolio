@@ -1,20 +1,9 @@
+const { withPayload } = require("@payloadcms/next/withPayload");
 /** @type {import('next').NextConfig} */
 const removeImports = require('next-remove-imports')();
-module.exports = removeImports({});
+module.exports = withPayload(removeImports({}));
 const nextConfig = {
 	reactStrictMode: true,
-	swcMinify: true,
-	// transpilePackages: [
-	//     "@refinedev/antd",
-	//     "@refinedev/inferencer",
-	//     "antd",
-	//     "@ant-design/pro-components",
-	//     "@ant-design/pro-layout",
-	//     "@ant-design/pro-utils",
-	//     "@ant-design/pro-provider",
-	//     "rc-pagination",
-	//     "rc-picker",
-	// ],
 	images: {
 		remotePatterns: [
 			{

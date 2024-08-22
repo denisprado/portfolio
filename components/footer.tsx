@@ -1,6 +1,5 @@
 'use client';
 
-import supabase from '@/utils/supabase';
 import { Footer as FooterBite } from 'flowbite-react';
 import { LinkedinIcon } from 'lucide-react';
 import { BsInstagram } from 'react-icons/bs';

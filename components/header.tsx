@@ -1,7 +1,7 @@
 "use client";
 
-import { useMenuContext } from "@/app/context/menu";
-import { useThemeContext } from "@/app/context/theme";
+import { useMenuContext } from "@/app/(app)/context/menu";
+import { useThemeContext } from "@/app/(app)/context/theme";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import Link from "next/link";
