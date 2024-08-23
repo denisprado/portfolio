@@ -22,14 +22,9 @@ const team: RowCardProps[] = [
 
 ]
 
-export default async function About() {
+export default function About() {
 	const { color } = useThemeContext()
 
-	const payload = await getPayloadHMR({ config })
-
-	const { } = payload.find({
-
-	})
 
 	return (
 		// Hiding the overflow for now, we're not building building the scrolling

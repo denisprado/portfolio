@@ -5,7 +5,6 @@ import { PageWrapper } from "@/components/page-wrapper"
 import WorkCard, { RowCardProps } from "@/components/workCard"
 import { SubMenuItems } from "@/components/submenu"
 import { Tables } from "@/types/supabase"
-import supabase from "@/utils/supabase"
 import { useEffect, useState } from "react"
 
 export default function Work() {
@@ -14,25 +13,6 @@ export default function Work() {
 	const [error, setError] = useState<Error | null>(null);
 	const [errorCategories, setErrorCategories] = useState<Error | null>(null);
 	const [catActive, setCatActive] = useState<string>('c896bf85-293b-4f71-8b0c-63192b60c48b');
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const { data: workData, error: workError } = await getWork();
-				if (workError) throw new Error(workError.message);
-				setDataWork(workData || []);
-				const { data: categoriesData, error: categoriesError } = await getCategories();
-
-				if (categoriesError) throw new Error(categoriesError.message);
-				setDataCategories(categoriesData || []);
-
-			} catch (error) {
-				setError(error as Error);
-			}
-		};
-
-		fetchData();
-	}, []);
 
 	const handleCatActive = (catId: string) => {
 		setCatActive(catId);
@@ -80,27 +60,10 @@ export default function Work() {
 					</div>
 				</SubMenuContextProvider>
 
-				<WorkCard cards={rowCards} />
+				{/* <WorkCard cards={rowCards} /> */}
 			</Container>
 		</PageWrapper>
 	);
-}
-
-async function getWork() {
-	const { data, error } = await supabase
-		.from('work')
-		.select(`*, category (
-            id, name
-        ), client ( id, name )`);
-	return { data, error };
-}
-
-async function getCategories() {
-	const { data, error } = await supabase
-		.from('category')
-		.select(`*`)
-		.order('created_at', { ascending: false });
-	return { data, error };
 }
 
 export const revalidate = 60;
