@@ -39,8 +39,10 @@ export default function RootLayout({
 			<body >
 				<PageContextProvider>
 					<ThemeContextProvider>
-						<Header />
-						{children}
+						<MenuContextProvider>
+							<Header />
+							{children}
+						</MenuContextProvider>
 					</ThemeContextProvider>
 				</PageContextProvider>
 			</body>

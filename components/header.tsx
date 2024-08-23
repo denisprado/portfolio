@@ -23,23 +23,23 @@ export const Header = () => {
 	const { color, setColor } = useThemeContext();
 	const { active, setActive } = useMenuContext();
 
-
-	console.log(page, color, active)
+	const isHome = page === '/'
+	console.log(page, color, active, isHome)
 	return (
 		<header className="relative w-full dark:bg-neutral-dark-1">
-			<Container className={classNames("z-50 flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1")}>
+			<Container className={classNames("z-50 flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1", { 'absolute': isHome })}>
 				<Link href="/" className={classNames("h-16 pt-4 p-3 px-6 ",
-					{ "bg-neutral-dark-3": color === 'dark' },
-					{ "bg-white": color === 'light' },
-					{ "bg-transparent": page === '/' },
+					{ "bg-neutral-dark-3": color === 'dark' && !isHome },
+					{ "bg-white": color === 'light' && !isHome },
+					{ "bg-transparent": isHome },
 				)}>
 					<motion.img src={page === '/' ? "/images/logo-home.svg" : color === 'light' ? "/images/logo-signal.svg" : "/images/logo-signal.svg"} width={page === '/' ? 200 : 40} height={40} />
 				</Link>
 
 				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
-					{ 'bg-transparent': page === '/' },
-					{ 'bg-neutral-light-1': color === 'light' },
-					{ 'bg-neutral-dark-1': color === 'dark' },
+					{ 'bg-transparent': isHome },
+					{ 'bg-neutral-light-1': color === 'light' && !isHome },
+					{ 'bg-neutral-dark-1': color === 'dark' && !isHome },
 				)}>
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />

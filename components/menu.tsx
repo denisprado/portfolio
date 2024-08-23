@@ -56,59 +56,59 @@ export function MenuItems({ items }: MenuItemsProps) {
 								before: store.before
 							})
 						}}
-
-					><motion.div
-						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3 ",
-							{
-								"bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
-								"bg-white text-neutral-dark-2": themeColor === 'light' && path !== '/',
-								"text-white border border-white ": path === '/'
-
-							})}
-						style={{ zIndex: 999 }}
-						initial={{
-							color:
-								path !== '/' ?
-									i === store.selected ?
-										"hsl(var(--neutral-light-1))" :
-										themeColor === 'light' ?
-											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
-									:
-									"#ffffff"
-
-						}}
-						animate={{
-							color:
-								path !== '/' ?
-									i === store.selected ?
-										"hsl(var(--neutral-light-1))" :
-										themeColor === 'light' ?
-											"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
-									:
-									"#ffffff"
-						}}
-						onTap={() => {
-							setStore({
-								activeColor: color,
-								selected: i,
-								before: i,
-							})
-						}}
-						onPointerEnter={() => {
-							setStore({
-								activeColor: color,
-								selected: i,
-								before: store.before
-							})
-						}}
-						onPointerOut={() => {
-							setStore({
-								activeColor: color,
-								selected: store.before,
-								before: store.before
-							})
-						}}
 					>
+						<motion.div
+							className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3 ",
+								{
+									"bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
+									"bg-white text-neutral-dark-2": themeColor === 'light' && path !== '/',
+									"text-white border border-white ": path === '/'
+
+								})}
+							style={{ zIndex: 999 }}
+							initial={{
+								color:
+									path !== '/' ?
+										i === store.selected ?
+											"hsl(var(--neutral-light-1))" :
+											themeColor === 'light' ?
+												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+										:
+										"#ffffff"
+
+							}}
+							animate={{
+								color:
+									path !== '/' ?
+										i === store.selected ?
+											"hsl(var(--neutral-light-1))" :
+											themeColor === 'light' ?
+												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+										:
+										"#ffffff"
+							}}
+							onTap={() => {
+								setStore({
+									activeColor: color,
+									selected: i,
+									before: i,
+								})
+							}}
+							onPointerEnter={() => {
+								setStore({
+									activeColor: color,
+									selected: i,
+									before: store.before
+								})
+							}}
+							onPointerOut={() => {
+								setStore({
+									activeColor: color,
+									selected: store.before,
+									before: store.before
+								})
+							}}
+						>
 							<span
 								onPointerEnter={() => {
 									setStore({

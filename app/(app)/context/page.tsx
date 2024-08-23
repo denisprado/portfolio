@@ -11,7 +11,7 @@ type PageProps = {
 	children: ReactNode
 }
 
-export const PageContextProvider = ({ children }: PageProps) => {
+const PageContextProvider = ({ children }: PageProps) => {
 	const page = usePathname()
 
 	return (
@@ -21,4 +21,6 @@ export const PageContextProvider = ({ children }: PageProps) => {
 	)
 };
 
-export const usePageContext = () => useContext(PageContext);
+const usePageContext = () => useContext(PageContext);
+
+export { PageContextProvider, usePageContext }
