@@ -1,17 +1,18 @@
 'use client';
 
 import { usePathname } from "next/navigation";
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext } from "react";
+
 type pageProps = string
-const PageContext = createContext<{ page?: pageProps }>({})
+
+const PageContext = createContext<{ page?: pageProps, setActive?: Dispatch<SetStateAction<pageProps>> }>({})
 
 type PageProps = {
 	children: ReactNode
 }
 
-export const ThemeContextProvider = ({ children }: PageProps) => {
+export const PageContextProvider = ({ children }: PageProps) => {
 	const page = usePathname()
-
 
 	return (
 		<PageContext.Provider value={{ page }}>

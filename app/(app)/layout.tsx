@@ -1,8 +1,11 @@
 import { Header } from "@components/header"
-import "@refinedev/antd/dist/reset.css"
+// import "@refinedev/antd/dist/reset.css"
 import ConfigProvider from "antd/es/config-provider"
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import React from "react"
+import { MenuContextProvider } from "./context/menu"
+import { PageContextProvider } from "./context/page"
+import { ThemeContextProvider } from "./context/theme"
 
 import './globals.css'
 
@@ -34,10 +37,12 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>
 			<head />
 			<body >
-				<>
-					<Header />
-					{children}
-				</>
+				<PageContextProvider>
+					<ThemeContextProvider>
+						<Header />
+						{children}
+					</ThemeContextProvider>
+				</PageContextProvider>
 			</body>
 		</html>
 	)

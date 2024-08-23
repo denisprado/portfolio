@@ -1,3 +1,4 @@
+'use client'
 import { useMenuContext } from "@/app/(app)/context/menu";
 import { usePageContext } from "@/app/(app)/context/page";
 import { useThemeContext } from "@/app/(app)/context/theme";
