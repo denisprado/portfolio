@@ -5,7 +5,30 @@ import { PageWrapper } from "@/components/page-wrapper"
 import RowCard, { RowCardProps } from "@/components/rowCard";
 import Image from 'next/image';
 import { useThemeContext } from '../../context/theme'
+import { stringify } from 'qs-esm'
 import config from '@payload-config'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+const query = {
+	id: {
+		equals: 1,
+	},
+}
+
+const getPosts = async () => {
+	const stringifiedQuery = stringify(
+		{
+			where: query, // ensure that `qs` adds the `where` property, too!
+		},
+		{ addQueryPrefix: true },
+	)
+
+	const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/members${stringifiedQuery}`)
+	console.log(response)
+	return response
+}
+
+const members = getPosts()
+console.log(members)
 
 const team: RowCardProps[] = [
 	{

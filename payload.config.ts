@@ -7,9 +7,9 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Members } from "./collections/members";
+import { Users } from "./collections/Users";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -21,6 +21,11 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  csrf: [
+    // whitelist of domains to allow cookie auth from
+    "http://localhost:3000",
+    "https://plato.dev",
+  ],
   collections: [Members, Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
