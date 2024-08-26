@@ -18,7 +18,7 @@ interface MenuItemsProps {
 
 export function SubMenuItems({ items }: MenuItemsProps) {
 	const path = usePathname();
-	const color = "hsl(var(--primary))";
+	const color = "var(--primary)";
 	const { color: themeColor } = useThemeContext();
 	const { activeSubMenu, beforeSubMenu, setBeforeSubMenu } = useSubMenuContext();
 
@@ -77,21 +77,21 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 							"bg-neutral-dark-3 text-neutral-light-2": themeColor === "dark",
 							"bg-white text-neutral-dark-2": themeColor === "light"
 						})}
-						style={{ zIndex: 999 }}
-						initial={{
-							color:
-								i === storeSubMenu.selectedSubMenu
-									? "hsl(var(--neutral-light-1))"
-									: themeColor === "light"
-										? "hsl(var(--primary))"
-										: "hsl(var(--neutral-light-2))"
+
+						style={{
+							zIndex: 999, color: i === storeSubMenu.selectedSubMenu
+								? "hsl(var(--neutral-light-1))"
+								: themeColor === "light"
+									? "var(--primary)"
+									: "hsl(var(--neutral-light-2))"
 						}}
+
 						animate={{
 							color:
 								i === storeSubMenu.selectedSubMenu
 									? "hsl(var(--neutral-light-1))"
 									: themeColor === "light"
-										? "hsl(var(--primary))"
+										? "var(--primary)"
 										: "hsl(var(--neutral-light-2))"
 
 						}}

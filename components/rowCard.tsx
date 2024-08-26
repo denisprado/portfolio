@@ -4,16 +4,16 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 
 type CategoryProps = {
-	id?: string;
+	id?: number;
 	name?: string | null;
 }
 type ClientsProps = {
-	id?: string;
+	id?: number;
 	name?: string | null;
 }
 
 export type RowCardProps = {
-	id: string,
+	id: number,
 	title: string | null,
 	description?: string | null,
 	keys?: string[],
@@ -27,7 +27,7 @@ export type RowCardProps = {
 
 type CardsProps = { cards: RowCardProps[] }
 
-function FinalRow({ children, url, id }: { children: ReactElement, url: boolean, id?: string | null }) {
+function FinalRow({ children, url, id }: { children: ReactElement, url: boolean, id?: number | null }) {
 	return url ? <Link href={id ? '/trabalho/' + id : ''}>{children}</Link> : <>{children}</>
 }
 

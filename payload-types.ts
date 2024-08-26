@@ -88,6 +88,7 @@ export interface Media {
  */
 export interface User {
   id: number;
+  title?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;

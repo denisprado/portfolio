@@ -21,7 +21,7 @@ interface MenuItemsProps {
 
 export function MenuItems({ items }: MenuItemsProps) {
 	const path = usePathname()
-	const color = "hsl(var(--primary))"
+	const color = "var(--primary)"
 	const { color: themeColor } = useThemeContext();
 	const { active, before, setBefore } = useMenuContext()
 
@@ -70,9 +70,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 								color:
 									path !== '/' ?
 										i === store.selected ?
-											"hsl(var(--neutral-light-1))" :
+											"var(--neutral-light-1)" :
 											themeColor === 'light' ?
-												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+												"var(--primary)" : "hsl(var(--neutral-light-2))"
 										:
 										"#ffffff"
 
@@ -81,9 +81,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 								color:
 									path !== '/' ?
 										i === store.selected ?
-											"hsl(var(--neutral-light-1))" :
+											"var(--neutral-light-1)" :
 											themeColor === 'light' ?
-												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
+												"var(--primary)" : "hsl(var(--neutral-light-2))"
 										:
 										"#ffffff"
 							}}
