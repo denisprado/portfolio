@@ -8,8 +8,9 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 import { Media } from "./collections/Media";
-import { Members } from "./collections/members";
+import { Members } from "./collections/Members";
 import { Users } from "./collections/Users";
+import { Services } from "./collections/Services";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,7 +27,7 @@ export default buildConfig({
     "http://localhost:3000",
     "https://plato.dev",
   ],
-  collections: [Members, Users, Media],
+  collections: [Members, Services, Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

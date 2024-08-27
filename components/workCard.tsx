@@ -1,4 +1,4 @@
-import { useThemeContext } from '@/app/(app)/context/theme';
+import { useTheme } from 'next-themes';
 import getUrlFromTable from '@/utils/getUrlFromTable';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -37,7 +37,7 @@ function FinalRow({ children, url, id }: { children: ReactElement, url: boolean,
 
 const WorkCard = ({ cards }: CardsProps) => {
 
-	const { color, setColor } = useThemeContext();
+	const { theme: color } = useTheme();
 
 	const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 

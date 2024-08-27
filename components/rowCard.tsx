@@ -12,12 +12,17 @@ type ClientsProps = {
 	name?: string | null;
 }
 
+type KeysProps = {
+	id?: string;
+	skill?: string;
+}
+
 export type RowCardProps = {
 	id: number,
 	title: string | null,
 	description?: string | null,
-	keys?: string[],
-	color?: string,
+	keys?: KeysProps[],
+	color?: string | null,
 	image?: string,
 	thumbnail?: string | null,
 	category?: CategoryProps | null,
@@ -61,7 +66,7 @@ const RowCard = ({ cards }: CardsProps) => {
 									{card.description}
 								</p>
 								<div className="columns-2">
-									{card?.keys?.map((key, i) => <p className="text-mono dark:text-neutral-light-1" key={i}>{key}</p>)}
+									{card?.keys?.map((key, i) => <p className="text-mono dark:text-neutral-light-1" key={key.id}>{key.skill}</p>)}
 									{<p className="text-mono dark:text-neutral-light-1">{card.category?.name}</p>}
 									{<p className="text-mono dark:text-neutral-light-1">{card.clients?.name}</p>}
 								</div>

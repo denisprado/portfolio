@@ -1,13 +1,13 @@
-"use client";
 
 import { Container } from "@/components/container";
 import { PageWrapper } from "@/components/page-wrapper";
 import RowCard, { RowCardProps } from "@/components/rowCard";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-export default function Home() {
+import configPromise from '@payload-config';
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 
-	const services: RowCardProps[] = [
+export default async function Home() {
+
+	const services_old: RowCardProps[] = [
 		{
 			id: 1,
 			title: "Desenvolvimento total.",
@@ -40,7 +40,14 @@ export default function Home() {
 
 	]
 
-	const { theme } = useTheme()
+
+	const payload = getPayloadHMR({ config: configPromise })
+	const services = (await (await payload).find({ collection: 'services' })).docs
+
+	const cards: RowCardProps[] = services.map(m => {
+		const image = (typeof m.image! !== 'number') && m.image !== undefined && m.image !== null ? '/api/media/file/' + m.image?.filename! : '/'
+		return { id: m.id, title: m.title, description: m.description, image: image, color: m.color!, keys: m.skills! }
+	})
 
 	return (
 		<PageWrapper className="overflow-hidden">
@@ -50,7 +57,7 @@ export default function Home() {
 						Da base ao topo,<br />
 						tudo o que você precisa.
 					</p>
-					<Image alt="backgroound" src={`./images/bg-servicos${theme === 'dark' ? '-dark' : ''}.svg`} fill className="relative" style={{ 'objectFit': 'cover', objectPosition: 'top' }} />
+
 				</div>
 
 				{services ? <RowCard cards={services} /> : <></>}
