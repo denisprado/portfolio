@@ -2,10 +2,10 @@
   "name": "with-nextjs-appdir",
   "version": "3.25.0",
   "private": true,
-	"type": "module",
+  "type": "module",
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-		"build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "next": "15.0.0-rc.0",
     "next-mdx-remote": "^4.4.1",
     "next-remove-imports": "^1.0.11",
+    "next-themes": "^0.3.0",
     "nookies": "^2.5.2",
     "payload": "3.0.0-beta.91",
     "qs-esm": "^7.0.2",

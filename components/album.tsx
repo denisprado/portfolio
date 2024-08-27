@@ -1,35 +1,15 @@
 'use client'
 
-import { Tables } from '@/types/supabase';
-import supabase from "@/utils/supabase";
 import Image from 'next/image';
 import React, { ReactNode, useEffect, useState } from 'react';
-import supabaseLoader from '../supabase-image-loader';
+
 export const revalidate = 60
 
 
-const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => {
-	const [images, setImages] = useState<Tables<'images'>[]>([]);
+const Album = ({ album, index }: { album: any, index: number }) => {
+	const [images, setImages] = useState<[]>([]);
 
-	useEffect(() => {
-		const fetchImages = async () => {
-			if (album && album.id) {
-				const { data: imagesData, error } = await supabase
-					.from('images')
-					.select('*')
-					.eq('album_id', album.id);
 
-				if (error) {
-					console.error(error);
-					return;
-				}
-
-				setImages(imagesData || []);
-			}
-		};
-
-		fetchImages();
-	}, [album]);
 
 	const Mockup = ({ children }: { children: ReactNode }) => {
 		return (
@@ -55,7 +35,7 @@ const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => 
 					<div>{album.description}</div>
 				</div>
 				<div className='flex flex-col flex-1 w-full h-full gap-4'>
-					{images.map((image) => {
+					{/* {images.map((image) => {
 
 						const file = image.file_path
 						const title = image.title
@@ -90,7 +70,7 @@ const Album = ({ album, index }: { album: Tables<'albums'>, index: number }) => 
 								</MockyOrNot>
 							</div>
 						)
-					})}
+					})} */}
 				</div>
 			</div>
 		</div>

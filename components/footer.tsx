@@ -8,30 +8,30 @@ import { RowCardProps } from './rowCard';
 
 const services: RowCardProps[] = [
 	{
-		id: "1",
+		id: 1,
 		title: "Sua Marca",
 	},
 	{
-		id: "2",
+		id: 2,
 		title: `Design System`,
 	},
 	{
-		id: "3",
+		id: 3,
 		title: "Presença digital",
 	}
 ]
 
 const works: RowCardProps[] = [
 	{
-		id: "1",
+		id: 1,
 		title: "Sua Marca",
 	},
 	{
-		id: "2",
+		id: 2,
 		title: `Design System`,
 	},
 	{
-		id: "3",
+		id: 3,
 		title: "Presença digital",
 	}
 ]

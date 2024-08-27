@@ -1,5 +1,5 @@
 'use client'
-import { useThemeContext } from "@/app/(app)/context/theme";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { motion } from "framer-motion"
@@ -21,8 +21,8 @@ interface MenuItemsProps {
 
 export function MenuItems({ items }: MenuItemsProps) {
 	const path = usePathname()
-	const color = "var(--primary)"
-	const { color: themeColor } = useThemeContext();
+	const color = "hsl(var(--primary))"
+	const { theme: themeColor } = useTheme();
 	const { active, before, setBefore } = useMenuContext()
 
 	const [store, setStore] = useState({ before: before, selected: active, activeColor: color })
@@ -70,9 +70,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 								color:
 									path !== '/' ?
 										i === store.selected ?
-											"var(--neutral-light-1)" :
+											"hsl(var(--neutral-light-1))" :
 											themeColor === 'light' ?
-												"var(--primary)" : "hsl(var(--neutral-light-2))"
+												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
 										:
 										"#ffffff"
 
@@ -81,9 +81,9 @@ export function MenuItems({ items }: MenuItemsProps) {
 								color:
 									path !== '/' ?
 										i === store.selected ?
-											"var(--neutral-light-1)" :
+											"hsl(var(--neutral-light-1))" :
 											themeColor === 'light' ?
-												"var(--primary)" : "hsl(var(--neutral-light-2))"
+												"hsl(var(--primary))" : "hsl(var(--neutral-light-2))"
 										:
 										"#ffffff"
 							}}

@@ -4,12 +4,12 @@ import { Container } from "@/components/container"
 import { PageWrapper } from "@/components/page-wrapper"
 import WorkCard, { RowCardProps } from "@/components/workCard"
 import { SubMenuItems } from "@/components/submenu"
-import { Tables } from "@/types/supabase"
+
 import { useEffect, useState } from "react"
 
 export default function Work() {
 	const [dataWork, setDataWork] = useState<RowCardProps[]>([]);
-	const [dataCategories, setDataCategories] = useState<Tables<'category'>[]>([]);
+
 	const [error, setError] = useState<Error | null>(null);
 	const [errorCategories, setErrorCategories] = useState<Error | null>(null);
 	const [catActive, setCatActive] = useState<string>('c896bf85-293b-4f71-8b0c-63192b60c48b');
@@ -18,16 +18,16 @@ export default function Work() {
 		setCatActive(catId);
 	};
 
-	const items = dataCategories.map((cat) => ({
-		label: cat.name!,
-		href: "#",
-		handleClick: () => handleCatActive(cat.id),
+	// const items = dataCategories.map((cat) => ({
+	// 	label: cat.name!,
+	// 	href: "#",
+	// 	handleClick: () => handleCatActive(cat.id),
 
-	}));
+	// }));
 
-	const CategoriesMenu = () => {
-		return SubMenuItems({ items: items });
-	};
+	// const CategoriesMenu = () => {
+	// 	return SubMenuItems({ items: items });
+	// };
 
 	const rowCards: RowCardProps[] = dataWork.map((work) => ({
 		id: work.id,
@@ -56,7 +56,7 @@ export default function Work() {
 				<SubMenuContextProvider >
 					<div className={'flex flex-row items-center justify-start gap-4 px-10 py-0'}>
 						<p>Filtros:</p>
-						<CategoriesMenu />
+						{/* <CategoriesMenu /> */}
 					</div>
 				</SubMenuContextProvider>
 

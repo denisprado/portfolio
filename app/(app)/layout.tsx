@@ -5,7 +5,7 @@ import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import React from "react"
 import { MenuContextProvider } from "./context/menu"
 import { PageContextProvider } from "./context/page"
-import { ThemeContextProvider } from "./context/theme"
+import { ThemeProvider } from 'next-themes'
 
 import './globals.css'
 
@@ -37,14 +37,14 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>
 			<head />
 			<body >
-				<PageContextProvider>
-					<ThemeContextProvider>
+				<ThemeProvider attribute="class">
+					<PageContextProvider>
 						<MenuContextProvider>
 							<Header />
 							{children}
 						</MenuContextProvider>
-					</ThemeContextProvider>
-				</PageContextProvider>
+					</PageContextProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

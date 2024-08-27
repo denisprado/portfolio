@@ -16,6 +16,7 @@ module.exports = {
 				"2xl": "1400px",
 			},
 		},
+
 		extend: {
 			fontFamily: {
 				sans: ['var(--font-instrument-sans)'],
@@ -27,6 +28,9 @@ module.exports = {
 			},
 			height: {
 				screenHeightWithoutHeader: 'calc(100vh - 64px)'
+			},
+			textColor: {
+				primary: 'hsl(var(--primary))'
 			},
 			colors: {
 				neutral: "#EDEEF0",
@@ -43,7 +47,7 @@ module.exports = {
 				background: "hsl(var(--background))",
 				foreground: "hsl(var(--foreground))",
 				primary: {
-					DEFAULT: "var(--primary)",
+					DEFAULT: "hsl(var(--primary))",
 					foreground: "hsl(var(--primary-foreground))",
 				},
 				secondary: {

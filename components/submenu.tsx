@@ -1,4 +1,4 @@
-import { useThemeContext } from "@/app/(app)/context/theme";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -18,8 +18,8 @@ interface MenuItemsProps {
 
 export function SubMenuItems({ items }: MenuItemsProps) {
 	const path = usePathname();
-	const color = "var(--primary)";
-	const { color: themeColor } = useThemeContext();
+	const color = "hsl(var(--primary))";
+	const { theme: themeColor } = useTheme();
 	const { activeSubMenu, beforeSubMenu, setBeforeSubMenu } = useSubMenuContext();
 
 	const [storeSubMenu, setStoreSubMenu] = useState({
@@ -82,7 +82,7 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 							zIndex: 999, color: i === storeSubMenu.selectedSubMenu
 								? "hsl(var(--neutral-light-1))"
 								: themeColor === "light"
-									? "var(--primary)"
+									? "hsl(var(--primary))"
 									: "hsl(var(--neutral-light-2))"
 						}}
 
@@ -91,7 +91,7 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 								i === storeSubMenu.selectedSubMenu
 									? "hsl(var(--neutral-light-1))"
 									: themeColor === "light"
-										? "var(--primary)"
+										? "hsl(var(--primary))"
 										: "hsl(var(--neutral-light-2))"
 
 						}}
