@@ -11,6 +11,8 @@ import { Media } from "./collections/Media";
 import { Members } from "./collections/Members";
 import { Users } from "./collections/Users";
 import { Services } from "./collections/Services";
+import { Works } from "./collections/Works";
+import { WorksCategory } from "./collections/WorksCategory";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -27,7 +29,7 @@ export default buildConfig({
     "http://localhost:3000",
     "https://plato.dev",
   ],
-  collections: [Members, Services, Users, Media],
+  collections: [Members, Services, Works, WorksCategory, Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

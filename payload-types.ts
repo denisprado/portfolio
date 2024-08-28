@@ -13,6 +13,8 @@ export interface Config {
   collections: {
     members: Member;
     services: Service;
+    works: Work;
+    worksCategory: WorksCategory;
     users: User;
     media: Media;
     'payload-preferences': PayloadPreference;
@@ -98,6 +100,42 @@ export interface Service {
       }[]
     | null;
   color?: string | null;
+  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "works".
+ */
+export interface Work {
+  id: number;
+  title: string;
+  slug?: string | null;
+  description: string;
+  skills?:
+    | {
+        skill?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  category?: {
+    relationTo: 'worksCategory';
+    value: number | WorksCategory;
+  } | null;
+  url?: string | null;
+  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "worksCategory".
+ */
+export interface WorksCategory {
+  id: number;
+  title: string;
+  description: string;
   image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;

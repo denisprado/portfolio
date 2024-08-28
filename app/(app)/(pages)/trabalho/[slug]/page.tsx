@@ -3,7 +3,7 @@ import { PageWrapper } from "@/components/page-wrapper";
 
 export const revalidate = 60
 
-export default async function Work({ params: { id } }: { params: { id: string } }) {
+export default async function Work({ params: { slug } }: { params: { slug: string } }) {
 
 	return (
 		<PageWrapper className="">
