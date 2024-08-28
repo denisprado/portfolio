@@ -15,6 +15,7 @@ export interface Config {
     services: Service;
     works: Work;
     worksCategory: WorksCategory;
+    gallery: Gallery;
     users: User;
     media: Media;
     'payload-preferences': PayloadPreference;
@@ -137,6 +138,31 @@ export interface WorksCategory {
   title: string;
   description: string;
   image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: number;
+  title?: string | null;
+  slug?: string | null;
+  description?: string | null;
+  images?:
+    | {
+        image?: (number | null) | Media;
+        description?: string | null;
+        urlMock?: string | null;
+        iframe?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  work?: {
+    relationTo: 'works';
+    value: number | Work;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }

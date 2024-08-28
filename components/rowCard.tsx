@@ -1,3 +1,4 @@
+import { Media } from '@/payload-types';
 import getUrlFromTable from '@/utils/getUrlFromTable';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,8 +24,8 @@ export type RowCardProps = {
 	description?: string | null,
 	keys?: KeysProps[],
 	color?: string | null,
-	image?: string,
-	thumbnail?: string | null,
+	image?: Media | null | number,
+	thumbnail?: Media | null | number,
 	category?: CategoryProps | null,
 	clients?: ClientsProps | null,
 	url?: boolean,
@@ -42,18 +43,14 @@ const RowCard = ({ cards }: CardsProps) => {
 		{
 			cards && cards?.map(card => {
 
-				const isThumb = card.thumbnail?.includes('thumb')
+				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/'
 
 				return (
 					<FinalRow url={card?.url!} id={card?.id!} key={card.id}>
 						<div key={card.id} className="flex flex-col justify-between p-12 bg-white border-t md:items-end md:flex-row dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-neutral-dark-1 last:border-b">
 							<div className='flex flex-row items-end justify-start w-3/5 gap-4'>
-								{card.image && <div className='relative size-full max-w-44 aspect-square'>
-									<Image src={card.image} alt={card.title!} className={'grayscale'} fill style={{ objectFit: 'cover', objectPosition: 'center' }}></Image>
-								</div>
-								}
-								{card.thumbnail && isThumb && <div className='h-48 max-h-full aspect-square w-96 '>
-									<Image src={getUrlFromTable(card.thumbnail)} width={96 * 4} height={96 * 4} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
+								{card.image && <div className='h-48 max-h-full aspect-square w-96 '>
+									<Image src={image} width={96 * 4} height={96 * 4} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
 								</div>
 								}
 								{card.title && <h3 className={`${card.color} text-7xl leading-tight

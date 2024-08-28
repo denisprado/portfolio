@@ -17,27 +17,18 @@ export default async function Work() {
 		collection: 'worksCategory'
 	})
 
-
-	// const items = dataCategories.map((cat) => ({
-	// 	label: cat.name!,
-	// 	href: "#",
-	// 	handleClick: () => handleCatActive(cat.id),
-
-	// }));
-
-	// const CategoriesMenu = () => {
-	// 	return SubMenuItems({ items: items });
-	// };
-
-	const rowCards: RowCardProps[] = dataWork.docs.map((work) => ({
-		id: work.id,
-		title: work.title,
-		description: work.description,
-		color: 'hsl(var(--primary))',
-		thumbnail: work.image as Media,
-		category: work.category!.value,
-		url: work.url!
-	}));
+	const rowCards: RowCardProps[] = dataWork.docs.map((work) => {
+		return {
+			id: work.id,
+			slug: work.slug!,
+			title: work.title,
+			description: work.description,
+			color: 'hsl(var(--primary))',
+			thumbnail: work.image,
+			category: work.category!.value,
+			url: work.url!
+		}
+	});
 
 	return (
 		<PageWrapper className="overflow-hidden">

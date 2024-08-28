@@ -11,8 +11,8 @@ export default async function About() {
 
 
 	const cards: RowCardProps[] = members.map(m => {
-		const image = typeof m.image! !== 'number' ? '/api/media/file/' + m.image?.filename! : '/'
-		return { id: m.id, title: m.title, description: m.description, image: image, color: m.color! }
+
+		return { id: m.id, title: m.title, description: m.description, image: m.image!, color: m.color! }
 	})
 
 	return (

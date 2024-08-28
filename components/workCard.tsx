@@ -15,12 +15,12 @@ type ClientsProps = {
 
 export type RowCardProps = {
 	id: number,
+	slug: string,
 	title: string | null,
 	description?: string | null,
 	keys?: string[],
 	color?: string,
-	image?: Media | null,
-	thumbnail?: Media | null,
+	thumbnail?: Media | null | number,
 	category?: WorksCategory | number,
 	// clients?: ClientsProps | null,
 	url?: string | null,
@@ -28,27 +28,31 @@ export type RowCardProps = {
 
 type CardsProps = { cards: RowCardProps[] }
 
-function FinalRow({ children, url, id }: { children: ReactElement, url: string, id?: number | null }) {
-	return url!! ? <Link href={id ? '/trabalho/' + id : ''}>{children}</Link> : <>{children}</>
+function FinalRow({ children, card }: { children: ReactElement, card: RowCardProps }) {
+	return card.url!! ? <Link href={card.url ? '/trabalho/' + card.slug : ''}>{children}</Link> : <>{children}</>
 }
 
 
 const WorkCard = ({ cards }: CardsProps) => {
+	console.log("cards", cards)
 
-	return <div className='grid w-full grid-cols-4 gap-4 px-6 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
+	return <div className='grid w-full grid-cols-6 gap-4 px-6 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{cards &&
 			cards?.map((card, index) => {
+				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/'
+
+				const { category } = card
 				return (
 					<div key={card.id} className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2'>
-						<FinalRow url={card?.url!} id={card?.id!} key={card.id!}>
+						<FinalRow card={card}>
 							<>
 								<div className='flex flex-col items-start justify-start rounded-3xl'>
 									{card.thumbnail! && (
 										<div
-											className={`relative size-full aspect-square rounded-3xl overflow-hidden`}
+											className={`relative size-full aspect-square rounded-3xl overflow-hidden border-2 `}
 
 										>
-											{card && card.thumbnail && card.thumbnail.thumbnailURL && <Image src={card.thumbnail.thumbnailURL} fill alt={card!.title!} className={`image transition-transform duration-300 transform`} />}
+											{card && card.thumbnail && <Image src={image} fill alt={card!.title!} objectFit='cover' objectPosition='top left' className={`image transition-transform duration-300 transform absolute object-left-top`} />}
 										</div>
 									)}
 									{!card.thumbnail! && (
@@ -69,7 +73,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 												{key}
 											</p>
 										))}
-										{/* {card.category?.title && <p className='text-mono dark:text-neutral-light-1'>{card.category.title}</p>} */}
+										{/* {card.category && <p className='text-mono dark:text-neutral-light-1'>{category}</p>} */}
 
 									</div>
 								</div>
