@@ -49,7 +49,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 								<div className='flex flex-col items-start justify-start rounded-3xl'>
 									{card.thumbnail! && (
 										<div
-											className={`relative size-full aspect-square rounded-3xl overflow-hidden border-2 `}
+											className={`relative size-full aspect-square rounded-3xl overflow-hidden`}
 
 										>
 											{card && card.thumbnail && <Image src={image} fill alt={card!.title!} objectFit='cover' objectPosition='top left' className={`image transition-transform duration-300 transform absolute object-left-top`} />}

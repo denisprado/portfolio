@@ -4,6 +4,7 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from '@payload-config'
 import Breadcrumb from "@/components/breadcumb";
 import Albums from "@/components/albums";
+import { WorksCategory, Work as WorkTypes } from "@/payload-types";
 
 export const revalidate = 60
 
@@ -15,18 +16,21 @@ export default async function Work({ params: { slug } }: { params: { slug: strin
 	})
 	const data = dataWork!.docs.filter(doc => doc.slug === slug)[0]
 
-	const { category } = dataWork!.docs.filter(doc => doc.slug === slug)[0]
-	const id = category?.value.id
-	const albumsDataFull = await payload.find({
+	const galleryDataFull = await payload.find({
 		collection: 'gallery',
-		// where: {
-		// 	work: {
-		// 		equals: data.id
-		// 	}
-		// }
 	})
+	const galleryDocs = galleryDataFull.docs
 
-	const albumsData = albumsDataFull.docs.filter((album) => album?.work?.value.category.value.id === id)
+	const { id: IdOfWorkCategory } = data
+
+	console.log("idOfWork", IdOfWorkCategory)
+
+	const albumsData = galleryDocs.filter((album) => {
+		const albumDoc = album.work?.value as WorkTypes
+		const GalleryWorkId = albumDoc.id
+		console.log(GalleryWorkId)
+		return GalleryWorkId === IdOfWorkCategory
+	})
 
 
 	return (

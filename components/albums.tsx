@@ -12,9 +12,8 @@ const Albums = ({ albums }: { albums: Gallery[] }) => {
 
 	return (
 		<div className='flex flex-col gap-8'>
-			{albums.map((album, index) => (
-
-				<Album key={album.id} album={album} index={index} />
+			{albums.map((album) => (
+				<Album key={album.id} album={album} />
 			))}
 		</div>
 	)

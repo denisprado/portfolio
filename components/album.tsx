@@ -1,21 +1,19 @@
 'use client'
 
+import { Gallery, Media } from '@/payload-types';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { ReactNode, useEffect, useState } from 'react';
 
 export const revalidate = 60
 
+const Album = ({ album }: { album: Gallery }) => {
 
-const Album = ({ album, index }: { album: any, index: number }) => {
-	const [images, setImages] = useState<[]>([]);
-
-
-
-	const Mockup = ({ children }: { children: ReactNode }) => {
+	const Mockup = ({ children, url }: { children: ReactNode, url: string }) => {
 		return (
 			<div className="min-w-full border mockup-browser bg-base-300">
 				<div className="mockup-browser-toolbar">
-					<div className="input">https://plato.com.br</div>
+					<div className="input"><Link href={url} target='_blank'>{url}</Link></div>
 				</div>
 				<div className="relative flex items-start justify-start w-full h-full bg-base-200">
 					{children}
@@ -23,8 +21,6 @@ const Album = ({ album, index }: { album: any, index: number }) => {
 			</div>
 		)
 	}
-
-
 
 	return (
 		<div className='flex flex-col h-full gap-4 m-8'>
@@ -35,27 +31,33 @@ const Album = ({ album, index }: { album: any, index: number }) => {
 					<div>{album.description}</div>
 				</div>
 				<div className='flex flex-col flex-1 w-full h-full gap-4'>
-					{/* {images.map((image) => {
+					{album?.images?.map((image) => {
 
-						const file = image.file_path
-						const title = image.title
+						const file = image.image as Media
 						const description = image.description
-						const src = image.id + '/' + JSON.parse(file)[0].name as string
-						const video = JSON.parse(file)[0].url as string
-						const ext = src && src!.match(/\.([^.]+)$/)![1]!;
-						const MockyOrNot = image.use_mock_browser ? Mockup : React.Fragment
+						const src = "/api/media/file/" + file?.filename!
+						const n = 1
+						const img = image.image as Media
+						const ext = img && img!.mimeType && img!.mimeType;
+						console.log(ext)
+						const MockyOrNot = image.urlMock!! ? Mockup : React.Fragment
+
 						return (
 							<div key={image.id} className={'flex flex-col gap-2 mb-4'}>
-								<MockyOrNot>
-									{ext !== 'mp4' ? <Image
-										loader={supabaseLoader}
-										src={src}
-										alt={image.title}
-										width={1920}
-										height={914}
-										style={{ objectFit: 'contain' }}
-										className={'w-full h-full'}
-									/> :
+								<MockyOrNot url={image.urlMock!}>
+
+									{ext !== 'mp4' ?
+										!!image.iframe ?
+											<iframe src={image.iframe} className='w-full border h-[914px]'></iframe>
+											:
+											<Image
+												src={src}
+												alt={description!}
+												width={1920}
+												height={914}
+												style={{ objectFit: 'contain' }}
+												className={'w-full h-full'}
+											/> :
 										<video
 											autoPlay
 											loop
@@ -63,14 +65,14 @@ const Album = ({ album, index }: { album: any, index: number }) => {
 											className={'object-cover w-full h-full'} // Removido "fixed" daqui
 											style={{ height: '100%' }} // Definido altura para 100%
 										>
-											<source src={video} type="video/mp4" />
+											<source src={src} type="video/mp4" />
 										</video>
 									}
 
 								</MockyOrNot>
 							</div>
 						)
-					})} */}
+					})}
 				</div>
 			</div>
 		</div>

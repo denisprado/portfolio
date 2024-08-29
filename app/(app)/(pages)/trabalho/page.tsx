@@ -45,8 +45,6 @@ export default async function Work() {
 					<p>Filtros:</p>
 					{/* <CategoriesMenu /> */}
 				</div>
-
-
 				<WorkCard cards={rowCards} />
 			</Container>
 		</PageWrapper>
