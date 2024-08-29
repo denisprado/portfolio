@@ -3,6 +3,7 @@ import { PageWrapper } from "@/components/page-wrapper";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import configPromise from '@payload-config'
 import Breadcrumb from "@/components/breadcumb";
+import Albums from "@/components/albums";
 
 export const revalidate = 60
 
@@ -14,7 +15,9 @@ export default async function Work({ params: { slug } }: { params: { slug: strin
 	})
 	const data = dataWork!.docs.filter(doc => doc.slug === slug)[0]
 
-	const albumsData = await payload.find({
+	const { category } = dataWork!.docs.filter(doc => doc.slug === slug)[0]
+	const id = category?.value.id
+	const albumsDataFull = await payload.find({
 		collection: 'gallery',
 		// where: {
 		// 	work: {
@@ -23,7 +26,8 @@ export default async function Work({ params: { slug } }: { params: { slug: strin
 		// }
 	})
 
-	// console.log("albumsData", albumsData.docs.filter(doc=>doc.work?.value===))
+	const albumsData = albumsDataFull.docs.filter((album) => album?.work?.value.category.value.id === id)
+
 
 	return (
 		<PageWrapper className="">
@@ -38,7 +42,7 @@ export default async function Work({ params: { slug } }: { params: { slug: strin
 						<p className="py-6 text-3xl font-italic dark:text-neutral-light-2">{data?.description!}</p>
 						{/* <ReactMarkdown className="text-2xl dark:text-neutral-light-1">{dataWork?.content!}</ReactMarkdown> */}
 					</div>
-					{/* {albumsData && <Albums albums={albumsData} />} */}
+					{albumsData && <Albums albums={albumsData} />}
 				</div>
 			</Container>
 		</PageWrapper>
