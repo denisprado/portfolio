@@ -45,8 +45,8 @@ export default async function Home() {
 	const services = (await (await payload).find({ collection: 'services' })).docs
 
 	const cards: RowCardProps[] = services.map(m => {
-		const image = (typeof m.image! !== 'number') && m.image !== undefined && m.image !== null ? '/api/media/file/' + m.image?.filename! : '/'
-		return { id: m.id, title: m.title, description: m.description, image: image, color: m.color!, keys: m.skills! }
+
+		return { id: m.id, title: m.title, description: m.description, image: m.image!, color: m.color! }
 	})
 
 	return (

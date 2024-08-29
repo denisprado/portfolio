@@ -12,7 +12,7 @@ export default async function About() {
 
 	const cards: RowCardProps[] = members.map(m => {
 
-		return { id: m.id, title: m.title, description: m.description, image: m.image!, color: m.color! }
+		return { id: m.id, title: m.title, description: m.description, thumbnail: m.image!, color: m.color!, keys: m.skills! }
 	})
 
 	return (

@@ -14,17 +14,16 @@ type ClientsProps = {
 }
 
 type KeysProps = {
-	id?: string;
-	skill?: string;
+	id?: string | null;
+	skill?: string | null;
 }
 
 export type RowCardProps = {
 	id: number,
 	title: string | null,
 	description?: string | null,
-	keys?: KeysProps[],
+	keys?: KeysProps[] | null,
 	color?: string | null,
-	image?: Media | null | number,
 	thumbnail?: Media | null | number,
 	category?: CategoryProps | null,
 	clients?: ClientsProps | null,
@@ -42,15 +41,15 @@ const RowCard = ({ cards }: CardsProps) => {
 	return <div className='px-24 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{
 			cards && cards?.map(card => {
-
-				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/'
+				console.log(card.thumbnail)
+				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/api/media/file/card-logo.svg'
 
 				return (
 					<FinalRow url={card?.url!} id={card?.id!} key={card.id}>
 						<div key={card.id} className="flex flex-col justify-between p-12 bg-white border-t md:items-end md:flex-row dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-neutral-dark-1 last:border-b">
 							<div className='flex flex-row items-end justify-start w-3/5 gap-4'>
-								{card.image && <div className='h-48 max-h-full aspect-square w-96 '>
-									<Image src={image} width={96 * 4} height={96 * 4} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
+								{card.thumbnail && <div className='w-48 h-48 max-h-full aspect-square grayscale'>
+									<Image src={image} width={96 * 2} height={96 * 2} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
 								</div>
 								}
 								{card.title && <h3 className={`${card.color} text-7xl leading-tight
