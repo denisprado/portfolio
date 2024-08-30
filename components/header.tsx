@@ -24,7 +24,7 @@ export const Header = () => {
 	const isHome = page === '/'
 
 	return (
-		<header className="relative w-full dark:bg-neutral-dark-1">
+		<header className="relative w-full bg-white dark:bg-neutral-dark-1">
 			<Container className={classNames("z-50 flex flex-row items-center w-full transition-transform delay-1000 dark:bg-neutral-dark-1", { 'absolute': isHome })}>
 				<Link href="/" className={classNames("h-16 pt-4 p-3 px-6 ",
 					{ "bg-transparent": isHome },
@@ -34,14 +34,14 @@ export const Header = () => {
 					<motion.img src={page === '/' ? "/images/logo-home.svg" : theme === 'light' ? "/images/logo-signal.svg" : "/images/logo-signal.svg"} width={page === '/' ? 200 : 40} height={40} />
 				</Link>
 
-				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-dark-1",
+				<nav className={classNames("w-full h-16 px-4 py-3 flex flex-col justify-center bg-neutral-light-1",
 					{ 'bg-transparent': isHome },
 					{ 'bg-neutral-light-1': theme === 'light' && !isHome },
 					{ 'bg-neutral-dark-1': theme === 'dark' && !isHome },
 				)}>
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />
-						{page !== '/' && <li><ModeToggle /></li>}
+						{/* {page !== '/' && <li><ModeToggle /></li>} */}
 					</ul>
 				</nav>
 			</Container>

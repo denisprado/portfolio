@@ -37,14 +37,14 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>
 			<head />
 			<body >
-				<ThemeProvider attribute="class">
-					<PageContextProvider>
-						<MenuContextProvider>
-							<Header />
-							{children}
-						</MenuContextProvider>
-					</PageContextProvider>
-				</ThemeProvider>
+				{/* <ThemeProvider attribute="class"> */}
+				<PageContextProvider>
+					<MenuContextProvider>
+						<Header />
+						{children}
+					</MenuContextProvider>
+				</PageContextProvider>
+				{/* </ThemeProvider> */}
 			</body>
 		</html>
 	)

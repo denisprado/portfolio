@@ -9,8 +9,8 @@ import { useMenuContext } from "@/app/(app)/context/menu";
 
 
 interface ItemsProps {
-	href: string
-	label: string
+	href?: string | null
+	label?: string | null
 	handleClick?: () => void
 }
 
@@ -22,7 +22,8 @@ interface MenuItemsProps {
 export function MenuItems({ items }: MenuItemsProps) {
 	const path = usePathname()
 	const color = "hsl(var(--primary))"
-	const { theme: themeColor } = useTheme();
+	// const { theme: themeColor } = useTheme();
+	const themeColor = 'light';
 	const { active, before, setBefore } = useMenuContext()
 
 	const [store, setStore] = useState({ before: before, selected: active, activeColor: color })
@@ -40,7 +41,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 			{items.map(({ label, href, handleClick }, i) => {
 
 				return i > 0 && (
-					<Link key={href} href={href} onClick={handleClick}
+					<Link key={href} href={href!} onClick={handleClick}
 						className="relative font-sans text-xs uppercase"
 						onPointerEnter={() => {
 							setStore({
@@ -60,7 +61,7 @@ export function MenuItems({ items }: MenuItemsProps) {
 						<motion.div
 							className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3 ",
 								{
-									"bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
+									// "bg-neutral-dark-3 text-neutral-light-2": themeColor === 'dark' && path !== '/',
 									"bg-white text-neutral-dark-2": themeColor === 'light' && path !== '/',
 									"text-white border border-white ": path === '/'
 

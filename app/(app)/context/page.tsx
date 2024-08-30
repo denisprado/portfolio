@@ -3,9 +3,7 @@
 import { usePathname } from "next/navigation";
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext } from "react";
 
-type pageProps = string
-
-const PageContext = createContext<{ page?: pageProps, setActive?: Dispatch<SetStateAction<pageProps>> }>({})
+const PageContext = createContext<{ page?: string }>({ page: '/' })
 
 type PageProps = {
 	children: ReactNode

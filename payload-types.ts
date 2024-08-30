@@ -136,6 +136,7 @@ export interface Work {
 export interface WorksCategory {
   id: number;
   title: string;
+  slug?: string | null;
   description: string;
   image?: (number | null) | Media;
   updatedAt: string;

@@ -1,4 +1,5 @@
 import { Container } from "@/components/container"
+import { MenuItems } from "@/components/menu"
 import { PageWrapper } from "@/components/page-wrapper"
 import WorkCard, { RowCardProps } from "@/components/workCard"
 import { Media } from "@/payload-types"
@@ -13,10 +14,16 @@ export default async function Work() {
 		collection: 'works'
 	})
 
-	const dataWorkCategory = await payload.find({
-		collection: 'worksCategory'
+	const dataCategories = await payload.find({
+		collection: 'worksCategory',
 	})
-
+	const categories = dataCategories.docs
+	const menuCategoriesItems = categories.map((cat) => {
+		return {
+			href: cat.slug,
+			label: cat.title
+		}
+	})
 	const rowCards: RowCardProps[] = dataWork.docs.map((work) => {
 		return {
 			id: work.id,
@@ -43,7 +50,7 @@ export default async function Work() {
 
 				<div className={'flex flex-row items-center justify-start gap-4 px-10 py-0'}>
 					<p>Filtros:</p>
-					{/* <CategoriesMenu /> */}
+					<MenuItems items={menuCategoriesItems} />
 				</div>
 				<WorkCard cards={rowCards} />
 			</Container>

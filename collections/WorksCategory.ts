@@ -1,3 +1,4 @@
+import slug from "@/app/fields/slug";
 import type { CollectionConfig } from "payload";
 
 export const WorksCategory: CollectionConfig = {
@@ -11,6 +12,7 @@ export const WorksCategory: CollectionConfig = {
       type: "text",
       required: true,
     },
+    slug,
     {
       name: "description",
       type: "textarea",
