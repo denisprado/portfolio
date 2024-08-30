@@ -4,10 +4,11 @@ import ConfigProvider from "antd/es/config-provider"
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import React from "react"
 import { MenuContextProvider } from "./context/menu"
-import { PageContextProvider } from "./context/page"
+
 import { ThemeProvider } from 'next-themes'
 
 import './globals.css'
+import { SubMenuContextProvider } from "./context/submenu"
 
 const instrumentSans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-instrument-sans', adjustFontFallback: false })
 const instrumentSerif = Instrument_Serif({
@@ -38,12 +39,12 @@ export default function RootLayout({
 			<head />
 			<body >
 				{/* <ThemeProvider attribute="class"> */}
-				<PageContextProvider>
-					<MenuContextProvider>
+				<MenuContextProvider>
+					<SubMenuContextProvider>
 						<Header />
 						{children}
-					</MenuContextProvider>
-				</PageContextProvider>
+					</SubMenuContextProvider>
+				</MenuContextProvider>
 				{/* </ThemeProvider> */}
 			</body>
 		</html>

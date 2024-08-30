@@ -1,8 +1,9 @@
 import WorkCard, { RowCardProps } from "@/components/workCard"
+import { WorksCategory } from "@/payload-types"
 import configPromise from '@payload-config'
 import { getPayloadHMR } from "@payloadcms/next/utilities"
 
-export default async function Work() {
+export default async function WorkList({ params: { categoria } }: { params: { categoria: string } }) {
 
 	const payload = await getPayloadHMR({ config: configPromise })
 
@@ -10,7 +11,13 @@ export default async function Work() {
 		collection: 'works'
 	})
 
-	const rowCards: RowCardProps[] = dataWork.docs.map((work) => {
+	const dataWorkOfCat = dataWork.docs.filter(work => {
+		const workDoc = work.category?.value as WorksCategory
+		const WorkId = workDoc.slug
+		return WorkId === categoria
+	})
+
+	const rowCards: RowCardProps[] = dataWorkOfCat.map((work) => {
 		return {
 			id: work.id,
 			slug: work.slug!,
@@ -24,9 +31,7 @@ export default async function Work() {
 	});
 
 	return (
-
 		<WorkCard cards={rowCards} />
-
 	);
 }
 

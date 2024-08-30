@@ -23,12 +23,9 @@ export default async function Work({ params: { slug } }: { params: { slug: strin
 
 	const { id: IdOfWorkCategory } = data
 
-	console.log("idOfWork", IdOfWorkCategory)
-
 	const albumsData = galleryDocs.filter((album) => {
 		const albumDoc = album.work?.value as WorkTypes
 		const GalleryWorkId = albumDoc.id
-		console.log(GalleryWorkId)
 		return GalleryWorkId === IdOfWorkCategory
 	})
 

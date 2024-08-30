@@ -1,3 +1,4 @@
+'use client'
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
@@ -7,8 +8,8 @@ import { useEffect, useState } from "react";
 import { useSubMenuContext } from "@/app/(app)/context/submenu";
 
 interface ItemsProps {
-	href: string;
-	label: string;
+	href?: string | null;
+	label?: string | null;
 	handleClick?: () => void;
 }
 
@@ -19,7 +20,8 @@ interface MenuItemsProps {
 export function SubMenuItems({ items }: MenuItemsProps) {
 	const path = usePathname();
 	const color = "hsl(var(--primary))";
-	const { theme: themeColor } = useTheme();
+	// const { theme: themeColor } = useTheme();
+	const themeColor = 'light';
 	const { activeSubMenu, beforeSubMenu, setBeforeSubMenu } = useSubMenuContext();
 
 	const [storeSubMenu, setStoreSubMenu] = useState({
@@ -51,7 +53,7 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 			{items.map(({ label, href, handleClick }, i) => (
 				<Link
 					key={i}
-					href={href}
+					href={href!}
 					onClick={() => {
 						handleSubMenuClick(i);
 						handleClick && handleClick();
@@ -74,7 +76,7 @@ export function SubMenuItems({ items }: MenuItemsProps) {
 				>
 					<motion.div
 						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3", {
-							"bg-neutral-dark-3 text-neutral-light-2": themeColor === "dark",
+							// "bg-neutral-dark-3 text-neutral-light-2": themeColor === "dark",
 							"bg-white text-neutral-dark-2": themeColor === "light"
 						})}
 

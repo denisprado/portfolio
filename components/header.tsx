@@ -1,5 +1,4 @@
 'use client'
-import { usePageContext } from "@/app/(app)/context/page";
 import { useTheme } from "next-themes";
 import classNames from "classnames";
 import { motion } from "framer-motion";
@@ -7,6 +6,7 @@ import Link from "next/link";
 import { Container } from "./container";
 import { MenuItems } from "./menu";
 import { ModeToggle } from "./toggleTheme";
+import { usePathname } from "next/navigation";
 
 
 export const Header = () => {
@@ -18,7 +18,7 @@ export const Header = () => {
 		{ href: "/trabalho", label: "trabalho" },
 	]
 
-	const { page } = usePageContext()
+	const page = usePathname()
 	const { resolvedTheme: theme } = useTheme();
 
 	const isHome = page === '/'

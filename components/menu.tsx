@@ -35,12 +35,11 @@ export function MenuItems({ items }: MenuItemsProps) {
 		}
 	}, [])
 
-
 	return (
 		<div className="relative flex items-start content-start justify-start">
 			{items.map(({ label, href, handleClick }, i) => {
 
-				return i > 0 && (
+				return label !== 'home' && (
 					<Link key={href} href={href!} onClick={handleClick}
 						className="relative font-sans text-xs uppercase"
 						onPointerEnter={() => {
