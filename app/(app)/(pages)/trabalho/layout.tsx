@@ -38,7 +38,7 @@ export default async function WorkLayout({
 				</div>
 
 
-				<div className={'flex flex-row items-center justify-start gap-4 px-10 py-10'}>
+				<div className={'flex flex-row items-center justify-start gap-4 px-10 py-10 bg-neutral-light-1'}>
 					<p>Filtros:</p>
 					<SubMenuItems items={menuCategoriesItems} />
 				</div>

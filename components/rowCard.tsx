@@ -36,7 +36,6 @@ function FinalRow({ children, url, id }: { children: ReactElement, url: boolean,
 	return url ? <Link href={id ? '/trabalho/' + id : ''}>{children}</Link> : <>{children}</>
 }
 
-
 const RowCard = ({ cards }: CardsProps) => {
 	return <div className='px-24 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{
