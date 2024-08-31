@@ -41,7 +41,7 @@ const RowCard = ({ cards }: CardsProps) => {
 		{
 			cards && cards?.map(card => {
 				console.log(card.thumbnail)
-				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/api/media/file/card-logo.svg'
+				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : 'card-logo.svg'
 
 				return (
 					<FinalRow url={card?.url!} id={card?.id!} key={card.id}>
