@@ -1,5 +1,6 @@
 import { PageWrapper } from "@components/page-wrapper";
 import Image from 'next/image'
+import imageLoader from "../helpers/loader";
 
 export default function Loading() {
 
@@ -7,7 +8,7 @@ export default function Loading() {
 		<>
 			{/* //bg-[url(/bg-home-plato.jpg)] */}
 			<PageWrapper className={`flex flex-col`}>
-				<Image
+				<Image loader={imageLoader}
 					src={'/bg-video-image.png'}
 					alt={''}
 					fill

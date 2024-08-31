@@ -1,7 +1,7 @@
 import { Media } from '@/payload-types';
 import getUrlFromTable from '@/utils/getUrlFromTable';
 import Image from 'next/image';
-import Link from 'next/link';
+import imageLoader from '@/app/helpers/loader'; import Link from 'next/link';
 import { ReactElement } from 'react';
 
 type CategoryProps = {
@@ -48,7 +48,7 @@ const RowCard = ({ cards }: CardsProps) => {
 						<div key={card.id} className="flex flex-col justify-between p-12 bg-white border-t md:items-end md:flex-row dark:bg-neutral-dark-1 dark:text-neutral-light-2 dark:border-neutral-light-3 border-neutral-dark-1 last:border-b">
 							<div className='flex flex-row items-end justify-start w-3/5 gap-4'>
 								{card.thumbnail && <div className='w-48 h-48 max-h-full aspect-square grayscale'>
-									<Image src={image} width={96 * 2} height={96 * 2} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
+									<Image loader={imageLoader} src={image} width={96 * 2} height={96 * 2} alt={card.title ? card.title : ''} style={{ objectFit: 'cover', objectPosition: 'center', maxHeight: '100%' }} />
 								</div>
 								}
 								{card.title && <h3 className={`${card.color} text-7xl leading-tight

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import imageLoader from '@/app/helpers/loader';
 import Link from 'next/link';
 
 import { Media, WorksCategory } from '@/payload-types';
@@ -52,12 +53,12 @@ const WorkCard = ({ cards }: CardsProps) => {
 											className={`relative size-full aspect-square rounded-3xl overflow-hidden img-wrapper`}
 
 										>
-											{card && card.thumbnail && <Image src={image} fill alt={card!.title!} objectFit='cover' objectPosition='top left' className={`image transition-transform duration-300 transform absolute object-left-top `} />}
+											{card && card.thumbnail && <Image loader={imageLoader} src={image} fill alt={card!.title!} objectFit='cover' objectPosition='top left' className={`image transition-transform duration-300 transform absolute object-left-top `} />}
 										</div>
 									)}
 									{!card.thumbnail! && (
 										<div className='flex items-center justify-center size-full bg-secondary aspect-square rounded-3xl'>
-											<Image src={'/images/logo-signal.svg'} width={180} height={180} alt="" />
+											<Image loader={imageLoader} src={'/images/logo-signal.svg'} width={180} height={180} alt="" />
 										</div>
 									)}
 								</div>

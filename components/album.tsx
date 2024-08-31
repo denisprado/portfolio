@@ -1,5 +1,6 @@
 'use client'
 
+import imageLoader from '@/app/helpers/loader';
 import { Gallery, Media } from '@/payload-types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -51,6 +52,7 @@ const Album = ({ album }: { album: Gallery }) => {
 											<iframe src={image.iframe} className='w-full border h-[914px]'></iframe>
 											:
 											<Image
+												loader={imageLoader}
 												src={src}
 												alt={description!}
 												width={1920}
