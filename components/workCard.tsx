@@ -40,7 +40,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 	return <div className='grid w-full grid-cols-6 gap-4 px-6 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{cards &&
 			cards?.map((card, index) => {
-				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? '/api/media/file/' + card.thumbnail?.filename! : '/'
+				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : '/'
 
 				const { category } = card
 				return (
@@ -53,7 +53,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 											className={`relative size-full aspect-square rounded-3xl overflow-hidden img-wrapper`}
 
 										>
-											{card && card.thumbnail && <Image loader={imageLoader} src={image} fill alt={card!.title!} objectFit='cover' objectPosition='top left' className={`image transition-transform duration-300 transform absolute object-left-top `} />}
+											{card && card.thumbnail && <Image loader={imageLoader} src={image} fill alt={card!.title!} objectFit='cover' className={`image transition-transform duration-300 transform absolute object-left-top `} />}
 										</div>
 									)}
 									{!card.thumbnail! && (
