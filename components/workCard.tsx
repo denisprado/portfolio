@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { Media, WorksCategory } from '@/payload-types';
 import { ReactElement } from 'react';
+import classNames from 'classnames';
 
 type CategoryProps = {
 	id?: number;
@@ -34,10 +35,11 @@ function FinalRow({ children, card }: { children: ReactElement, card: RowCardPro
 }
 
 
-const WorkCard = ({ cards }: CardsProps) => {
-	console.log("cards", cards)
 
-	return <div className='grid w-full grid-cols-6 gap-4 px-6 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
+const WorkCard = ({ cards }: CardsProps) => {
+	const cols = cards.length > 6 ? 'grid-cols-6' : 'grid-cols-' + cards.length
+
+	return <div className={classNames(`grid w-full gap-10 px-20 py-14 dark:bg-neutral-dark-2 bg-neutral-light-1`, cols)}>
 		{cards &&
 			cards?.map((card, index) => {
 				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : '/'
@@ -47,10 +49,10 @@ const WorkCard = ({ cards }: CardsProps) => {
 					<div key={card.id} className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2'>
 						<FinalRow card={card}>
 							<>
-								<div className='flex flex-col items-start justify-start rounded-3xl'>
+								<div className='flex flex-col items-start justify-start border rounded-3xl border-primary'>
 									{card.thumbnail! && (
 										<div
-											className={`relative size-full aspect-square rounded-3xl overflow-hidden img-wrapper`}
+											className={`relative size-full aspect-square rounded-3xl overflow-hidden img-wrapper `}
 
 										>
 											{card && card.thumbnail && <Image loader={imageLoader} src={image} fill alt={card!.title!} objectFit='cover' className={`image transition-transform duration-300 transform absolute object-left-top `} />}

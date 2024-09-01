@@ -26,21 +26,19 @@ const Album = ({ album }: { album: Gallery }) => {
 	return (
 		<div className='flex flex-col h-full gap-4 m-8'>
 			<div className='flex flex-row h-full gap-8'>
-				<div className='flex flex-col w-3/12 gap-2 text-neutral-dark-3 dark:text-neutral-light-1'>
+				{album.title || album.description && <div className='flex flex-col w-3/12 gap-2 text-neutral-dark-3 dark:text-neutral-light-1'>
 
-					<div>{album.title}</div>
-					<div>{album.description}</div>
-				</div>
+					{album.title && <div>{album.title}</div>}
+					{album.description && <div>{album.description}</div>}
+				</div>}
 				<div className='flex flex-col flex-1 w-full h-full gap-4'>
 					{album?.images?.map((image) => {
 
 						const file = image.image as Media
 						const description = image.description
 						const src = "/api/media/file/" + file?.filename!
-						const n = 1
 						const img = image.image as Media
 						const ext = img && img!.mimeType && img!.mimeType;
-						console.log(ext)
 						const MockyOrNot = image.urlMock!! ? Mockup : React.Fragment
 
 						return (
