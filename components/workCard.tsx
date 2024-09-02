@@ -39,14 +39,15 @@ function FinalRow({ children, card }: { children: ReactElement, card: RowCardPro
 const WorkCard = ({ cards }: CardsProps) => {
 	const cols = cards.length > 6 ? 'grid-cols-6' : 'grid-cols-' + cards.length
 
-	return <div className={classNames(`grid w-full gap-10 px-20 py-14 dark:bg-neutral-dark-2 bg-neutral-light-1`, cols)}>
+	return <div className={classNames(`grid w-full gap-10 px-20 py-14 dark:bg-neutral-dark-2 bg-neutral-light-1 grid-cols-10`)}>
 		{cards &&
 			cards?.map((card, index) => {
 				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : '/'
 
 				const { category } = card
+				const { title } = category as WorksCategory
 				return (
-					<div key={card.id} className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2'>
+					<div key={card.id} className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2 col-span-2'>
 						<FinalRow card={card}>
 							<>
 								<div className='flex flex-col items-start justify-start border rounded-3xl border-primary'>
@@ -64,22 +65,17 @@ const WorkCard = ({ cards }: CardsProps) => {
 										</div>
 									)}
 								</div>
-								<div className='flex flex-col mt-4'>
-									{card.title && (
-										<h3 className={`${card.color} text-xl font-medium font-sans`}>
-											{card.title}
-										</h3>
-									)}
-									<div className='columns-2'>
-										{card.keys?.map((key, i) => (
-											<p className='text-mono dark:text-neutral-light-1' key={i}>
-												{key}
-											</p>
-										))}
-										{/* {card.category && <p className='text-mono dark:text-neutral-light-1'>{category}</p>} */}
+								<div className='flex flex-row items-baseline mt-4'>
+									<div className='flex flex-col flex-1 '>
+										{card.title && (
+											<h3 className={`${card.color} text-xl font-medium font-sans`}>
+												{card.title}
+											</h3>
+										)}
+
 
 									</div>
-								</div>
+									<span className='bg-white text-primary text-xs font-medium me-2 px-1.5 py-0.5 rounded'>{title}</span></div>
 							</>
 						</FinalRow>
 					</div>
