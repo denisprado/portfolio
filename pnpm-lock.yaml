@@ -15,14 +15,17 @@ importers:
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(@types/react@18.3.4)(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-06d0b89e-20240801)
       '@payloadcms/email-nodemailer':
-        specifier: 3.0.0-beta.29
-        version: 3.0.0-beta.29(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))
+        specifier: 3.0.0-beta.95
+        version: 3.0.0-beta.95(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))
       '@payloadcms/next':
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(@types/react@18.3.4)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.134(@babel/core@7.25.2)(react-dom@19.0.0-rc-06d0b89e-20240801(react@19.0.0-rc-06d0b89e-20240801))(react@19.0.0-rc-06d0b89e-20240801)(sass@1.77.4))(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-06d0b89e-20240801(react@19.0.0-rc-06d0b89e-20240801))(react@19.0.0-rc-06d0b89e-20240801)(typescript@5.5.4)
       '@payloadcms/plugin-cloud':
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(@aws-sdk/client-sso-oidc@3.637.0(@aws-sdk/client-sts@3.637.0))(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))
+      '@payloadcms/plugin-form-builder':
+        specifier: ^1.2.2
+        version: 1.2.2(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-06d0b89e-20240801)
       '@payloadcms/richtext-lexical':
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(m6zi7shceqwpp6rskk4c65u7oa)
@@ -1424,12 +1427,6 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.95
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.29':
-    resolution: {integrity: sha512-8BqO7IynE84D7RH+0pX+5G1DNbseCEkWWEcmFD5aPOAGGhb0x+DcLu99JKg2CNiNzSNEyVmh5WYBPRql+mILFg==}
-    engines: {node: '>=18.20.2'}
-    peerDependencies:
-      payload: 3.0.0-beta.29
-
   '@payloadcms/email-nodemailer@3.0.0-beta.95':
     resolution: {integrity: sha512-Byo5mDfdG+0Mv8T5lQ9ynMrcGGY/Vd6vLM5f5EhQBOV5Gnzm/Tznrq4ZVA0hbioCm2WmU0IGI4WzueFfsPSD6A==}
     engines: {node: ^18.20.2 || >=20.9.0}
@@ -1479,6 +1476,12 @@ packages:
     resolution: {integrity: sha512-yfMPGgLI/k+eCwxaGvgK1u9DE7vahsgTvjslvKmUkwFjjCAR+VyGOr99UgAtFuHJS0k7XXAm8LJGQ2GMF/iKtg==}
     peerDependencies:
       payload: 3.0.0-beta.95
+
+  '@payloadcms/plugin-form-builder@1.2.2':
+    resolution: {integrity: sha512-yf89YgybUqM0F4RoJomIznSokn1A5bjqGIRwkIgPE3aPK8l2vi+KUq+/dY3OoG+VhIGxUpwPzHjfSMc3K70oEg==}
+    peerDependencies:
+      payload: ^0.18.5 || ^1.0.0 || ^2.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   '@payloadcms/richtext-lexical@3.0.0-beta.95':
     resolution: {integrity: sha512-4R8/qyIExQgV6rwaZpftNa0rKgVX+vyXTSbF2JPOXWJynGvaLKgVtkup+Uxz6q/rouaH5qK3uuEMMbUpwVIWlA==}
@@ -8056,11 +8059,6 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.29(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))':
-    dependencies:
-      nodemailer: 6.9.10
-      payload: 3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4)
-
   '@payloadcms/email-nodemailer@3.0.0-beta.95(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))':
     dependencies:
       nodemailer: 6.9.10
@@ -8133,6 +8131,13 @@ snapshots:
       - aws-crt
       - debug
       - encoding
+
+  '@payloadcms/plugin-form-builder@1.2.2(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-06d0b89e-20240801)':
+    dependencies:
+      deepmerge: 4.3.1
+      escape-html: 1.0.3
+      payload: 3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4)
+      react: 19.0.0-rc-06d0b89e-20240801
 
   '@payloadcms/richtext-lexical@3.0.0-beta.95(m6zi7shceqwpp6rskk4c65u7oa)':
     dependencies:

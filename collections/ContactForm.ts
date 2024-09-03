@@ -24,10 +24,9 @@ const ContactForm: CollectionConfig = {
   ],
   hooks: {
     afterChange: [
-      async ({ doc }) => {
+      async ({ doc, operation, req }) => {
         try {
-          
-          await .sendEmail({
+          await req.payload.sendEmail({
             from: '"Seu Site" <noreply@seusite.com>',
             to: "denisforigo@gmail.com",
             subject: "Nova mensagem de contato",

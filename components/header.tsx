@@ -42,13 +42,13 @@ export const Header = () => {
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />
 						{/* {page !== '/' && <li><ModeToggle /></li>} */}
-						<Link
-							href="/contact"
-							className="ml-4 p-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors"
+						{/* <Link
+							href="/contato"
+							className="p-2 ml-4 text-white transition-colors rounded-full bg-primary hover:bg-primary-dark"
 							aria-label="Contato"
 						>
 							<FaEnvelope size={20} />
-						</Link>
+						</Link> */}
 					</ul>
 				</nav>
 			</Container>

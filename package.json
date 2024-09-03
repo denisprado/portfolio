@@ -11,9 +11,10 @@
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
     "@payloadcms/db-postgres": "3.0.0-beta.95",
-    "@payloadcms/email-nodemailer": "3.0.0-beta.29",
+    "@payloadcms/email-nodemailer": "3.0.0-beta.95",
     "@payloadcms/next": "3.0.0-beta.95",
     "@payloadcms/plugin-cloud": "3.0.0-beta.95",
+    "@payloadcms/plugin-form-builder": "^1.2.2",
     "@payloadcms/richtext-lexical": "3.0.0-beta.95",
     "@payloadcms/storage-s3": "3.0.0-beta.95",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
