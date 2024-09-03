@@ -2,24 +2,30 @@ import React, { useState } from 'react';
 
 const ContactForm = () => {
 	const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setIsLoading(true);
 		try {
-			const response = await fetch('/api/contact', {
+			const response = await fetch(`/contact`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(formData),
 			});
+
 			if (response.ok) {
 				alert('Mensagem enviada com sucesso!');
 				setFormData({ name: '', email: '', message: '' });
 			} else {
-				alert('Erro ao enviar mensagem. Tente novamente.');
+				const errorData = await response.json();
+				throw new Error(errorData.message || `Erro na requisição: ${response.status} ${response.statusText}`);
 			}
 		} catch (error) {
 			console.error('Erro:', error);
 			alert('Erro ao enviar mensagem. Tente novamente.');
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -71,9 +77,10 @@ const ContactForm = () => {
 			<div className="flex items-center justify-between">
 				<button
 					type="submit"
-					className="px-4 py-2 font-semibold text-white transition-colors duration-300 bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75"
+					disabled={isLoading}
+					className="px-4 py-2 font-semibold text-white transition-colors duration-300 bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 disabled:bg-indigo-300"
 				>
-					Enviar
+					{isLoading ? 'Enviando...' : 'Enviar'}
 				</button>
 			</div>
 		</form>

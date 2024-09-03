@@ -1,7 +1,4 @@
-import nodemailer from "nodemailer";
-import { CollectionConfig, getPayload } from "payload";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
-import { getNextRequestI18n } from "@payloadcms/next/utilities";
+import { CollectionConfig } from "payload";
 
 const ContactForm: CollectionConfig = {
   slug: "contact-forms",

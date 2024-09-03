@@ -14,7 +14,7 @@ import { Services } from "./collections/Services";
 import { Works } from "./collections/Works";
 import { WorksCategory } from "./collections/WorksCategory";
 import { Gallery } from "./collections/Gallery";
-import ContactForm from "./collections/ContactForm";
+import ContactForm from "./collections/ContactForms";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import nodemailer from "nodemailer";
 
@@ -29,12 +29,13 @@ export default buildConfig({
     },
   },
   email: nodemailerAdapter({
-    defaultFromAddress: "info@payloadcms.com",
+    defaultFromAddress: "denisforigo@gmail.com",
     defaultFromName: "Payload",
     // Any Nodemailer transport
     transport: nodemailer.createTransport({
       host: process.env.NEXT_PUBLIC_SMTP_HOST,
       port: 587,
+      secure: false,
       auth: {
         user: process.env.NEXT_PUBLIC_SMTP_USER,
         pass: process.env.NEXT_PUBLIC_SMTP_PASS,
