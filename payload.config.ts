@@ -33,12 +33,12 @@ export default buildConfig({
     defaultFromName: "Payload",
     // Any Nodemailer transport
     transport: nodemailer.createTransport({
-      host: process.env.NEXT_PUBLIC_SMTP_HOST,
+      host: process.env.NEXT_PUBLIC_SMTP_HOST || process.env.SMTP_HOST,
       port: 587,
       secure: false,
       auth: {
-        user: process.env.NEXT_PUBLIC_SMTP_USER,
-        pass: process.env.NEXT_PUBLIC_SMTP_PASS,
+        user: process.env.NEXT_PUBLIC_SMTP_USER || process.env.SMTP_USER,
+        pass: process.env.NEXT_PUBLIC_SMTP_PASS || process.env.SMTP_PASS,
       },
     }),
   }),
