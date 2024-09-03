@@ -1,163 +1,106 @@
 'use client'
-import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import { useMenuContext } from "@/app/(app)/context/menu";
 import { useSubMenuContext } from "@/app/(app)/context/submenu";
 
 interface ItemsProps {
-	href?: string | null;
-	label?: string | null;
-	handleClick?: () => void;
+	href?: string | null
+	label?: string | null
+	handleClick?: () => void
 }
 
-interface MenuItemsProps {
-	items: ItemsProps[];
+interface SubMenuItemsProps {
+	items: ItemsProps[]
 }
 
-export function SubMenuItems({ items }: MenuItemsProps) {
+export function SubMenuItems({ items }: SubMenuItemsProps) {
 	const path = usePathname();
-	const color = "hsl(var(--primary))";
-	// const { theme: themeColor } = useTheme();
-	const themeColor = 'light';
+	const primaryColor = 'hsl(var(--primary))';
+	const neutralLightColor = 'hsl(var(--neutral-light-1))';
+	const whiteColor = 'white';
+
 	const { activeSubMenu, beforeSubMenu, setBeforeSubMenu } = useSubMenuContext();
 
-	const [storeSubMenu, setStoreSubMenu] = useState({
-		beforeSubMenu: beforeSubMenu,
-		selectedSubMenu: activeSubMenu,
-		activeColorSubMenu: color
+	const [store, setStore] = useState({
+		before: beforeSubMenu,
+		selected: activeSubMenu,
+		activeColor: primaryColor,
 	});
 
 	useEffect(() => {
-		setStoreSubMenu({
-			beforeSubMenu: activeSubMenu,
-			selectedSubMenu: activeSubMenu,
-			activeColorSubMenu: color
-		});
-	}, [activeSubMenu, color]);
+		const currentIndex = items.findIndex(item => item.href === path);
+		if (currentIndex !== -1) {
+			setStore({ before: currentIndex, selected: currentIndex, activeColor: primaryColor });
+			setBeforeSubMenu && setBeforeSubMenu(currentIndex);
+		}
+	}, [path, items, setBeforeSubMenu]);
 
-	const handleSubMenuClick = (i: number) => {
-		setStoreSubMenu(prevState => ({
-			...prevState,
-			activeColorSubMenu: color,
-			selectedSubMenu: i,
-			beforeSubMenu: i
+	const handleMouseEnter = (index: number) => {
+		setStore(prev => ({
+			...prev,
+			selected: index,
 		}));
-		setBeforeSubMenu && setBeforeSubMenu(i);
+	};
+
+	const handleMouseLeave = () => {
+		setStore(prev => ({
+			...prev,
+			selected: prev.before,
+		}));
 	};
 
 	return (
 		<div className="relative flex items-start content-start justify-start">
-			{items.map(({ label, href, handleClick }, i) => (
-				<Link
-					key={i}
-					href={href!}
-					onClick={() => {
-						handleSubMenuClick(i);
-						handleClick && handleClick();
-					}}
-					className="relative font-sans text-xs uppercase"
-					onPointerEnter={() =>
-						setStoreSubMenu({
-							activeColorSubMenu: color,
-							selectedSubMenu: i,
-							beforeSubMenu: storeSubMenu.beforeSubMenu
-						})
-					}
-					onPointerOut={() =>
-						setStoreSubMenu({
-							activeColorSubMenu: color,
-							selectedSubMenu: storeSubMenu.beforeSubMenu,
-							beforeSubMenu: storeSubMenu.beforeSubMenu
-						})
-					}
-				>
-					<motion.div
-						className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3", {
-							// "bg-neutral-dark-3 text-neutral-light-2": themeColor === "dark",
-							"bg-white text-neutral-dark-2": themeColor === "light"
-						})}
+			{items.map(({ label, href, handleClick }, i) => {
+				const isSelected = i === store.selected;
+				const initialColor = isSelected ? neutralLightColor : whiteColor;
+				const animateColor = isSelected ? primaryColor : whiteColor;
+				const textColor = isSelected ? whiteColor : primaryColor;
 
-						style={{
-							zIndex: 999, color: i === storeSubMenu.selectedSubMenu
-								? "hsl(var(--neutral-light-1))"
-								: themeColor === "light"
-									? "hsl(var(--primary))"
-									: "hsl(var(--neutral-light-2))"
-						}}
-
-						animate={{
-							color:
-								i === storeSubMenu.selectedSubMenu
-									? "hsl(var(--neutral-light-1))"
-									: themeColor === "light"
-										? "hsl(var(--primary))"
-										: "hsl(var(--neutral-light-2))"
-
-						}}
-						onTap={() => handleSubMenuClick(i)}
-						onClick={() => handleSubMenuClick(i)}
-						onPointerEnter={() =>
-							setStoreSubMenu({
-								activeColorSubMenu: color,
-								selectedSubMenu: i,
-								beforeSubMenu: storeSubMenu.beforeSubMenu
-							})
-						}
-						onPointerOut={() =>
-							setStoreSubMenu({
-								activeColorSubMenu: color,
-								selectedSubMenu: storeSubMenu.beforeSubMenu,
-								beforeSubMenu: storeSubMenu.beforeSubMenu
-							})
-						}
+				return (
+					<Link
+						key={href}
+						href={href!}
+						onClick={handleClick}
+						className="relative font-sans text-xs font-semibold uppercase"
+						onPointerEnter={() => handleMouseEnter(i)}
+						onPointerOut={handleMouseLeave}
 					>
-						<span onPointerEnter={() => {
-							setStoreSubMenu({
-								activeColorSubMenu: color,
-								selectedSubMenu: i,
-								beforeSubMenu: storeSubMenu.beforeSubMenu
-							})
-						}}
-							onPointerOut={() => {
-								setStoreSubMenu({
-									activeColorSubMenu: color,
-									selectedSubMenu: storeSubMenu.beforeSubMenu,
-									beforeSubMenu: storeSubMenu.beforeSubMenu
-								})
-							}}
-							className="relative z-10 ">{label}</span>
-
-						{i === storeSubMenu.selectedSubMenu && (
-							<motion.div
-								className="absolute top-0 left-0 w-full h-full rounded-full"
-								layoutId="selectedSubMenu"
-								initial={{
-									backgroundColor: path !== "/" ? storeSubMenu.activeColorSubMenu : "transparent"
-								}}
-								animate={{ backgroundColor: color }}
-								onPointerEnter={() =>
-									setStoreSubMenu({
-										activeColorSubMenu: color,
-										selectedSubMenu: i,
-										beforeSubMenu: storeSubMenu.beforeSubMenu
-									})
-								}
-								onClick={() => handleSubMenuClick(i)}
-								onPointerOut={() =>
-									setStoreSubMenu({
-										activeColorSubMenu: color,
-										selectedSubMenu: storeSubMenu.beforeSubMenu,
-										beforeSubMenu: storeSubMenu.beforeSubMenu
-									})
-								}
-							/>
-						)}
-					</motion.div>
-				</Link>
-			))}
+						<motion.div
+							className="relative px-3 py-2 m-0 mr-3 font-sans bg-white rounded-full cursor-pointer"
+							style={{ zIndex: isSelected ? 1000 : 999 }}
+							initial={{ backgroundColor: initialColor }}
+							animate={{ backgroundColor: animateColor }}
+							onTap={() => setStore(prev => ({ ...prev, before: i, selected: i }))}
+							onPointerEnter={() => handleMouseEnter(i)}
+							onPointerOut={handleMouseLeave}
+						>
+							{isSelected && (
+								<motion.div
+									className="absolute top-0 left-0 w-full h-full rounded-full"
+									layoutId="selected"
+									initial={{ backgroundColor: initialColor }}
+									animate={{ backgroundColor: animateColor }}
+								/>
+							)}
+							<motion.p
+								className={classNames("relative z-10 cursor-pointer", {
+									"text-white": isSelected,
+									"text-primary": !isSelected,
+								})}
+								initial={{ color: textColor }}
+								animate={{ color: textColor }}
+								onPointerEnter={() => handleMouseEnter(i)}
+								onPointerOut={handleMouseLeave}
+							>{label}</motion.p>
+						</motion.div>
+					</Link>
+				);
+			})}
 		</div>
 	);
 }

@@ -14,6 +14,9 @@ importers:
       '@payloadcms/db-postgres':
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(@types/react@18.3.4)(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-06d0b89e-20240801)
+      '@payloadcms/email-nodemailer':
+        specifier: 3.0.0-beta.29
+        version: 3.0.0-beta.29(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))
       '@payloadcms/next':
         specifier: 3.0.0-beta.95
         version: 3.0.0-beta.95(@types/react@18.3.4)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.134(@babel/core@7.25.2)(react-dom@19.0.0-rc-06d0b89e-20240801(react@19.0.0-rc-06d0b89e-20240801))(react@19.0.0-rc-06d0b89e-20240801)(sass@1.77.4))(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-06d0b89e-20240801(react@19.0.0-rc-06d0b89e-20240801))(react@19.0.0-rc-06d0b89e-20240801)(typescript@5.5.4)
@@ -89,6 +92,9 @@ importers:
       next-themes:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@19.0.0-rc-06d0b89e-20240801(react@19.0.0-rc-06d0b89e-20240801))(react@19.0.0-rc-06d0b89e-20240801)
+      nodemailer:
+        specifier: ^6.9.14
+        version: 6.9.14
       nookies:
         specifier: ^2.5.2
         version: 2.5.2
@@ -126,6 +132,9 @@ importers:
       '@types/node':
         specifier: ^18.19.45
         version: 18.19.45
+      '@types/nodemailer':
+        specifier: ^6.4.15
+        version: 6.4.15
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.4
@@ -1415,6 +1424,12 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.95
 
+  '@payloadcms/email-nodemailer@3.0.0-beta.29':
+    resolution: {integrity: sha512-8BqO7IynE84D7RH+0pX+5G1DNbseCEkWWEcmFD5aPOAGGhb0x+DcLu99JKg2CNiNzSNEyVmh5WYBPRql+mILFg==}
+    engines: {node: '>=18.20.2'}
+    peerDependencies:
+      payload: 3.0.0-beta.29
+
   '@payloadcms/email-nodemailer@3.0.0-beta.95':
     resolution: {integrity: sha512-Byo5mDfdG+0Mv8T5lQ9ynMrcGGY/Vd6vLM5f5EhQBOV5Gnzm/Tznrq4ZVA0hbioCm2WmU0IGI4WzueFfsPSD6A==}
     engines: {node: ^18.20.2 || >=20.9.0}
@@ -2205,6 +2220,9 @@ packages:
 
   '@types/node@18.19.45':
     resolution: {integrity: sha512-VZxPKNNhjKmaC1SUYowuXSRSMGyQGmQjvvA1xE4QZ0xce2kLtEhPDS+kqpCPBZYgqblCLQ2DAjSzmgCM5auvhA==}
+
+  '@types/nodemailer@6.4.15':
+    resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
 
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
@@ -4621,6 +4639,10 @@ packages:
 
   nodemailer@6.9.10:
     resolution: {integrity: sha512-qtoKfGFhvIFW5kLfrkw2R6Nm6Ur4LNUMykyqu6n9BRKJuyQrqEGwdXXUAbwWEKt33dlWUGXb7rzmJP/p4+O+CA==}
+    engines: {node: '>=6.0.0'}
+
+  nodemailer@6.9.14:
+    resolution: {integrity: sha512-Dobp/ebDKBvz91sbtRKhcznLThrKxKt97GI2FAlAyy+fk19j73Uz3sBXolVtmcXjaorivqsbbbjDY+Jkt4/bQA==}
     engines: {node: '>=6.0.0'}
 
   nookies@2.5.2:
@@ -8034,6 +8056,11 @@ snapshots:
       - sql.js
       - sqlite3
 
+  '@payloadcms/email-nodemailer@3.0.0-beta.29(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))':
+    dependencies:
+      nodemailer: 6.9.10
+      payload: 3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4)
+
   '@payloadcms/email-nodemailer@3.0.0-beta.95(payload@3.0.0-beta.95(graphql@16.9.0)(typescript@5.5.4))':
     dependencies:
       nodemailer: 6.9.10
@@ -9053,6 +9080,10 @@ snapshots:
   '@types/node@18.19.45':
     dependencies:
       undici-types: 5.26.5
+
+  '@types/nodemailer@6.4.15':
+    dependencies:
+      '@types/node': 18.19.45
 
   '@types/parse-json@4.0.2': {}
 
@@ -12281,6 +12312,8 @@ snapshots:
   node-releases@2.0.18: {}
 
   nodemailer@6.9.10: {}
+
+  nodemailer@6.9.14: {}
 
   nookies@2.5.2:
     dependencies:

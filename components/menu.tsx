@@ -12,6 +12,7 @@ interface ItemsProps {
 	href?: string | null
 	label?: string | null
 	handleClick?: () => void
+	icon?: JSX.Element
 }
 
 interface MenuItemsProps {
@@ -25,9 +26,8 @@ export function MenuItems({ items }: MenuItemsProps) {
 	const primaryColor = 'hsl(var(--primary))';
 	const neutralLightColor = 'hsl(var(--neutral-light-1))';
 	const whiteColor = 'white';
-	const backgroundColor = whiteColor;
+	const transparentColor = 'transparent';
 
-	const themeColor = 'light'; // Pode ser extraído de `useTheme` se necessário
 	const { active, before, setBefore } = useMenuContext();
 
 	const [store, setStore] = useState({
@@ -38,37 +38,40 @@ export function MenuItems({ items }: MenuItemsProps) {
 
 	useEffect(() => {
 		if (isHome) {
-			setBefore && setBefore(0);
+			setStore({ before: -1, selected: -1, activeColor: primaryColor });
+			setBefore && setBefore(-1);
+		} else {
+			const currentIndex = items.findIndex(item => item.href === path);
+			if (currentIndex !== -1) {
+				setStore({ before: currentIndex, selected: currentIndex, activeColor: primaryColor });
+				setBefore && setBefore(currentIndex);
+			}
 		}
-		return () => {
-			setStore({ before: 0, selected: active, activeColor: primaryColor });
-		};
-	}, []);
+	}, [path, isHome, items, setBefore]);
 
 	const handleMouseEnter = (index: number) => {
-		setStore({
-			activeColor: primaryColor,
+		setStore(prev => ({
+			...prev,
 			selected: index,
-			before: store.before,
-		});
+		}));
 	};
 
 	const handleMouseLeave = () => {
-		setStore({
-			activeColor: primaryColor,
-			selected: store.before,
-			before: store.before,
-		});
+		setStore(prev => ({
+			...prev,
+			selected: prev.before,
+		}));
 	};
 
 	return (
 		<div className="relative flex items-start content-start justify-start">
-			{items.map(({ label, href, handleClick }, i) => {
+			{items.map(({ label, href, handleClick, icon }, i) => {
 				if (label === 'home') return null;
 
 				const isSelected = i === store.selected;
-				const initialColor = isSelected ? neutralLightColor : primaryColor;
-				const animateColor = isSelected ? whiteColor : primaryColor;
+				const initialColor = isHome ? transparentColor : (isSelected ? neutralLightColor : whiteColor);
+				const animateColor = isHome ? (isSelected ? primaryColor : transparentColor) : (isSelected ? primaryColor : whiteColor);
+				const textColor = isHome ? whiteColor : (isSelected ? whiteColor : primaryColor);
 
 				return (
 					<Link
@@ -80,36 +83,40 @@ export function MenuItems({ items }: MenuItemsProps) {
 						onPointerOut={handleMouseLeave}
 					>
 						<motion.div
-							className={classNames("relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3 bg-white text-neutral-dark-2")}
-							style={{ zIndex: 999 }}
-							initial={{ color: initialColor }}
-							animate={{ color: animateColor }}
-							onTap={() => setStore({ activeColor: primaryColor, selected: i, before: i })}
-							onPointerEnter={() => handleMouseEnter(i)}
-							onPointerOut={handleMouseLeave}
+							className={classNames(
+								"relative px-3 py-2 m-0 font-sans cursor-pointer rounded-full mr-3",
+								{
+									"bg-transparent border border-white": isHome,
+									"bg-white": !isHome
+								}
+							)}
+							style={{ zIndex: isSelected ? 1000 : 999 }}
+							initial={{ backgroundColor: initialColor }}
+							animate={{ backgroundColor: animateColor }}
+							onTap={() => setStore(prev => ({ ...prev, before: i, selected: i }))}
 						>
 
 							{isSelected && (
 								<motion.div
 									className="absolute top-0 left-0 w-full h-full rounded-full"
 									layoutId="selected"
-									initial={{ backgroundColor: backgroundColor, color: animateColor }}
-									animate={{ backgroundColor: primaryColor, color: animateColor }}
-									onPointerEnter={() => handleMouseEnter(i)}
-									onPointerOut={handleMouseLeave}
+									initial={{ backgroundColor: initialColor }}
+									animate={{ backgroundColor: animateColor }}
 								/>
 							)}
-							<motion.p
+							<motion.div
 								className={classNames("relative z-10 cursor-pointer", {
-									"text-white": isHome,
-									"text-neutral-dark-2": !isHome && themeColor === 'light',
+									"text-white": isHome || isSelected,
+									"text-primary": !isHome && !isSelected,
 								})}
-								initial={{ color: initialColor }}
-								animate={{ color: animateColor }}
-								onTap={() => setStore({ activeColor: primaryColor, selected: i, before: i })}
+								initial={{ color: textColor }}
+								animate={{ color: textColor }}
+								onTap={() => setStore(prev => ({ ...prev, before: i, selected: i }))}
 								onPointerEnter={() => handleMouseEnter(i)}
 								onPointerOut={handleMouseLeave}
-							>{label}</motion.p>
+							>
+								{icon ? icon : label}
+							</motion.div>
 						</motion.div>
 					</Link>
 				);

@@ -7,7 +7,7 @@ import { Container } from "./container";
 import { MenuItems } from "./menu";
 import { ModeToggle } from "./toggleTheme";
 import { usePathname } from "next/navigation";
-
+import { FaEnvelope } from 'react-icons/fa'; // Importe o ícone de envelope
 
 export const Header = () => {
 
@@ -42,6 +42,13 @@ export const Header = () => {
 					<ul className="[&_li]:ml-4 mr-6 flex justify-end items-center">
 						<MenuItems items={items} />
 						{/* {page !== '/' && <li><ModeToggle /></li>} */}
+						<Link
+							href="/contact"
+							className="ml-4 p-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors"
+							aria-label="Contato"
+						>
+							<FaEnvelope size={20} />
+						</Link>
 					</ul>
 				</nav>
 			</Container>

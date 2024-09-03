@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
     "@payloadcms/db-postgres": "3.0.0-beta.95",
+    "@payloadcms/email-nodemailer": "3.0.0-beta.29",
     "@payloadcms/next": "3.0.0-beta.95",
     "@payloadcms/plugin-cloud": "3.0.0-beta.95",
     "@payloadcms/richtext-lexical": "3.0.0-beta.95",
@@ -36,6 +37,7 @@
     "next-mdx-remote": "^4.4.1",
     "next-remove-imports": "^1.0.11",
     "next-themes": "^0.3.0",
+    "nodemailer": "^6.9.14",
     "nookies": "^2.5.2",
     "payload": "3.0.0-beta.95",
     "qs-esm": "^7.0.2",
@@ -50,6 +52,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.19.45",
+    "@types/nodemailer": "^6.4.15",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/uuid": "^9.0.2",
