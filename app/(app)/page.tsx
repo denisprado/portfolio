@@ -1,15 +1,13 @@
 'use client'
 
-import DefaultCarousel from "@/components/caroussel";
 import { Button } from "@/components/ui/button";
 import { Container } from "@components/container";
 import { PageWrapper } from "@components/page-wrapper";
+import dynamic from 'next/dynamic';
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMenuContext } from "./context/menu";
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
 const HomeVideo = dynamic(() => import('@/components/homeVideo'), { ssr: false })
 
 export default function Home() {

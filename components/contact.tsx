@@ -34,9 +34,9 @@ const ContactForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className="max-w-md p-6 mx-auto mt-8 bg-white rounded-lg shadow-md">
+		<form onSubmit={handleSubmit} className="relative z-10 max-w-md p-6 mx-auto mt-8 bg-white rounded-lg shadow-md bg-opacity-20 backdrop-filter backdrop-blur-lg">
 			<div className="mb-4">
-				<label htmlFor="name" className="block mb-2 text-sm font-bold text-gray-700">Nome</label>
+				<label htmlFor="name" className="block mb-2 text-sm font-bold text-primary-800">Nome</label>
 				<input
 					type="text"
 					id="name"
@@ -45,11 +45,11 @@ const ContactForm = () => {
 					onChange={handleChange}
 					placeholder="Seu nome"
 					required
-					className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+					className="w-full px-3 py-2 border rounded-md placeholder-primary-300 border-primary-300 focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-500"
 				/>
 			</div>
 			<div className="mb-4">
-				<label htmlFor="email" className="block mb-2 text-sm font-bold text-gray-700">Email</label>
+				<label htmlFor="email" className="block mb-2 text-sm font-bold text-primary-800">Email</label>
 				<input
 					type="email"
 					id="email"
@@ -58,11 +58,11 @@ const ContactForm = () => {
 					onChange={handleChange}
 					placeholder="seu@email.com"
 					required
-					className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+					className="w-full px-3 py-2 border rounded-md placeholder-primary-300 border-primary-300 focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-500"
 				/>
 			</div>
 			<div className="mb-4">
-				<label htmlFor="message" className="block mb-2 text-sm font-bold text-gray-700">Mensagem</label>
+				<label htmlFor="message" className="block mb-2 text-sm font-bold text-primary-800">Mensagem</label>
 				<textarea
 					id="message"
 					name="message"
@@ -71,14 +71,14 @@ const ContactForm = () => {
 					placeholder="Sua mensagem"
 					required
 					rows={4}
-					className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300"
+					className="w-full px-3 py-2 border rounded-md placeholder-primary-300 border-primary-300 focus:outline-none focus:ring focus:ring-primary-100 focus:border-primary-500"
 				></textarea>
 			</div>
 			<div className="flex items-center justify-between">
 				<button
 					type="submit"
 					disabled={isLoading}
-					className="px-4 py-2 font-semibold text-white transition-colors duration-300 bg-indigo-600 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-75 disabled:bg-indigo-300"
+					className="px-4 py-2 font-semibold text-white transition-colors duration-300 rounded-lg shadow-md bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-75 disabled:bg-primary-300"
 				>
 					{isLoading ? 'Enviando...' : 'Enviar'}
 				</button>
