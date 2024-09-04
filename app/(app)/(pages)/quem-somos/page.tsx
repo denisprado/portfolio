@@ -29,3 +29,5 @@ export default async function About() {
 		</PageWrapper >
 	);
 }
+
+export const revalidate = 60
