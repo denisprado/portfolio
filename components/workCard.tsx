@@ -6,15 +6,6 @@ import { Media, WorksCategory } from '@/payload-types';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-type CategoryProps = {
-	id?: number;
-	name?: string | null;
-}
-type ClientsProps = {
-	id?: number;
-	name?: string | null;
-}
-
 export type RowCardProps = {
 	id: number,
 	slug: string,
@@ -47,16 +38,24 @@ const WorkCard = ({ cards }: CardsProps) => {
 				const { category } = card
 				const { title } = category as WorksCategory
 				return (
-					<div key={card.id} className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2 col-span-2'>
+					<div key={card.id} className='relative col-span-2'>
 						<FinalRow card={card}>
-							<>
-								<div className='flex flex-col items-start justify-start border rounded-3xl border-primary'>
+							<div className='flex-wrap items-start justify-start gap-4 rounded-3xl dark:text-neutral-light-2 group'>
+								<div className='relative overflow-hidden transition-all duration-300 ease-in-out transform border rounded-3xl border-primary group-hover:scale-110'>
 									{card.thumbnail! && (
 										<div
-											className={`relative size-full aspect-square rounded-3xl overflow-hidden img-wrapper `}
-
+											className={`relative size-full aspect-square rounded-3xl overflow-hidden`}
 										>
-											{card && card.thumbnail && <Image loader={imageLoader} src={image} fill alt={card!.title!} objectFit='cover' className={`image transition-transform duration-300 transform absolute object-left-top `} />}
+											{card && card.thumbnail && (
+												<Image
+													loader={imageLoader}
+													src={image}
+													fill
+													alt={card!.title!}
+													objectFit='cover'
+													className={`absolute object-left-top`}
+												/>
+											)}
 										</div>
 									)}
 									{!card.thumbnail! && (
@@ -64,19 +63,16 @@ const WorkCard = ({ cards }: CardsProps) => {
 											<Image loader={imageLoader} src={'/images/logo-signal.svg'} width={180} height={180} alt="" />
 										</div>
 									)}
-								</div>
-								<div className='flex flex-row items-baseline mt-4'>
-									<div className='flex flex-col flex-1 '>
+									<div className='absolute inset-0 flex flex-col justify-end p-4 transition-opacity duration-300 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100'>
 										{card.title && (
-											<h3 className={`${card.color} text-xl font-medium font-sans`}>
+											<h3 className={`${card.color} text-xl font-medium font-sans text-white`}>
 												{card.title}
 											</h3>
 										)}
-
-
+										<span className='bg-white text-primary text-xs font-medium mt-2 px-1.5 py-0.5 rounded self-start'>{title}</span>
 									</div>
-									<span className='bg-white text-primary text-xs font-medium me-2 px-1.5 py-0.5 rounded'>{title}</span></div>
-							</>
+								</div>
+							</div>
 						</FinalRow>
 					</div>
 				);
