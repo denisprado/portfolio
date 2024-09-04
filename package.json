@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
+		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devturbo": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
+    "devsafe": "rm -r .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev"
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",

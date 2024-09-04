@@ -46,7 +46,7 @@ export default buildConfig({
   csrf: [
     // whitelist of domains to allow cookie auth from
     "http://localhost:3000",
-    "https://plato.dev",
+    "https://plato.dev.br",
   ],
   collections: [
     ContactForm,
