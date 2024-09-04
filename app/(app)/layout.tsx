@@ -35,7 +35,7 @@ export default function RootLayout({
 
 
 	return (
-		<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1`}>
+		<html lang="en" suppressHydrationWarning className={`${instrumentSans.className} ${instrumentSerif.variable} ${instrumentSerifItalic.variable} dark:bg-neutral-dark-1 bg-primary`} >
 			<head />
 			<body >
 				{/* <ThemeProvider attribute="class"> */}

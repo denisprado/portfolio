@@ -13,7 +13,7 @@ const HomeVideo = dynamic(() => import('@/components/homeVideo'), { ssr: false }
 export default function Home() {
 	const [bgLoading, setBgLoading] = useState<string>('bg-[url(/bg-video-image.png)]');
 	const handleVideoLoaded = () => {
-		setBgLoading("bg-transparent")
+		setBgLoading("bg-primary")
 	};
 	const { active, setActive, setBefore } = useMenuContext();
 	useEffect(function mount() {
