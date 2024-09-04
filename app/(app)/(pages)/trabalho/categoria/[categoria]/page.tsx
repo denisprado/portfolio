@@ -31,6 +31,7 @@ export default async function WorkList({ params: { categoria } }: { params: { ca
 	});
 
 	return (
+
 		<WorkCard cards={rowCards} />
 	);
 }
