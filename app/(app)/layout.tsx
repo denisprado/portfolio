@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { Header } from "@components/header"
 // import "@refinedev/antd/dist/reset.css"
 import ConfigProvider from "antd/es/config-provider"
@@ -26,6 +27,11 @@ const instrumentSerifItalic = Instrument_Serif({
 	weight: "400", style: 'italic', adjustFontFallback: false
 });
 
+
+export const metadata: Metadata = {
+	title: 'Platô Development',
+	description: 'Dê vida ao seu projeto com a Platô. Desenvolvimento de websites totalmente customizados e design personalizado para impulsionar sua presença online.',
+}
 
 export default function RootLayout({
 	children
