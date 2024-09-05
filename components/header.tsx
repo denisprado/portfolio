@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { FaEnvelope } from 'react-icons/fa';
 import { useState } from 'react';
 import Image from "next/image";
-const LOGO_WIDTH = 320;
+const LOGO_WIDTH = 200;
 const LOGO_HEIGHT = 40;
 const SMALL_LOGO_WIDTH = 40;
 
@@ -20,36 +20,42 @@ const items = [
 	{ href: "/contato", label: "contato", icon: <FaEnvelope size={20} /> },
 ];
 
-const Logo = ({ isImagePage, isHovered }: { isImagePage: boolean, isHovered: boolean }) => {
+const Logo = ({ isImagePage, isHovered }: { isImagePage: boolean; isHovered: boolean }) => {
 	return (
-		<>
-			<motion.img
-				src={isImagePage ? "/images/logo-home.svg" : "/images/logo-signal.svg"}
-				width={isImagePage ? LOGO_WIDTH : SMALL_LOGO_WIDTH}
-				height={LOGO_HEIGHT}
-				className="transition-opacity duration-300"
-				animate={{ opacity: !isImagePage && isHovered ? 0 : 1 }}
-				transition={{ duration: 0.4, ease: "easeInOut" }}
-			/>
-			<AnimatePresence>
-				{!isImagePage && isHovered && (
-					<motion.div
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.4, ease: "easeInOut" }}
-						className="absolute left-0 px-6 top-6"
-					>
-						<Image
-							src="/images/logo-quem-somos.svg"
-							width={LOGO_WIDTH}
-							height={LOGO_HEIGHT}
-							alt="Logo completo"
-						/>
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</>
+		<div className="relative w-[200px] h-[40px]">
+			<motion.div
+				className="absolute top-0 left-0"
+				initial={false}
+				animate={{
+					width: isImagePage || isHovered ? LOGO_WIDTH : SMALL_LOGO_WIDTH,
+					opacity: isImagePage || !isHovered ? 1 : 0
+				}}
+				transition={{ duration: 0.3, ease: "easeInOut" }}
+			>
+				<Image
+					src={isImagePage ? "/images/logo-home.svg" : "/images/logo-signal.svg"}
+					width={isImagePage ? LOGO_WIDTH : SMALL_LOGO_WIDTH}
+					height={LOGO_HEIGHT}
+					alt="Logo principal"
+				/>
+			</motion.div>
+
+			{!isImagePage && (
+				<motion.div
+					className="absolute top-0 left-0"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: isHovered ? 1 : 0 }}
+					transition={{ duration: 0.3, ease: "easeInOut" }}
+				>
+					<Image
+						src="/images/logo-quem-somos.svg"
+						width={LOGO_WIDTH}
+						height={LOGO_HEIGHT}
+						alt="Logo completo"
+					/>
+				</motion.div>
+			)}
+		</div>
 	);
 };
 
@@ -64,11 +70,11 @@ export const Header = () => {
 				<Link
 					href="/"
 					className={classNames(
-						"h-16 pt-4 p-3 px-6 relative overflow-hidden",
+						"h-16 pt-4 p-3 px-6 relative overflow-visible",
 						{
 							"bg-transparent": isImagePage,
 							"bg-white": !isImagePage,
-							"w-[200px]": isImagePage || isHovered,
+							"w-[320px]": isImagePage || isHovered,
 							"w-24": !isImagePage && !isHovered
 						}
 					)}
