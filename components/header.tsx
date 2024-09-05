@@ -20,7 +20,7 @@ const items = [
 	{ href: "/contato", label: "contato", icon: <FaEnvelope size={20} /> },
 ];
 
-const Logo = ({ isImagePage, isHovered }: { isImagePage: boolean; isHovered: boolean }) => {
+const Logo = ({ isImagePage, isHovered }: { isImagePage: boolean, isHovered: boolean }) => {
 	return (
 		<>
 			<motion.img
@@ -32,10 +32,10 @@ const Logo = ({ isImagePage, isHovered }: { isImagePage: boolean; isHovered: boo
 				transition={{ duration: 0.4, ease: "easeInOut" }}
 			/>
 			<AnimatePresence>
-				{(!isImagePage || isHovered) && (
+				{!isImagePage && isHovered && (
 					<motion.div
 						initial={{ opacity: 0 }}
-						animate={{ opacity: isHovered ? 1 : 0 }}
+						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.4, ease: "easeInOut" }}
 						className="absolute left-0 px-6 top-6"
