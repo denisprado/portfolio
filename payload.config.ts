@@ -30,7 +30,8 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo: Logo as any,
+        Logo: { path: "./components/logo.tsx" },
+        Icon: { path: "./components/icon.tsx" },
       },
     },
     dateFormat: "dd/mm/yyyy",
