@@ -37,6 +37,7 @@ export const Works: CollectionConfig = {
       name: "url",
       type: "text",
     },
+    { name: "order", type: "number", defaultValue: 0 },
     {
       name: "image",
       type: "upload",

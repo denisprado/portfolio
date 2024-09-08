@@ -114,6 +114,7 @@ export interface Service {
       }[]
     | null;
   color?: string | null;
+  order?: number | null;
   image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
@@ -138,6 +139,7 @@ export interface Work {
     value: number | WorksCategory;
   } | null;
   url?: string | null;
+  order?: number | null;
   image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;

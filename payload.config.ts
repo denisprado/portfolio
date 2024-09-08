@@ -6,7 +6,7 @@ import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
-
+import Logo from "./components/logo";
 import { Media } from "./collections/Media";
 import { Members } from "./collections/Members";
 import { Users } from "./collections/Users";
@@ -17,6 +17,7 @@ import { Gallery } from "./collections/Gallery";
 import ContactForm from "./collections/ContactForms";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import nodemailer from "nodemailer";
+import { pt } from "payload/i18n/pt";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,6 +27,15 @@ export default buildConfig({
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      graphics: {
+        Logo: Logo as any,
+      },
+    },
+    dateFormat: "dd/mm/yyyy",
+    meta: {
+      titleSuffix: "- Platô Development",
     },
   },
   email: nodemailerAdapter({
@@ -58,11 +68,14 @@ export default buildConfig({
     Users,
     Media,
   ],
+
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
+  i18n: { supportedLanguages: { pt } },
+
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || "",

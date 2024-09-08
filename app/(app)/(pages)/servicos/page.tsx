@@ -8,7 +8,7 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 export default async function Home() {
 
 	const payload = getPayloadHMR({ config: configPromise })
-	const services = (await (await payload).find({ collection: 'services', sort: '-createdAt' })).docs
+	const services = (await (await payload).find({ collection: 'services', sort: 'order' })).docs
 	const cards: RowCardProps[] = services.map(m => {
 		return { id: m.id, title: m.title, description: m.description, image: m.image!, color: m.color!, keys: m.skills! }
 	})
@@ -22,9 +22,7 @@ export default async function Home() {
 						tudo o que você precisa.
 					</p>
 				</div>
-
 				{services ? <RowCard cards={cards} /> : <></>}
-
 			</Container>
 		</PageWrapper>
 	);

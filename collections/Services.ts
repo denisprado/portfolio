@@ -30,6 +30,7 @@ export const Services: CollectionConfig = {
       name: "color",
       type: "text",
     },
+    { name: "order", type: "number", defaultValue: 0 },
     {
       name: "image",
       type: "upload",
