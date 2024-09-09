@@ -1,12 +1,8 @@
 import { Metadata } from 'next'
 import { Header } from "@components/header"
-// import "@refinedev/antd/dist/reset.css"
-import ConfigProvider from "antd/es/config-provider"
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import React from "react"
 import { MenuContextProvider } from "./context/menu"
-
-import { ThemeProvider } from 'next-themes'
 
 import './globals.css'
 import { SubMenuContextProvider } from "./context/submenu"
