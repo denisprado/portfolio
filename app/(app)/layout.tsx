@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Metadata } from 'next'
 import { Header } from "@components/header"
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
@@ -45,6 +46,7 @@ export default function RootLayout({
 					<SubMenuContextProvider>
 						<Header />
 						{children}
+						<SpeedInsights />
 					</SubMenuContextProvider>
 				</MenuContextProvider>
 				{/* </ThemeProvider> */}
