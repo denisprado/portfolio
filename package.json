@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-		"dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
     "devturbo": "cross-env NODE_OPTIONS=--no-deprecation next dev --turbo",
     "devsafe": "rm -r .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
@@ -27,6 +27,7 @@
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.3",
     "@uiw/react-md-editor": "^3.6.0",
+    "@vercel/speed-insights": "^1.0.12",
     "antd": "^5.0.5",
     "class-variance-authority": "^0.6.1",
     "classnames": "^2.3.2",

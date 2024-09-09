@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Metadata } from 'next'
 import { Header } from "@components/header"
 // import "@refinedev/antd/dist/reset.css"
@@ -49,6 +50,7 @@ export default function RootLayout({
 					<SubMenuContextProvider>
 						<Header />
 						{children}
+						<SpeedInsights />
 					</SubMenuContextProvider>
 				</MenuContextProvider>
 				{/* </ThemeProvider> */}
