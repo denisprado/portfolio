@@ -1,4 +1,5 @@
 import WorkCard, { RowCardProps } from "@/components/workCard"
+import WorkIntro from "@/components/workIntro"
 import configPromise from '@payload-config'
 import { getPayloadHMR } from "@payloadcms/next/utilities"
 
@@ -7,7 +8,8 @@ export default async function Work() {
 	const payload = await getPayloadHMR({ config: configPromise })
 
 	const dataWork = await payload.find({
-		collection: 'works'
+		collection: 'works',
+		sort: 'order'
 	})
 
 	const rowCards: RowCardProps[] = dataWork.docs.map((work) => {
@@ -24,8 +26,10 @@ export default async function Work() {
 	});
 
 	return (
-
-		<WorkCard cards={rowCards} />
+		<>
+			<WorkIntro />
+			<WorkCard cards={rowCards} />
+		</>
 
 	);
 }
