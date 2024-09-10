@@ -1,5 +1,4 @@
 import { Media } from '@/payload-types';
-import getUrlFromTable from '@/utils/getUrlFromTable';
 import Image from 'next/image';
 import imageLoader from '@/app/helpers/loader'; import Link from 'next/link';
 import { ReactElement } from 'react';
