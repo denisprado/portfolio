@@ -28,6 +28,9 @@ const instrumentSerifItalic = Instrument_Serif({
 export const metadata: Metadata = {
 	title: 'Platô Development',
 	description: 'Dê vida ao seu projeto com a Platô. Desenvolvimento de websites totalmente customizados e design personalizado para impulsionar sua presença online.',
+	other: {
+		"google-site-verification": "_Agkqak1Myh13hbcGo7Qnv0dTCEGcmtLQYnEtOTXidw"
+	}
 }
 
 export default function RootLayout({
