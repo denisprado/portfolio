@@ -13,6 +13,7 @@ const items = [
 	{ href: "/quem-somos", label: "quem somos" },
 	{ href: "/servicos", label: "serviços" },
 	{ href: "/trabalho", label: "trabalho" },
+	{ href: "/shop", label: "loja" },
 	{ href: "/contato", label: "contato", icon: <FaEnvelope size={20} /> },
 ];
 

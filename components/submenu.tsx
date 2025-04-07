@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { useMenuContext } from "@/app/(app)/context/menu";
 import { useSubMenuContext } from "@/app/(app)/context/submenu";
 
 interface ItemsProps {
