@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
 
     const mailOptions = {
       from: process.env.NEXT_PUBLIC_SMTP_USER || process.env.SMTP_USER,
-      to: "destinatario@exemplo.com",
-      subject: "Novo formulário de contato",
+      to: "contato@plato.dev.br",
+      subject: "[PLATO.DEV.BR] Novo formulário de contato",
       text: `Nome: ${body.name}\nEmail: ${body.email}\nMensagem: ${body.message}`,
     };
 
