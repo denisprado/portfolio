@@ -4,6 +4,7 @@ import { Header } from "@components/header"
 import { Instrument_Sans, Instrument_Serif } from 'next/font/google'
 import React from "react"
 import { MenuContextProvider } from "./context/menu"
+import { Analytics } from "@vercel/analytics/react"
 
 import './globals.css'
 import { SubMenuContextProvider } from "./context/submenu"
@@ -53,6 +54,7 @@ export default function RootLayout({
 					</SubMenuContextProvider>
 				</MenuContextProvider>
 				{/* </ThemeProvider> */}
+				<Analytics />
 			</body>
 		</html>
 	)
