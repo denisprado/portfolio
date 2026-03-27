@@ -6,7 +6,6 @@ import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
-import Logo from "./components/logo";
 import { Media } from "./collections/Media";
 import { Members } from "./collections/Members";
 import { Users } from "./collections/Users";
@@ -30,8 +29,8 @@ export default buildConfig({
     },
     components: {
       graphics: {
-        Logo: { path: "./components/logo.tsx" },
-        Icon: { path: "./components/icon.tsx" },
+        Logo: { path: "@/components/logo" },
+        Icon: { path: "@/components/icon" },
       },
     },
     dateFormat: "dd/mm/yyyy",

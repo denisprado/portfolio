@@ -9,8 +9,8 @@ type MenuProps = {
 }
 
 export const SubMenuContextProvider = ({ children }: MenuProps) => {
-	const [activeSubMenu, setActiveSubMenu] = useState<menuProps>(0);
-	const [beforeSubMenu, setBeforeSubMenu] = useState<menuProps>(0);
+	const [activeSubMenu, setActiveSubMenu] = useState<menuProps>(-1);
+	const [beforeSubMenu, setBeforeSubMenu] = useState<menuProps>(-1);
 
 	return (
 		<SubMenuContext.Provider value={{ activeSubMenu, setActiveSubMenu, beforeSubMenu, setBeforeSubMenu }}>

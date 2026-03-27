@@ -1,13 +1,16 @@
+import daisyui from "daisyui";
+import flowbitePlugin from "flowbite/plugin";
+import tailwindcssAnimate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
 	darkMode: ["class"],
 	content: [
-		'./pages/**/*.{ts,tsx}',
-		'./components/**/*.{ts,tsx}',
-		'./app/**/*.{ts,tsx}',
+		"./pages/**/*.{ts,tsx}",
+		"./components/**/*.{ts,tsx}",
+		"./app/**/*.{ts,tsx}",
 		"./node_modules/flowbite-react/**/*.js",
 	],
-	plugins: [require('flowbite/plugin')],
 	theme: {
 		container: {
 			center: true,
@@ -19,27 +22,27 @@ module.exports = {
 
 		extend: {
 			fontFamily: {
-				sans: ['var(--font-instrument-sans)'],
-				serif: ['var(--font-instrument-serif)'],
-				italic: ['var(--font-instrument-italic)'],
+				sans: ["var(--font-instrument-sans)"],
+				serif: ["var(--font-instrument-serif)"],
+				italic: ["var(--font-instrument-italic)"],
 			},
 			minHeight: {
-				screenHeightWithoutHeader: 'calc(100vh - 64px)'
+				screenHeightWithoutHeader: "calc(100vh - 64px)",
 			},
 			height: {
-				screenHeightWithoutHeader: 'calc(100vh - 64px)'
+				screenHeightWithoutHeader: "calc(100vh - 64px)",
 			},
 			textColor: {
-				primary: 'hsl(var(--primary))'
+				primary: "hsl(var(--primary))",
 			},
 			colors: {
 				neutral: "#EDEEF0",
-				'neutral-dark-3': "#38383D",
-				'neutral-dark-2': "#3C3C42",
-				'neutral-dark-1': "#45464E",
-				'neutral-light-3': "#A1A4A8",
-				'neutral-light-2': "#C7C9CC",
-				'neutral-light-1': "#EDEEF0",
+				"neutral-dark-3": "#38383D",
+				"neutral-dark-2": "#3C3C42",
+				"neutral-dark-1": "#45464E",
+				"neutral-light-3": "#A1A4A8",
+				"neutral-light-2": "#C7C9CC",
+				"neutral-light-1": "#EDEEF0",
 
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
@@ -59,7 +62,7 @@ module.exports = {
 					foreground: "hsl(var(--destructive-foreground))",
 				},
 				info: {
-					DEFAULT: "hsl(var(--info))"
+					DEFAULT: "hsl(var(--info))",
 				},
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
@@ -99,7 +102,7 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('daisyui', "tailwindcss-animate", "flowbite/plugin")],
-}
+	plugins: [daisyui, tailwindcssAnimate, flowbitePlugin],
+};
 
-
+export default config;

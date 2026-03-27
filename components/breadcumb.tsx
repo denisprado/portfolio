@@ -1,26 +1,25 @@
 'use client'
 
-import { Breadcrumb as FlowbiteBreadcumb } from 'flowbite-react'
+import { Breadcrumb, BreadcrumbItem } from 'flowbite-react'
 import { HomeIcon } from 'lucide-react';
 
-export default function Breadcrumb({ title }: { title: string }) {
+export default function BreadcrumbNav({ title }: { title: string }) {
     return (
-        <FlowbiteBreadcumb>
-            <FlowbiteBreadcumb.Item
+        <Breadcrumb>
+            <BreadcrumbItem
                 href="/"
                 icon={HomeIcon}
             >
                 <p>Home</p>
-            </FlowbiteBreadcumb.Item>
-            <FlowbiteBreadcumb.Item
+            </BreadcrumbItem>
+            <BreadcrumbItem
                 href="/trabalho"
             >
                 <p>Trabalhos</p>
-            </FlowbiteBreadcumb.Item>
-            <FlowbiteBreadcumb.Item
-            >
+            </BreadcrumbItem>
+            <BreadcrumbItem>
                 <p>{title}</p>
-            </FlowbiteBreadcumb.Item>
-        </FlowbiteBreadcumb>
+            </BreadcrumbItem>
+        </Breadcrumb>
     )
 }

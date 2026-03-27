@@ -1,7 +1,11 @@
-import { default as default_0 } from '/components/icon.tsx'
-import { default as default_1 } from '/components/logo.tsx'
+import { default as default_f8022cf35b3d492829ec1a405bd134e9 } from '@/components/icon'
+import { default as default_7a89b5675912f3f4f82dd41bbb03d52e } from '@/components/logo'
+import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
+import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 export const importMap = {
-  "./components/icon.tsx#default": default_0,
-  "./components/logo.tsx#default": default_1
+  "@/components/icon#default": default_f8022cf35b3d492829ec1a405bd134e9,
+  "@/components/logo#default": default_7a89b5675912f3f4f82dd41bbb03d52e,
+  "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24,
+  "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

@@ -9,8 +9,8 @@ type MenuProps = {
 }
 
 export const MenuContextProvider = ({ children }: MenuProps) => {
-	const [active, setActive] = useState<menuProps>(0);
-	const [before, setBefore] = useState<menuProps>(0);
+	const [active, setActive] = useState<menuProps>(-1);
+	const [before, setBefore] = useState<menuProps>(-1);
 
 	return (
 		<MenuContext.Provider value={{ active, setActive, before, setBefore }}>

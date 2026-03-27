@@ -1,10 +1,16 @@
 'use client';
 
-import { Footer as FooterBite } from 'flowbite-react';
-import { LinkedinIcon } from 'lucide-react';
-import { BsInstagram } from 'react-icons/bs';
+import {
+	Footer as FooterBite,
+	FooterBrand,
+	FooterCopyright,
+	FooterIcon,
+	FooterLink,
+	FooterLinkGroup,
+	FooterTitle,
+} from 'flowbite-react';
+import { BsInstagram, BsLinkedin } from 'react-icons/bs';
 import { RowCardProps } from './rowCard';
-
 
 const services: RowCardProps[] = [
 	{
@@ -17,7 +23,7 @@ const services: RowCardProps[] = [
 	},
 	{
 		id: 3,
-		title: "Presença digital",
+		title: "Presenca digital",
 	}
 ]
 
@@ -32,7 +38,7 @@ const works: RowCardProps[] = [
 	},
 	{
 		id: 3,
-		title: "Presença digital",
+		title: "Presenca digital",
 	}
 ]
 
@@ -42,60 +48,59 @@ export default function Footer() {
 			<div className="w-full">
 				<div className="grid w-full grid-cols-6 gap-8 px-24 py-10 sm:grid-cols-6 bg-neutral-dark-3 content">
 					<div>
-						<FooterBite.Brand
-							alt="Platô Logo"
+						<FooterBrand
+							alt="Plato Logo"
 							href="/"
 							src="/images/logo-servicos.svg"
 						/>
 					</div>
 					<div></div>
 					<div>
-						<FooterBite.Title title="Quem somos" />
-						<FooterBite.LinkGroup col>
-							<FooterBite.Link href="#">
-								A Platô
-							</FooterBite.Link>
-							<FooterBite.Link href="#">
+						<FooterTitle title="Quem somos" />
+						<FooterLinkGroup col>
+							<FooterLink href="#">
+								A Plato
+							</FooterLink>
+							<FooterLink href="#">
 								Equipe
-							</FooterBite.Link>
-						</FooterBite.LinkGroup>
+							</FooterLink>
+						</FooterLinkGroup>
 					</div>
 					<div>
-						<FooterBite.Title title="Serviços" />
-						<FooterBite.LinkGroup col>
+						<FooterTitle title="Servicos" />
+						<FooterLinkGroup col>
 							{services.map(service =>
-								<FooterBite.Link href="/servicos" key={service.id}>
+								<FooterLink href="/servicos" key={service.id}>
 									{service.title}
-								</FooterBite.Link>)
+								</FooterLink>)
 							}
-						</FooterBite.LinkGroup>
+						</FooterLinkGroup>
 					</div>
 					<div>
-						<FooterBite.Title title="Trabalho" />
-						<FooterBite.LinkGroup col>
-							{/* {services.map(service =>
-								<FooterBite.Link href="/servicos">
-									{service.title}
-								</FooterBite.Link>)
-							} */}
-						</FooterBite.LinkGroup>
+						<FooterTitle title="Trabalho" />
+						<FooterLinkGroup col>
+							{works.map(work =>
+								<FooterLink href="/trabalho" key={work.id}>
+									{work.title}
+								</FooterLink>)
+							}
+						</FooterLinkGroup>
 					</div>
 				</div>
 				<div className="w-full px-4 py-6 bg-neutral-dark-1 sm:flex sm:items-center sm:justify-between">
-					<FooterBite.Copyright
-						by="Platô"
+					<FooterCopyright
+						by="Plato"
 						href="/"
 						year={2022}
 					/>
 					<div className="flex mt-4 space-x-6 sm:mt-0 sm:justify-center">
-
-						<FooterBite.Icon
+						<FooterIcon
 							href="#"
 							icon={BsInstagram}
 						/>
-						<FooterBite.Icon
+						<FooterIcon
 							href="#"
-							icon={LinkedinIcon}
+							icon={BsLinkedin}
 						/>
 					</div>
 				</div>
@@ -103,5 +108,3 @@ export default function Footer() {
 		</FooterBite>
 	)
 }
-
-

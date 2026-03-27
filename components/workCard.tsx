@@ -22,21 +22,17 @@ export type RowCardProps = {
 type CardsProps = { cards: RowCardProps[] }
 
 function FinalRow({ children, card }: { children: ReactElement, card: RowCardProps }) {
-	return card.url!! ? <Link href={card.url ? '/trabalho/' + card.slug : ''}>{children}</Link> : <>{children}</>
+	return card.slug ? <Link href={`/trabalho/${card.slug}`}>{children}</Link> : <>{children}</>
 }
 
 
 
 const WorkCard = ({ cards }: CardsProps) => {
-	const cols = cards.length > 6 ? 'grid-cols-6' : 'grid-cols-' + cards.length
-
 	return <div className={classNames(`grid w-full gap-10 px-20 py-14 dark:bg-neutral-dark-2 bg-neutral-light-1 grid-cols-10`)}>
 		{cards &&
-			cards?.map((card, index) => {
+			cards?.map((card) => {
 				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : '/'
-
-				const { category } = card
-				const { title } = category as WorksCategory
+				const categoryTitle = typeof card.category === 'object' ? (card.category as WorksCategory).title : undefined;
 				return (
 					<div key={card.id} className='relative col-span-2'>
 						<FinalRow card={card}>
@@ -52,8 +48,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 													src={image}
 													fill
 													alt={card!.title!}
-													objectFit='cover'
-													className={`absolute object-left-top`}
+													className={`absolute object-cover object-left-top`}
 												/>
 											)}
 										</div>
@@ -69,7 +64,7 @@ const WorkCard = ({ cards }: CardsProps) => {
 												{card.title}
 											</h3>
 										)}
-										<span className='bg-white text-primary text-xs font-medium mt-2 px-1.5 py-0.5 rounded self-start'>{title}</span>
+										{categoryTitle && <span className='bg-white text-primary text-xs font-medium mt-2 px-1.5 py-0.5 rounded self-start'>{categoryTitle}</span>}
 									</div>
 								</div>
 							</div>

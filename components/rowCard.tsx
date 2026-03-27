@@ -39,7 +39,6 @@ const RowCard = ({ cards }: CardsProps) => {
 	return <div className='px-24 py-12 dark:bg-neutral-dark-2 bg-neutral-light-1'>
 		{
 			cards && cards?.map(card => {
-				console.log(card.thumbnail)
 				const image = typeof card.thumbnail! !== 'number' && card.thumbnail?.filename !== undefined ? card.thumbnail?.filename! : 'card-logo.svg'
 
 				return (

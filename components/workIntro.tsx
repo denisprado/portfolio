@@ -1,10 +1,10 @@
 import { SubMenuItems } from "@/components/submenu"
 import configPromise from '@payload-config'
-import { getPayloadHMR } from "@payloadcms/next/utilities"
+import { getPayload } from "payload"
 
 
 const WorkIntro = async () => {
-	const payload = await getPayloadHMR({ config: configPromise })
+	const payload = await getPayload({ config: configPromise })
 
 	const dataCategories = await payload.find({
 		collection: 'worksCategory',

@@ -30,6 +30,9 @@ export const LogoHeader = ({ isImagePage = false, isHovered = false }: LogoProps
 					width={isImagePage ? LOGO_WIDTH : SMALL_LOGO_WIDTH}
 					height={LOGO_HEIGHT}
 					alt="Logo principal"
+					priority={isImagePage}
+					className="h-auto w-full"
+					sizes={`${LOGO_WIDTH}px`}
 				/>
 			</motion.div>
 
@@ -45,6 +48,8 @@ export const LogoHeader = ({ isImagePage = false, isHovered = false }: LogoProps
 						width={LOGO_WIDTH}
 						height={LOGO_HEIGHT}
 						alt="Logo completo"
+						className="h-auto w-full"
+						sizes={`${LOGO_WIDTH}px`}
 					/>
 				</motion.div>
 			)}

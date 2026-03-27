@@ -3,11 +3,11 @@ import { PageWrapper } from "@/components/page-wrapper";
 import RowCard, { RowCardProps } from "@/components/rowCard";
 import { AboutImage } from "./AboutImage";
 import configPromise from '@payload-config'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
+import { getPayload } from 'payload'
 
 export default async function About() {
-	const payload = getPayloadHMR({ config: configPromise })
-	const members = (await (await payload).find({ collection: 'members' })).docs
+	const payload = await getPayload({ config: configPromise })
+	const members = (await payload.find({ collection: 'members' })).docs
 	const cards: RowCardProps[] = members.map(m => {
 		return { id: m.id, title: m.title, description: m.description, thumbnail: m.image!, color: m.color!, keys: m.skills! }
 	})
