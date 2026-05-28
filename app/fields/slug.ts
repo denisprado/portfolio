@@ -7,18 +7,14 @@ const slug: Field = {
   unique: true,
   index: true,
   admin: {
-    hidden: true, // hides the field from the admin panel
+    hidden: true,
   },
   hooks: {
-    beforeChange: [
-      ({ siblingData }) => {
-        // ensures data is not stored in DB
-        delete siblingData["slug"];
-      },
-    ],
-    afterRead: [
-      async ({ data }) => {
-        return `${await slugify(data?.title)}`;
+    beforeValidate: [
+      async ({ siblingData }) => {
+        if (!siblingData.slug && siblingData.title) {
+          siblingData.slug = await slugify(siblingData.title);
+        }
       },
     ],
   },

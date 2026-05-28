@@ -23,12 +23,14 @@ export function SubMenuItems({ items }: SubMenuItemsProps) {
 	return (
 		<div className="relative flex items-start content-start justify-start">
 			{items.map(({ label, href, handleClick }, i) => {
+				if (!href) return null;
+
 				const isSelected = i === selectedIndex;
 
 				return (
 					<Link
-						key={href}
-						href={href!}
+						key={`${href}-${i}`}
+						href={href}
 						onClick={handleClick}
 						className="relative font-sans text-xs font-semibold uppercase"
 						onPointerEnter={() => setHoveredItem({ path, index: i })}

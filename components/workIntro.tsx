@@ -11,12 +11,14 @@ const WorkIntro = async () => {
 		sort: 'id'
 	})
 	const categories = dataCategories.docs
-	const menuCategoriesItems = categories.map((cat) => {
-		return {
-			href: "/trabalho/categoria/" + cat.slug,
-			label: cat.title
-		}
-	})
+	const menuCategoriesItems = categories
+		.filter((cat) => cat.slug)
+		.map((cat) => {
+			return {
+				href: "/trabalho/categoria/" + cat.slug,
+				label: cat.title
+			}
+		})
 	menuCategoriesItems.unshift({ href: '/trabalho', label: "todos" })
 
 	return (

@@ -3,6 +3,10 @@ import Image from "next/image";
 import React from "react";
 
 const LOGO_WIDTH = 200;
+const LOGO_HOME_WIDTH = 168;
+const LOGO_HOME_HEIGHT = 31;
+const LOGO_FULL_WIDTH = 840;
+const LOGO_FULL_HEIGHT = 156;
 const LOGO_HEIGHT = 40;
 const SMALL_LOGO_WIDTH = 40;
 
@@ -27,11 +31,11 @@ export const LogoHeader = ({ isImagePage = false, isHovered = false }: LogoProps
 			>
 				<Image
 					src={isImagePage ? "/images/logo-home.svg" : "/images/logo-signal.svg"}
-					width={isImagePage ? LOGO_WIDTH : SMALL_LOGO_WIDTH}
-					height={LOGO_HEIGHT}
+					width={isImagePage ? LOGO_HOME_WIDTH : SMALL_LOGO_WIDTH}
+					height={isImagePage ? LOGO_HOME_HEIGHT : LOGO_HEIGHT}
 					alt="Logo principal"
 					priority={isImagePage}
-					className="h-auto w-full"
+					style={{ width: "100%", height: "auto" }}
 					sizes={`${LOGO_WIDTH}px`}
 				/>
 			</motion.div>
@@ -45,10 +49,10 @@ export const LogoHeader = ({ isImagePage = false, isHovered = false }: LogoProps
 				>
 					<Image
 						src="/images/logo-quem-somos.svg"
-						width={LOGO_WIDTH}
-						height={LOGO_HEIGHT}
+						width={LOGO_FULL_WIDTH}
+						height={LOGO_FULL_HEIGHT}
 						alt="Logo completo"
-						className="h-auto w-full"
+						style={{ width: "100%", height: "auto" }}
 						sizes={`${LOGO_WIDTH}px`}
 					/>
 				</motion.div>

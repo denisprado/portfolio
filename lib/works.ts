@@ -1,4 +1,5 @@
 import { RowCardProps } from "@/components/workCard";
+import { slugify } from "@/app/helpers/functions";
 import { Gallery, Work, WorksCategory } from "@/payload-types";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
@@ -13,9 +14,11 @@ const getCategoryValue = (category: Work["category"]): WorksCategory | undefined
 	return typeof category.value === "number" ? undefined : (category.value as WorksCategory);
 };
 
+const getWorkSlug = (work: Pick<Work, "slug" | "title">) => work.slug || slugify(work.title ?? "");
+
 export const mapWorkToRowCard = (work: Work): RowCardProps => ({
 	id: work.id,
-	slug: work.slug ?? "",
+	slug: getWorkSlug(work),
 	title: work.title,
 	description: work.description,
 	color: "hsl(var(--primary))",
@@ -61,7 +64,17 @@ export async function getWorkBySlug(slug: string) {
 		},
 	});
 
-	return workResult.docs[0] ?? null;
+	if (workResult.docs[0]) {
+		return workResult.docs[0];
+	}
+
+	const fallbackResult = await payload.find({
+		collection: "works",
+		depth: 1,
+		limit: 1000,
+	});
+
+	return fallbackResult.docs.find((work) => getWorkSlug(work) === slug) ?? null;
 }
 
 export async function getAlbumsByWorkId(workId: number): Promise<Gallery[]> {
