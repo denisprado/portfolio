@@ -38,15 +38,9 @@ export function LeftArrow() {
 		initComplete
 	} = React.useContext(VisibilityContext);
 
-	const [disabled, setDisabled] = React.useState(
-		!initComplete || (initComplete && isFirstItemVisible)
-	);
-	React.useEffect(() => {
-		// NOTE: detect if whole component visible
-		if (visibleElements.length) {
-			setDisabled(isFirstItemVisible);
-		}
-	}, [isFirstItemVisible, visibleElements]);
+	const disabled = visibleElements.length
+		? isFirstItemVisible
+		: !initComplete || (initComplete && isFirstItemVisible);
 
 	return (
 		<Arrow disabled={disabled} onClick={() => scrollPrev()}>
@@ -60,14 +54,9 @@ export function RightArrow() {
 		VisibilityContext
 	);
 
-	const [disabled, setDisabled] = React.useState(
-		!visibleElements.length && isLastItemVisible
-	);
-	React.useEffect(() => {
-		if (visibleElements.length) {
-			setDisabled(isLastItemVisible);
-		}
-	}, [isLastItemVisible, visibleElements]);
+	const disabled = visibleElements.length
+		? isLastItemVisible
+		: isLastItemVisible;
 
 	return (
 		<Arrow disabled={disabled} onClick={() => scrollNext()}>

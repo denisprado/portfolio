@@ -1,3 +1,4 @@
+import { slugify } from "@/app/helpers/functions"
 import { SubMenuItems } from "@/components/submenu"
 import configPromise from '@payload-config'
 import { getPayload } from "payload"
@@ -12,13 +13,14 @@ const WorkIntro = async () => {
 	})
 	const categories = dataCategories.docs
 	const menuCategoriesItems = categories
-		.filter((cat) => cat.slug)
 		.map((cat) => {
+			const categorySlug = cat.slug || (cat.title ? slugify(cat.title) : "")
 			return {
-				href: "/trabalho/categoria/" + cat.slug,
+				href: categorySlug ? "/trabalho/categoria/" + categorySlug : "",
 				label: cat.title
 			}
 		})
+		.filter((item) => item.href)
 	menuCategoriesItems.unshift({ href: '/trabalho', label: "todos" })
 
 	return (

@@ -15,6 +15,8 @@ const getCategoryValue = (category: Work["category"]): WorksCategory | undefined
 };
 
 const getWorkSlug = (work: Pick<Work, "slug" | "title">) => work.slug || slugify(work.title ?? "");
+const getCategorySlug = (category?: WorksCategory) =>
+	category ? category.slug || slugify(category.title ?? "") : undefined;
 
 export const mapWorkToRowCard = (work: Work): RowCardProps => ({
 	id: work.id,
@@ -47,7 +49,7 @@ export async function getWorkCardsByCategorySlug(categorySlug: string) {
 	});
 
 	return worksResult.docs
-		.filter((work) => getCategoryValue(work.category)?.slug === categorySlug)
+		.filter((work) => getCategorySlug(getCategoryValue(work.category)) === categorySlug)
 		.map(mapWorkToRowCard);
 }
 

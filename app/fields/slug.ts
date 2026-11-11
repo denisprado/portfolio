@@ -11,10 +11,15 @@ const slug: Field = {
   },
   hooks: {
     beforeValidate: [
-      async ({ siblingData }) => {
+      ({ siblingData }) => {
         if (!siblingData.slug && siblingData.title) {
-          siblingData.slug = await slugify(siblingData.title);
+          siblingData.slug = slugify(siblingData.title);
         }
+      },
+    ],
+    afterRead: [
+      ({ value, data }) => {
+        return value || (data?.title ? slugify(data.title) : value);
       },
     ],
   },
